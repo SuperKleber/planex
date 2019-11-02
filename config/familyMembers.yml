@@ -1,21 +1,21 @@
 - parentesco: Abuela
-  sexo: F
+  sexo: 2
   img: /img/abuela.png
 - parentesco: Abuelo
-  sexo: M
-  img: /img/abuela.png
+  sexo: 1
+  img: /img/abuelo.png
 - parentesco: Madre
-  sexo: M
+  sexo: 2
   img: /img/abuela.png
 - parentesco: Padre
-  sexo: M
-  img: /img/abuela.png
+  sexo: 1
+  img: /img/abuelo.png
 - parentesco: Esposa
-  sexo: M
+  sexo: 2
   img: /img/abuela.png
 - parentesco: Conyuge
-  sexo: false
+  sexo: 0
   img: /img/abuela.png
 - parentesco: Hijo
-  sexo: false
+  sexo: 0
   img: /img/abuela.png

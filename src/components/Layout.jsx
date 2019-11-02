@@ -39,7 +39,11 @@ const Layout = ({ children }) => {
         a {
           text-decoration: none;
         }
+        .MuiAutocomplete-popup {
+          z-index: 5000;
+        }
       `}</style>
+      {/* // Popup de Autocomplete de @material-ui/lab */}
     </ThemeProvider>
   );
 };

@@ -13,15 +13,16 @@ const useStyles = makeStyles(theme => ({
     }
   }
 }));
-const Modal = ({ children, open, onClose, title }) => {
+const Modal = ({ children, open, onClose, title, maxWidth, fullWidth }) => {
   const classes = useStyles();
   return (
     <Dialog
       open={open}
       className={classes.dialog}
       onClose={onClose}
-      maxWidth="sm"
+      maxWidth={maxWidth ? maxWidth : "sm"}
       aria-labelledby="responsive-dialog-title"
+      fullWidth={fullWidth ? fullWidth : false}
     >
       <div className="prueba">
         {title && (

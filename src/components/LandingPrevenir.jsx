@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "gatsby";
 import familyMembers from "../../config/familyMembers.yml";
+import { colors } from "../../config/brand.yml";
 import {
   Box,
   Button,
@@ -9,9 +10,13 @@ import {
   Select,
   FormControl,
   InputLabel,
-  TextField
+  TextField,
+  Fade
 } from "@material-ui/core";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import Modal from "../components/Modal";
+
 import { relative } from "path";
 const limit = familyMembers.length;
 const useStyles = makeStyles(theme => ({
@@ -69,6 +74,35 @@ const useStyles = makeStyles(theme => ({
   },
   selectEmpty: {
     marginTop: theme.spacing(2)
+  },
+  formRelative: {
+    animation: "render 5s"
+  },
+  "@keyframes render": {
+    from: {
+      opacity: 0
+    },
+    to: {
+      opacity: 1
+    }
+  },
+  avatarRelative: {
+    height: 300,
+    "& img": {
+      height: "100%"
+    }
+  },
+  gender: {
+    margin: "16px 0 24px 0",
+    "& button:nth-child(1)": {
+      marginRight: 8
+    },
+    "& button:nth-child(2)": {
+      marginLeft: 8
+    },
+    "& .MuiButton-containedSecondary": {
+      background: colors.green
+    }
   }
 }));
 const LandingPrevenir = () => {
@@ -115,15 +149,24 @@ const LandingPrevenir = () => {
           </Button>
           <Modal
             open={startQuestions}
-            title={familyMembers[relativeStep].parentesco}
+            title={false}
+            // title={familyMembers[relativeStep].parentesco}
+            maxWidth="lg"
+            fullWidth={true}
           >
-            <Relative
-              edad={age}
-              sexo={familyMembers[relativeStep].sexo}
-              img={familyMembers[relativeStep].img}
-              relativeStep={relativeStep}
-              setRelativeStep={setRelativeStep}
-            ></Relative>
+            {familyMembers.map((relative, i) => {
+              return (
+                <Relative
+                  parentesco={relative.parentesco}
+                  edad={age}
+                  sexo={relative.sexo}
+                  index={i}
+                  img={relative.img}
+                  relativeStep={relativeStep}
+                  setRelativeStep={setRelativeStep}
+                ></Relative>
+              );
+            })}
           </Modal>
         </Box>
         <Box className={classes.gridRight}>
@@ -142,39 +185,119 @@ const Relative = ({
   img,
   edad,
   relativeStep,
-  setRelativeStep
+  setRelativeStep,
+  index
 }) => {
   //Familiar
+  const defaultAvatarRelative = "/img/silueta.png";
+  const [gender, setGender] = useState(index === 0 ? "" : sexo ? sexo : 0); // 0 = none | 1 = Man | 2 = Woman
+  const [avatarRelative, setAvatarRelative] = useState(
+    index === 0 ? defaultAvatarRelative : img ? img : defaultAvatarRelative
+  );
+  const classes = useStyles();
   return (
-    <form>
-      <TextField
-        id="standard-basic"
-        label="Edad"
-        margin="normal"
-        variant="outlined"
-        defaultValue={edad}
-      />
-      <TextField
-        id="standard-basic"
-        label="Nombres"
-        margin="normal"
-        variant="outlined"
-      />
-      <TextField
-        id="standard-basic"
-        label="Apellidos"
-        margin="normal"
-        variant="outlined"
-      />
-      <Button
-        onClick={() =>
-          setRelativeStep(
-            relativeStep + 1 >= limit ? relativeStep - 1 : relativeStep + 1
-          )
-        }
+    <Fade timeout={1000} in={relativeStep === index ? true : false}>
+      <Box
+        display="flex"
+        justifyContent="space-around"
+        alignItems="center"
+        style={{ display: relativeStep === index ? "flex" : "none" }}
       >
-        ->
-      </Button>
-    </form>
+        <Box className={classes.avatarRelative}>
+          <img src={avatarRelative} alt="" />
+        </Box>
+        <form>
+          <Autocomplete
+            // freeSolo
+            // autoHightlight
+            onChange={(e, relative) => {
+              if (relative) {
+                if (relative.sexo) {
+                  setGender(relative.sexo);
+                } else {
+                  setGender(0);
+                }
+                if (relative.img) {
+                  setAvatarRelative(relative.img);
+                } else {
+                  setAvatarRelative(defaultAvatarRelative);
+                }
+              } else {
+                setGender(0);
+                setAvatarRelative(defaultAvatarRelative);
+              }
+            }}
+            options={familyMembers}
+            defaultValue={index === 0 ? "" : familyMembers[index]}
+            getOptionLabel={relative => relative.parentesco}
+            renderInput={params => (
+              <TextField
+                {...params}
+                InputLabelProps={{
+                  shrink: true
+                }}
+                label="Parentesco"
+                variant="outlined"
+                fullWidth
+              />
+            )}
+          />
+          <Box display="flex" flexDirection="column">
+            <TextField
+              id="standard-basic"
+              label="Edad"
+              margin="normal"
+              variant="outlined"
+              defaultValue={index === 0 ? edad : ""}
+            />
+            <TextField
+              id="standard-basic"
+              label="Nombres"
+              margin="normal"
+              variant="outlined"
+            />
+
+            <TextField
+              id="standard-basic"
+              label="Apellidos"
+              margin="normal"
+              variant="outlined"
+            />
+            <Box display="flex" className={classes.gender}>
+              <Button
+                fullWidth={true}
+                onClick={() => setGender(1)}
+                color={gender === 1 ? "secondary" : "default"}
+                variant={gender === 1 ? "contained" : "text"}
+              >
+                Masculino
+              </Button>
+              <Button
+                fullWidth={true}
+                onClick={() => setGender(2)}
+                color={gender === 2 ? "secondary" : "default"}
+                variant={gender === 2 ? "contained" : "text"}
+              >
+                Femenino
+              </Button>
+            </Box>
+            <Button
+              color="primary"
+              variant="contained"
+              onClick={() =>
+                setRelativeStep(
+                  relativeStep + 1 >= limit
+                    ? relativeStep - 1
+                    : relativeStep + 1
+                )
+              }
+            >
+              Siguiente
+              <ArrowForwardIcon></ArrowForwardIcon>
+            </Button>
+          </Box>
+        </form>
+      </Box>
+    </Fade>
   );
 };
