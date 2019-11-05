@@ -1,21 +1,40 @@
-- parentesco: Abuela
+- index: 0
+  parentesco: Abuela
   sexo: 2
   img: /img/abuela.png
-- parentesco: Abuelo
+  oppositeIndex: 1
+- index: 1
+  parentesco: Abuelo
   sexo: 1
   img: /img/abuelo.png
-- parentesco: Madre
+  oppositeIndex: 0
+- index: 2
+  parentesco: Madre
   sexo: 2
-  img: /img/abuela.png
-- parentesco: Padre
+  img: /img/mujer2.png
+  oppositeIndex: 3
+- index: 3
+  parentesco: Padre
   sexo: 1
-  img: /img/abuelo.png
-- parentesco: Esposa
-  sexo: 2
-  img: /img/abuela.png
-- parentesco: Conyuge
+  img: /img/hombre2.png
+  oppositeIndex: 2
+- index: 4
+  parentesco: Conyuge (Hombre)
   sexo: 0
-  img: /img/abuela.png
-- parentesco: Hijo
+  img: /img/hombre1.png
+  oppositeIndex: 5
+- index: 5
+  parentesco: Conyuge (Mujer)
   sexo: 0
-  img: /img/abuela.png
+  img: /img/mujer1.png
+  oppositeIndex: 4
+- index: 6
+  parentesco: Hijo
+  sexo: 0
+  img: /img/chico1.png
+  oppositeIndex: 7
+- index: 7
+  parentesco: Hija
+  sexo: 0
+  img: /img/chica1.png
+  oppositeIndex: 6

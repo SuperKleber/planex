@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
 const FormContact = () => {
   const classes = useStyles();
   return (
-    <div>
+    <form>
       <TextField
         name="name"
         id="outlined-basic"
@@ -62,7 +62,7 @@ const FormContact = () => {
       >
         Enviar
       </Button>
-    </div>
+    </form>
   );
 };
 

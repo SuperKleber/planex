@@ -23,6 +23,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Logo from "./Logo";
 import Modal from "../components/Modal";
 import { colors } from "../../config/brand.yml";
+import { Link } from "gatsby";
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
@@ -57,9 +58,11 @@ const Menu = () => {
         <Toolbar>
           <Grid container spacing={3}>
             <Grid className={classes.flexCenter} item xs={6}>
-              <IconButton edge="start" color="inherit" aria-label="menu">
-                <MenuIcon />
-              </IconButton>
+              <Link to="/" style={{ color: "black" }}>
+                <IconButton edge="start" color="inherit" aria-label="menu">
+                  <MenuIcon />
+                </IconButton>
+              </Link>
             </Grid>
             <Grid
               className={`${classes.flexCenter} ${classes.buttonMenu}`}

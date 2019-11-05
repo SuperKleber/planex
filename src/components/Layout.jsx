@@ -42,6 +42,9 @@ const Layout = ({ children }) => {
         .MuiAutocomplete-popup {
           z-index: 5000;
         }
+        .MuiInputLabel-shrink {
+          background: white;
+        }
       `}</style>
       {/* // Popup de Autocomplete de @material-ui/lab */}
     </ThemeProvider>
