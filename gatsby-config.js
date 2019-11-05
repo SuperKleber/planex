@@ -1,4 +1,4 @@
-const path = require(`path`)
+const path = require(`path`);
 module.exports = {
   /* Your site config here */
   siteMetadata: {
@@ -7,8 +7,17 @@ module.exports = {
     siteUrl: `https://planex.com.bo`,
     siteLanguage: `es`,
     siteImage: `/img/banner.png`,
-    faviconDefault: `/favicon/favicon.png`,
+    faviconDefault: `/favicon/favicon.png`
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,]
-}
+    `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-plugin-material-ui`,
+      options: {
+        stylesProvider: {
+          injectFirst: true
+        }
+      }
+    }
+  ]
+};
