@@ -171,7 +171,7 @@ const LandingPrevenir = () => {
       <div className={classes.root}>
         <Box className={classes.grid}>
           <Box className={classes.gridLeft}>
-            <img src="./img/abuelo.png" alt="abuela" />
+            <img src="/img/abuelo.png" alt="abuela" />
           </Box>
           <Box className={classes.gridCopy}>
             <Typography variant="h6" align="center">
@@ -278,7 +278,7 @@ const LandingPrevenir = () => {
             </Modal>
           </Box>
           <Box className={classes.gridRight}>
-            <img src="./img/abuela.png" alt="" />
+            <img src="/img/abuela.png" alt="" />
           </Box>
         </Box>
       </div>
