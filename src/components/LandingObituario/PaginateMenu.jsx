@@ -43,10 +43,11 @@ export const PaginateMenu = ({ index, limit }) => {
               <Back></Back>
             </Button>
           </Link>
-          {paginate.map(pageNum => {
+          {paginate.map((pageNum, i) => {
             let isLimit = pageNum > limit ? true : false;
             return (
               <Link
+                key={i}
                 className={isLimit ? classes.disabled : ""}
                 to={`/obituarios/${
                   pageNum === 1 ? "" : isLimit ? limit : pageNum

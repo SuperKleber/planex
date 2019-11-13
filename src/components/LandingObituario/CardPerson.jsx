@@ -56,6 +56,7 @@ const useStyles = makeStyles(theme => ({
 const CardPerson = ({ obituario }) => {
   const [copiedShare, setCopiedShare] = useState(false);
   const { nombre, foto, fehcaInicio, fechaFin } = obituario;
+  const prev = typeof window !== undefined && window.location.pathname;
   const link = `/obituarios/${obituario.fields.slug}`;
   const linkAbsolute =
     typeof window !== "undefined" && window.location.origin + link;
@@ -77,7 +78,12 @@ const CardPerson = ({ obituario }) => {
   };
   return (
     <Box className={classes.root}>
-      <Link to={link}>
+      <Link
+        to={link}
+        state={{
+          prev: prev
+        }}
+      >
         <Box
           className={classes.cardImage}
           display="flex"
@@ -90,7 +96,12 @@ const CardPerson = ({ obituario }) => {
       </Link>
       <Card>
         <CardActionArea>
-          <Link to={link}>
+          <Link
+            to={link}
+            state={{
+              prev: prev
+            }}
+          >
             <Box className={classes.backgroundCard}></Box>
             <CardContent>
               <Typography gutterBottom variant="h6">
@@ -101,7 +112,9 @@ const CardPerson = ({ obituario }) => {
                   {epitafio.length > epitafioLimitCharacter ? (
                     <>
                       {`${epitafio.substr(0, epitafioLimitCharacter)}`}
-                      <Typography color="primary">...ver más</Typography>
+                      <Typography component="span" color="primary">
+                        ...ver más
+                      </Typography>
                     </>
                   ) : (
                     epitafio
@@ -126,7 +139,12 @@ const CardPerson = ({ obituario }) => {
             message="URL copiada"
             onClose={() => setCopiedShare(false)}
           ></Alert>
-          <Link to={`link`}>
+          <Link
+            to={link}
+            state={{
+              prev: prev
+            }}
+          >
             <Button>Leer más</Button>
           </Link>
         </CardActions>

@@ -4,7 +4,6 @@ import Menu from "../components/Menu";
 import LandingObituario from "../components/LandingObituario";
 import { PaginateMenu } from "../components/LandingObituario/PaginateMenu";
 const Obituarios = ({ pageContext }) => {
-  console.log(pageContext);
   return (
     <Layout>
       <Menu></Menu>

@@ -49,6 +49,13 @@ const useStyles = makeStyles(theme => ({
 const Menu = () => {
   const [emergency, setEmergency] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const handleClick = event => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -56,11 +63,31 @@ const Menu = () => {
         <Toolbar>
           <Grid container spacing={3}>
             <Grid className={classes.flexCenter} item xs={6}>
-              <Link to="/" style={{ color: "black" }}>
-                <IconButton edge="start" color="inherit" aria-label="menu">
-                  <MenuIcon />
-                </IconButton>
-              </Link>
+              <IconButton
+                onClick={handleClick}
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+              >
+                <MenuIcon />
+              </IconButton>
+
+              <MenuResponsive
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <Link to="/">
+                  <MenuItem>Inicio</MenuItem>
+                </Link>
+                <Link to="/prevenir">
+                  <MenuItem>Prevenir</MenuItem>
+                </Link>
+                <Link to="obituarios">
+                  <MenuItem>Obituarios</MenuItem>
+                </Link>
+              </MenuResponsive>
             </Grid>
             <Grid
               className={`${classes.flexCenter} ${classes.buttonMenu}`}

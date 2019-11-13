@@ -1,10 +1,15 @@
 import React from "react";
+import { Link } from "gatsby";
 import Layout from "../components/Layout";
 import Menu from "../components/Menu";
-import { Paper, Box, Typography } from "@material-ui/core";
+import { Paper, Box, Typography, Button, Fab } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import Back from "@material-ui/icons/ArrowBack";
 import { colors } from "../../config/brand.yml";
 const useStyles = makeStyles(theme => ({
+  prev: {
+    margin: 16
+  },
   funeral: {
     position: "relative",
     boxShadow: " 10px 10px 25px 1px",
@@ -12,11 +17,12 @@ const useStyles = makeStyles(theme => ({
   },
   foto: {
     width: 150,
+    height: 150,
     // boxShadow: " 10px 10px 25px 1px",
     border: `20px solid ${colors.purple}`
   },
   text: {
-    width: 300,
+    width: 280,
     margin: "24px 0",
     padding: 16
   },
@@ -36,12 +42,19 @@ const useStyles = makeStyles(theme => ({
     width: 260
   }
 }));
-const Obituario = ({ pageContext }) => {
+const Obituario = ({ pageContext, location }) => {
+  let prev = location.state ? location.state.prev : "/obituarios";
+  console.log(prev);
   const classes = useStyles();
 
   return (
     <Layout>
       <Menu></Menu>
+      <Link to={prev}>
+        <Fab color="primary" className={classes.prev}>
+          <Back></Back>
+        </Fab>
+      </Link>
       <Box
         flexDirection="column"
         display="flex"
