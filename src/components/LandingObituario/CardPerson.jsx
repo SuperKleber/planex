@@ -57,7 +57,8 @@ const CardPerson = ({ obituario }) => {
   const [copiedShare, setCopiedShare] = useState(false);
   const { nombre, foto, fehcaInicio, fechaFin } = obituario;
   const link = `/obituarios/${obituario.fields.slug}`;
-  const linkAbsolute = window && window.location.origin + link;
+  const linkAbsolute =
+    typeof window !== "undefined" && window.location.origin + link;
   const epitafio =
     "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quae quod sequi necessitatibus commodi, facere sit omnis cumque voluptate doloremque facilis. Excepturi deserunt ipsa minus ducimus sed tempora odio, ";
   const epitafioLimitCharacter = 150;
