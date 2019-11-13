@@ -11,12 +11,20 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-transformer-yaml-plus`,
     {
       resolve: `gatsby-plugin-material-ui`,
       options: {
         stylesProvider: {
           injectFirst: true
         }
+      }
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: "obituarios",
+        path: `${__dirname}/src/data`
       }
     }
   ]

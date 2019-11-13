@@ -38,12 +38,16 @@ const Layout = ({ children }) => {
         }
         a {
           text-decoration: none;
+          color: initial;
         }
         .MuiAutocomplete-popup {
           z-index: 5000;
         }
         .MuiInputLabel-shrink {
           background: white;
+        }
+        .Mui-disabled {
+          cursor: initial;
         }
       `}</style>
       {/* // Popup de Autocomplete de @material-ui/lab */}

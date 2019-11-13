@@ -24,6 +24,7 @@ import Logo from "./Logo";
 import Modal from "../components/Modal";
 import { colors } from "../../config/brand.yml";
 import { Link } from "gatsby";
+import Alert from "./Alert";
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
@@ -43,9 +44,6 @@ const useStyles = makeStyles(theme => ({
   phoneEmergency: {
     fontSize: "1.2em",
     marginBottom: 16
-  },
-  snackBar: {
-    background: "#23cc79"
   }
 }));
 const Menu = () => {
@@ -95,31 +93,12 @@ const Menu = () => {
                       (+591) 3-3469191
                     </Button>
                   </CopyToClipboard>
-                  <Snackbar
-                    anchorOrigin={{
-                      vertical: "bottom",
-                      horizontal: "left"
-                    }}
+                  <Alert
                     open={copied}
-                    autoHideDuration={4000}
+                    message="Teléfono Copiado"
                     onClose={() => setCopied(false)}
-                  >
-                    <SnackbarContent
-                      className={classes.snackBar}
-                      message={<span id="message-id">Teléfono Copiado</span>}
-                      action={[
-                        <IconButton
-                          key="close"
-                          aria-label="close"
-                          color="inherit"
-                          className={classes.close}
-                          onClick={() => setCopied(false)}
-                        >
-                          <CloseIcon />
-                        </IconButton>
-                      ]}
-                    ></SnackbarContent>
-                  </Snackbar>
+                  ></Alert>
+
                   <a href="tel:+59133469191">
                     <Button
                       fullWidth={true}
