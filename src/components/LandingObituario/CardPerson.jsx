@@ -56,7 +56,7 @@ const useStyles = makeStyles(theme => ({
 const CardPerson = ({ obituario }) => {
   const [copiedShare, setCopiedShare] = useState(false);
   const { nombre, foto, fehcaInicio, fechaFin } = obituario;
-  const prev = typeof window !== undefined && window.location.pathname;
+  const prev = typeof window !== "undefined" && window.location.pathname;
   const link = `/obituarios/${obituario.fields.slug}`;
   const linkAbsolute =
     typeof window !== "undefined" && window.location.origin + link;

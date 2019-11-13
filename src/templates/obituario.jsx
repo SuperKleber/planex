@@ -44,7 +44,6 @@ const useStyles = makeStyles(theme => ({
 }));
 const Obituario = ({ pageContext, location }) => {
   let prev = location.state ? location.state.prev : "/obituarios";
-  console.log(prev);
   const classes = useStyles();
 
   return (
