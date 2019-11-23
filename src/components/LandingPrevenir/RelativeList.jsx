@@ -76,14 +76,14 @@ const RelativeList = ({ familyList, customFamily, setCustomFamily }) => {
             color="primary"
             onClick={() => setOpenForm(true)}
           >
-            Prevenir
+            Previsión
           </Button>
           <Button
             className={classes.button}
             variant="outlined"
             onClick={() => setOpenWarning(true)}
           >
-            Resetear
+            Eliminar
           </Button>
         </Box>
         <Modal

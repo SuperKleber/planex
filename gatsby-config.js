@@ -1,13 +1,21 @@
 const path = require(`path`);
+const {
+  siteTitle,
+  siteDescription,
+  siteUrl,
+  siteLanguage,
+  siteCover,
+  faviconDefault
+} = require("./config/defaultSeo.json");
 module.exports = {
   /* Your site config here */
   siteMetadata: {
-    siteTitle: `Planex  Servicios funerarios y prevención nacional exequial`,
-    siteDescription: `Para vivir tranquilo`,
-    siteUrl: `https://planex.com.bo`,
-    siteLanguage: `es`,
-    siteImage: `/img/banner.png`,
-    faviconDefault: `/favicon/favicon.png`
+    siteTitle,
+    siteDescription,
+    siteUrl,
+    siteLanguage,
+    siteCover,
+    faviconDefault
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -24,7 +32,14 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: "obituarios",
-        path: `${__dirname}/src/data`
+        path: `${__dirname}/src/data/dataObituarios`
+      }
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: "obituarios",
+        path: `${__dirname}/src/data/dataBlog`
       }
     }
   ]

@@ -82,7 +82,7 @@ const Menu = () => {
                   <MenuItem>Inicio</MenuItem>
                 </Link>
                 <Link to="/prevenir">
-                  <MenuItem>Prevenir</MenuItem>
+                  <MenuItem>Previsión</MenuItem>
                 </Link>
                 <Link to="obituarios">
                   <MenuItem>Obituarios</MenuItem>

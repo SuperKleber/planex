@@ -6,6 +6,7 @@ import { Paper, Box, Typography, Button, Fab } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Back from "@material-ui/icons/ArrowBack";
 import { colors } from "../../config/brand.yml";
+import { siteUrl } from "../../config/defaultSeo.json";
 const useStyles = makeStyles(theme => ({
   prev: {
     margin: 16
@@ -45,9 +46,14 @@ const useStyles = makeStyles(theme => ({
 const Obituario = ({ pageContext, location }) => {
   let prev = location.state ? location.state.prev : "/obituarios";
   const classes = useStyles();
-
+  const seo = {
+    siteTitle: `Planex | ${pageContext.nombre}`,
+    siteDescription: pageContext.epitafio ? pageContext.epitafio : false,
+    siteCover: pageContext.foto ? pageContext.foto : false,
+    siteUrl: `${siteUrl}/obituarios/${pageContext.fields.slug}`
+  };
   return (
-    <Layout>
+    <Layout seo={seo}>
       <Menu></Menu>
       <Link to={prev}>
         <Fab color="primary" className={classes.prev}>
@@ -67,7 +73,7 @@ const Obituario = ({ pageContext, location }) => {
         </Box>
         <Paper className={classes.text}>
           <Typography variant="h4">{pageContext.nombre}</Typography>
-          <Typography gutterBottom>{pageContext.fehcaInicio}</Typography>
+          <Typography gutterBottom>{pageContext.fechaInicio}</Typography>
           <Typography>{pageContext.epitafio}</Typography>
         </Paper>
       </Box>

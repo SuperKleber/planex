@@ -76,7 +76,7 @@ const Landing = () => {
       <Grid container spacing={3} className={classes.landing}>
         <Grid item xs={12} className={classes.flexCenter}>
           <Typography color="secondary" variant="h4">
-            Para vivir tranquilo
+            Para vivir en paz
           </Typography>
         </Grid>
         <Grid item xs={12} className={classes.flexCenter}>
@@ -106,7 +106,7 @@ const Landing = () => {
         <Grid item xs={12} sm={6} className={classes.flexCenter}>
           <Link to="/prevenir">
             <Button className={classes.btn} variant="outlined" color="default">
-              Prevenir
+              Previsión
             </Button>
           </Link>
         </Grid>

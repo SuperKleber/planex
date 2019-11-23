@@ -27,7 +27,7 @@ exports.createPages = async ({ graphql, actions }) => {
           node {
             nombre
             fechaFin(formatString: "dddd DD MMMM YYYY", locale: "es")
-            fehcaInicio(formatString: "dddd DD MMMM YYYY", locale: "es")
+            fechaInicio(formatString: "dddd DD MMMM YYYY", locale: "es")
             foto
             bebe
             epitafio
