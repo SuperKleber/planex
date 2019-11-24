@@ -8,9 +8,7 @@ const Seo = ({ seo }) => {
     : defaultSeo;
   const img = siteCover ? siteCover : defaultSeo.siteCover;
   let absoluteImg =
-    img.indexOf("http") === 0
-      ? img
-      : (absoluteImg = `${defaultSeo.siteUrl}${img}`);
+    img.indexOf("http") === 0 ? img : `${defaultSeo.siteUrl}${img}`;
   const title = siteTitle ? siteTitle : defaultSeo.siteTitle;
   const description = siteDescription
     ? siteDescription
