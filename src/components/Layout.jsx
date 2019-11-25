@@ -6,6 +6,7 @@ import { colors } from "../../config/brand.yml";
 import fontBrushWoff from "../../config/font/BrushScriptRegularSWFTE.woff";
 import fontBrushWoff2 from "../../config/font/BrushScriptRegularSWFTE.woff2";
 import Seo from "./Seo.jsx";
+import Footer from "./Footer";
 const brush = {
   fontFamily: "Brush Script",
   fontStyle: "normal",
@@ -56,6 +57,7 @@ const Layout = ({ children, seo }) => {
         ></link>
       </Helmet>
       {children}
+      <Footer></Footer>
       <style jsx="true" global="true">{`
         body {
           margin: 0;
