@@ -33,7 +33,7 @@ const theme = createMuiTheme({
     }
   },
   palette: {
-    primary: { main: colors.purple },
+    primary: { main: colors.purple, dark: colors.green },
     secondary: { main: colors.gold }
   }
 });
