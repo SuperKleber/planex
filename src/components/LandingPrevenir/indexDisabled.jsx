@@ -13,8 +13,7 @@ import {
   InputLabel,
   TextField,
   Grid,
-  Fade,
-  Paper
+  Fade
 } from "@material-ui/core";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import Modal from "../Modal";
@@ -28,26 +27,44 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "center",
     alignItems: "center",
     height: "calc(100vh - 64px)",
-    width: "100%",
-    backgroundSize: "50% !important"
-    // backgroundRepeat: "no-repeat !important"
+    width: "100%"
   },
   grid: {
-    padding: "8px 24px",
-    background: "rgba(255,255,255,0.85)",
     display: "grid",
     maxWidth: "95vw",
     gridGap: "10px",
     height: "300px",
-    gridTemplate: "1fr 1fr 1fr / 1fr",
+    gridTemplate: "1fr 2fr 1fr / 1fr 1fr 1fr",
     justifyContent: "center",
     alignItems: "center",
     alignContent: "center",
     justifyItems: "center"
   },
+  gridLeft: {
+    height: "100%",
+    gridRow: "1/4",
+    gridColumn: "1/2",
+    "& img": {
+      height: "100%"
+    },
+    "@media (max-width: 550px)": {
+      gridRow: "2/4"
+    }
+  },
+  gridRight: {
+    height: "100%",
+    gridRow: "1/4",
+    gridColumn: "3/4",
+    "& img": {
+      height: "100%"
+    },
+    "@media (max-width: 550px)": {
+      gridRow: "2/4"
+    }
+  },
   gridCopy: {
     gridRow: "1/2",
-    gridColumn: "1/2"
+    gridColumn: "1/4"
   },
   btn: {
     width: 180,
@@ -151,15 +168,31 @@ const LandingPrevenir = () => {
   }, []);
   if (!finishForm) {
     return (
-      <div
-        className={classes.root}
-        style={{ background: `url(${"/img/people-happy.svg"})` }}
-      >
-        <Paper className={classes.grid}>
+      <div className={classes.root}>
+        <Box className={classes.grid}>
+          <Box className={classes.gridLeft}>
+            <img src="/img/abuelo.png" alt="abuela" />
+          </Box>
           <Box className={classes.gridCopy}>
             <Typography variant="h6" align="center">
-              45 Personas Previnieron este mes
+              45 Personas
             </Typography>
+            <Typography variant="h5" align="center">
+              Previnieron este mes y están tranquilas
+            </Typography>
+          </Box>
+          <Box>
+            <FormControl variant="outlined" className={classes.formControl}>
+              <TextField
+                id="standard-basic"
+                label="Edad"
+                margin="normal"
+                variant="outlined"
+                onChange={e => {
+                  setAge(e.target.value);
+                }}
+              />
+            </FormControl>
           </Box>
 
           <Box>
@@ -244,12 +277,10 @@ const LandingPrevenir = () => {
               })}
             </Modal>
           </Box>
-          <Box>
-            <Typography variant="h6" align="center">
-              Prevenir es vivir en Paz
-            </Typography>
+          <Box className={classes.gridRight}>
+            <img src="/img/abuela.png" alt="" />
           </Box>
-        </Paper>
+        </Box>
       </div>
     );
   } else {
