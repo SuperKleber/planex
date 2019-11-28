@@ -175,10 +175,10 @@ const LandingPrevenir = () => {
           </Box>
           <Box className={classes.gridCopy}>
             <Typography variant="h6" align="center">
-              Piensa en un ser querido mayor que tú
+              45 Personas
             </Typography>
             <Typography variant="h5" align="center">
-              ¿Cuál es su edad?
+              Previnieron este mes y están tranquilas
             </Typography>
           </Box>
           <Box>
@@ -203,7 +203,7 @@ const LandingPrevenir = () => {
               variant="contained"
               color="primary"
             >
-              Previsión
+              Prevenir ahora
             </Button>
             <Modal
               open={openModal}

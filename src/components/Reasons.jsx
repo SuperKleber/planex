@@ -31,10 +31,13 @@ const useStyles = makeStyles(() => ({
     // color: "white",
     padding: 16,
     "& img": {
+      fillColor: colors.green,
       width: 75,
       height: 75,
-      border: `8px solid ${colors.green}`,
-      borderRadius: "50%"
+      padding: 16,
+      // border: `2px solid ${colors.purple}`
+      borderRadius: "10%"
+      // boxShadow: "0px 2px 7px 0.5px"
     }
   }
 }));
@@ -69,14 +72,12 @@ const Reasons = () => {
                   justifyContent="center"
                   alignItems="center"
                 >
-                  <img></img>
+                  <img src="/img/family.svg"></img>
                   <Typography align="center" gutterBottom variant="subtitle1">
-                    Razon 1
+                    Único
                   </Typography>
                   <Typography align="center" variant="body2">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Quidem sint porro tenetur accusantium quos eaque facere
-                    aperiam iusto necessitatibus fugit.
+                    Únicos en el mercado con un Plan de Asistencia Familiar.
                   </Typography>
                 </Box>
               </Paper>
@@ -90,14 +91,12 @@ const Reasons = () => {
                   justifyContent="center"
                   alignItems="center"
                 >
-                  <img></img>
+                  <img src="/img/save-money.svg"></img>
                   <Typography align="center" gutterBottom variant="subtitle1">
-                    Razon 1
+                    Económico
                   </Typography>
                   <Typography align="center" variant="body2">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Quidem sint porro tenetur accusantium quos eaque facere
-                    aperiam iusto necessitatibus fugit.
+                    Cuota mínima de 100 bs.
                   </Typography>
                 </Box>
               </Paper>
@@ -111,14 +110,12 @@ const Reasons = () => {
                   justifyContent="center"
                   alignItems="center"
                 >
-                  <img></img>
+                  <img src="/img/accesible.svg"></img>
                   <Typography align="center" gutterBottom variant="subtitle1">
-                    Razon 1
+                    Accesible
                   </Typography>
                   <Typography align="center" variant="body2">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Quidem sint porro tenetur accusantium quos eaque facere
-                    aperiam iusto necessitatibus fugit.
+                    Ingresan sus padres sin límite de edad.
                   </Typography>
                 </Box>
               </Paper>
@@ -132,14 +129,12 @@ const Reasons = () => {
                   justifyContent="center"
                   alignItems="center"
                 >
-                  <img></img>
+                  <img src="/img/happy.svg"></img>
                   <Typography align="center" gutterBottom variant="subtitle1">
-                    Razon 1
+                    Paz
                   </Typography>
                   <Typography align="center" variant="body2">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Quidem sint porro tenetur accusantium quos eaque facere
-                    aperiam iusto necessitatibus fugit.
+                    Es la única manera ¡Para vivir en paz!.
                   </Typography>
                 </Box>
               </Paper>
