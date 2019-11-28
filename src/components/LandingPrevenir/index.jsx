@@ -20,7 +20,7 @@ import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import Modal from "../Modal";
 import Relative from "./Relative";
 import RelativeList from "./RelativeList.jsx";
-
+const begin = -1;
 const limit = family.length;
 const useStyles = makeStyles(theme => ({
   root: {
@@ -95,7 +95,7 @@ const LandingPrevenir = () => {
   const [openModal, setOpenModal] = useState(false);
   const [finishForm, setFinishForm] = useState(false);
   const [indexHidden, setIndexHidden] = useState(false); //Familiar oculto porque ya fue seleccionado al principio
-  const [relativeStep, setRelativeStep] = useState(-1);
+  const [relativeStep, setRelativeStep] = useState(begin);
   const [age, setAge] = useState();
   const [familyMembers, setFamilyMembers] = useState(family);
   const classes = useStyles();
@@ -131,16 +131,16 @@ const LandingPrevenir = () => {
         //if
         indexHidden === familyMembers[relativeStep - 1].index
           ? // si es el index del familiar oculto entonces omítelo y salta 2 pasos hacia atrás
-            relativeStep - 2 < -1
+            relativeStep - 2 < begin
             ? relativeStep
             : relativeStep - 2
           : //else
-          relativeStep - 1 < -1
+          relativeStep - 1 < begin
           ? relativeStep
           : relativeStep - 1
       );
     } else {
-      setRelativeStep(-1); // Vuelve a la plantilla que el usuario debío llenar
+      setRelativeStep(begin); // Vuelve a la plantilla que el usuario debío llenar
     }
   };
   useEffect(() => {
@@ -183,7 +183,7 @@ const LandingPrevenir = () => {
               <Fade timeout={1000} in={true}>
                 <Box
                   style={{
-                    display: relativeStep === -1 ? "flex" : "none"
+                    display: relativeStep === begin ? "flex" : "none"
                   }}
                 >
                   <Relative
@@ -209,7 +209,7 @@ const LandingPrevenir = () => {
                     <Fade
                       timeout={1000}
                       in={
-                        relativeStep === -1
+                        relativeStep === begin
                           ? false
                           : relativeStep === i
                           ? true
@@ -218,7 +218,7 @@ const LandingPrevenir = () => {
                     >
                       <Box
                         style={{
-                          display: !(relativeStep === -1)
+                          display: !(relativeStep === begin)
                             ? relativeStep === i
                               ? "flex"
                               : "none"
