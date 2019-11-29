@@ -20,7 +20,7 @@ import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import Modal from "../Modal";
 import Relative from "./Relative";
 import RelativeList from "./RelativeList.jsx";
-const begin = -1;
+const begin = 0;
 const limit = family.length;
 const useStyles = makeStyles(theme => ({
   root: {
@@ -170,7 +170,7 @@ const LandingPrevenir = () => {
               variant="contained"
               color="primary"
             >
-              Prevenir ahora
+              Previsión ahora
             </Button>
             <Modal
               open={openModal}
@@ -180,7 +180,7 @@ const LandingPrevenir = () => {
               maxWidth="xl"
               // fullWidth={true}
             >
-              <Fade timeout={1000} in={true}>
+              {/* <Fade timeout={1000} in={true}>
                 <Box
                   style={{
                     display: relativeStep === begin ? "flex" : "none"
@@ -199,30 +199,17 @@ const LandingPrevenir = () => {
                     buttonText={buttonText}
                   ></Relative>
                 </Box>
-              </Fade>
+              </Fade> */}
               {familyMembers.map((relative, i) => {
                 return (
                   <div
                     key={i}
                     hidden={indexHidden === relative.index ? true : false}
                   >
-                    <Fade
-                      timeout={1000}
-                      in={
-                        relativeStep === begin
-                          ? false
-                          : relativeStep === i
-                          ? true
-                          : false
-                      }
-                    >
+                    <Fade timeout={1000} in={relativeStep === i ? true : false}>
                       <Box
                         style={{
-                          display: !(relativeStep === begin)
-                            ? relativeStep === i
-                              ? "flex"
-                              : "none"
-                            : "none"
+                          display: relativeStep === i ? "flex" : "none"
                         }}
                       >
                         <Relative
@@ -246,7 +233,7 @@ const LandingPrevenir = () => {
           </Box>
           <Box>
             <Typography variant="h6" align="center">
-              Prevenir es vivir en Paz
+              Previsión es vivir en Paz
             </Typography>
           </Box>
         </Paper>

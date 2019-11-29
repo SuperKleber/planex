@@ -49,6 +49,13 @@ const theme = createMuiTheme({
 });
 const Reasons = () => {
   const classes = useStyles();
+  const responsive = {
+    xs: 12,
+    sm: 6,
+    md: 3,
+    lg: 3,
+    xl: 3
+  };
   return (
     <ThemeProvider theme={theme}>
       <Container className={classes.root}>
@@ -63,7 +70,7 @@ const Reasons = () => {
           </Typography>
 
           <Grid container spacing={3}>
-            <Grid item xs={3}>
+            <Grid item {...responsive}>
               <Paper>
                 <Box
                   className={classes.reason}
@@ -82,7 +89,7 @@ const Reasons = () => {
                 </Box>
               </Paper>
             </Grid>
-            <Grid item xs={3}>
+            <Grid item {...responsive}>
               <Paper>
                 <Box
                   className={classes.reason}
@@ -101,7 +108,7 @@ const Reasons = () => {
                 </Box>
               </Paper>
             </Grid>
-            <Grid item xs={3}>
+            <Grid item {...responsive}>
               <Paper>
                 <Box
                   className={classes.reason}
@@ -120,7 +127,7 @@ const Reasons = () => {
                 </Box>
               </Paper>
             </Grid>
-            <Grid item xs={3}>
+            <Grid item {...responsive}>
               <Paper>
                 <Box
                   className={classes.reason}

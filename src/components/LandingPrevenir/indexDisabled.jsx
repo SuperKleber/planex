@@ -203,7 +203,7 @@ const LandingPrevenir = () => {
               variant="contained"
               color="primary"
             >
-              Prevenir ahora
+              Previsión ahora
             </Button>
             <Modal
               open={openModal}

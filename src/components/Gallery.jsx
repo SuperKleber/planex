@@ -49,7 +49,7 @@ const Gallery = () => {
           </Button>
         </a>
       </Box>
-      <GridList cols={3}>
+      <GridList cols={2}>
         {photos.map((photo, i) => {
           return (
             <GridListTile cols={1} key={i}>
