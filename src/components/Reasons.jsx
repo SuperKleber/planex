@@ -11,6 +11,7 @@ import { makeStyles, createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import { colors } from "../../config/brand.yml";
 import { Link } from "gatsby";
+
 const useStyles = makeStyles(() => ({
   root: {
     marginBottom: 50

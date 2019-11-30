@@ -19,6 +19,7 @@ import { Link } from "gatsby";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { FacebookIcon, FacebookShareButton } from "react-share";
 import Alert from "../Alert";
+import firstUpperCase from "../../../lib/firstUpperCase";
 const useStyles = makeStyles(theme => ({
   root: {
     position: "relative"
@@ -120,7 +121,7 @@ const CardPerson = ({ obituario }) => {
             <Box className={classes.backgroundCard}></Box>
             <CardContent>
               <Typography gutterBottom variant="h6">
-                {nombre}
+                {firstUpperCase(nombre)}
               </Typography>
               {epitafio && (
                 <Typography variant="body2">
