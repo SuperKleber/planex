@@ -13,7 +13,7 @@ collections:
     identifier_field: "dataObituarios"
     extension: yml
     label: "Obituarios"
-    folder: "/src/data/dataObituarios"
+    folder: "src/data/dataObituarios"
     create: true
     slug: "{{slug}}"
     preview: false
@@ -44,7 +44,7 @@ collections:
       - label: Testimonios
         name: testimonials
         extension: yml
-        file: "/config/testimonials.yml"
+        file: "config/testimonials.yml"
         fields:
           - label: Testimonios
             name: testimonial
