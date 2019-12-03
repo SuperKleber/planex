@@ -1,0 +1,62 @@
+backend:
+  name: test-repo
+
+# backend:
+#   name: git-gateway
+#   branch: master
+
+publish_mode: editorial_workflow
+media_folder: "/static/img"
+public_folder: "/img"
+collections:
+  - name: "dataObituarios"
+    identifier_field: "dataObituarios"
+    extension: yml
+    label: "Obituarios"
+    folder: "/src/data/dataObituarios"
+    create: true
+    slug: "{{slug}}"
+    preview: false
+    fields:
+      - label: "Nombre"
+        name: "nombre"
+        widget: string
+      - label: Fotografía
+        name: foto
+        widget: image
+        required: false
+      - label: Fecha de Nacimiento
+        name: fechaInicio
+        widget: date
+        required: false
+      - label: Fecha de Fallecimiento
+        name: fechaFin
+        widget: date
+        required: false
+      - label: Epitafio
+        name: epitafio
+        widget: text
+        required: false
+  - name: "config"
+    label: "Configuración del Sitio"
+    identifier_field: "config"
+    files:
+      - label: Testimonios
+        name: testimonials
+        extension: yml
+        file: "/config/testimonials.yml"
+        fields:
+          - label: Testimonios
+            name: testimonial
+            widget: list
+            fields:
+              - label: Nombre
+                name: name
+                widget: string
+              - label: Texto
+                name: text
+                widget: text
+              - label: Foto
+                name: photo
+                widget: image
+                required: false

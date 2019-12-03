@@ -3,7 +3,7 @@ import Menu from "../components/Menu";
 import Layout from "../components/Layout";
 import Landing from "../components/Landing";
 
-const index = () => {
+const Index = () => {
   return (
     <Layout>
       <Menu></Menu>
@@ -12,4 +12,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

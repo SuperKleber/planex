@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { createMuiTheme, makeStyles } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import Helmet from "react-helmet";
@@ -7,6 +7,7 @@ import fontBrushWoff from "../../config/font/BrushScriptRegularSWFTE.woff";
 import fontBrushWoff2 from "../../config/font/BrushScriptRegularSWFTE.woff2";
 import Seo from "./Seo.jsx";
 import Footer from "./Footer";
+import ReactPixel from "react-facebook-pixel"
 const brush = {
   fontFamily: "Brush Script",
   fontStyle: "normal",
@@ -38,6 +39,11 @@ const theme = createMuiTheme({
   }
 });
 const Layout = ({ children, seo }) => {
+  useEffect(()=>{
+    ReactPixel.init("2739923912769068")
+    ReactPixel.pageView()
+    
+  },[])
   return (
     <ThemeProvider theme={theme}>
       <Seo seo={seo}></Seo>

@@ -2,6 +2,7 @@ import React from "react";
 import { Paper, Box, Typography, Divider } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { colors } from "../../config/brand.yml";
+import testimonials from "../../config/testimonials.yml";
 import FormatQuoteIcon from "@material-ui/icons/FormatQuote";
 const color = colors.green;
 const useStyles = makeStyles(theme => ({
@@ -104,34 +105,26 @@ const Testimonials = () => {
         alignItems="center"
         flexDirection="column"
       >
-        <Testimonial></Testimonial>
-        <Testimonial></Testimonial>
-        <Testimonial></Testimonial>
+        {testimonials.map(testimonial => (
+          <Testimonial {...testimonial}></Testimonial>
+        ))}
       </Box>
     </Box>
   );
 };
-const Testimonial = () => {
+const Testimonial = ({ name, photo, text }) => {
   const classes = useStyles();
   return (
     <Paper className={classes.testimonial}>
       <Box className={classes.testimonialName}>
-        <img
-          src="https://prever.com.bo/imagen/productos/51be35312485667c7b7c2cb1f62e0141.jpg"
-          alt=""
-        />
+        <img src={photo} alt={`foto de ${name}`} />
         <Typography gutterBottom variant="body2">
-          Nombre apellido
+          {name}
         </Typography>
       </Box>
       <Box className={classes.testimonialText} position="relative">
         <FormatQuoteIcon className={classes.quoteOpen}></FormatQuoteIcon>
-        <Typography>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla quidem
-          hic optio laborum, vitae sit voluptatibus voluptatum corporis,
-          voluptatem aperiam sunt ad. Blanditiis et delectus voluptatum
-          molestiae animi, officiis illum!
-        </Typography>
+        <Typography>{text}</Typography>
         {/* <FormatQuoteIcon className={classes.quoteClose}></FormatQuoteIcon> */}
       </Box>
     </Paper>

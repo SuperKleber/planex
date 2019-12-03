@@ -3,7 +3,7 @@ import Menu from "../components/Menu";
 import Layout from "../components/Layout";
 import LandingPrevenir from "../components/LandingPrevenir";
 
-const prevenir = () => {
+const Prevenir = () => {
   return (
     <Layout>
       <Menu></Menu>
@@ -12,4 +12,4 @@ const prevenir = () => {
   );
 };
 
-export default prevenir;
+export default Prevenir;

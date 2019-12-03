@@ -11,7 +11,7 @@ import { makeStyles, createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import { colors } from "../../config/brand.yml";
 import { Link } from "gatsby";
-
+import reasons from "../../config/reasons.yml";
 const useStyles = makeStyles(() => ({
   root: {
     marginBottom: 50
@@ -69,84 +69,28 @@ const Reasons = () => {
           <Typography className={classes.title} variant="h5">
             Beneficios de contratar a Prever
           </Typography>
-
           <Grid container spacing={3}>
-            <Grid item {...responsive}>
-              <Paper>
-                <Box
-                  className={classes.reason}
-                  display="flex"
-                  flexDirection="column"
-                  justifyContent="center"
-                  alignItems="center"
-                >
-                  <img src="/img/family.svg"></img>
-                  <Typography align="center" gutterBottom variant="subtitle1">
-                    Único
-                  </Typography>
-                  <Typography align="center" variant="body2">
-                    Únicos en el mercado con un Plan de Asistencia Familiar.
-                  </Typography>
-                </Box>
-              </Paper>
-            </Grid>
-            <Grid item {...responsive}>
-              <Paper>
-                <Box
-                  className={classes.reason}
-                  display="flex"
-                  flexDirection="column"
-                  justifyContent="center"
-                  alignItems="center"
-                >
-                  <img src="/img/save-money.svg"></img>
-                  <Typography align="center" gutterBottom variant="subtitle1">
-                    Económico
-                  </Typography>
-                  <Typography align="center" variant="body2">
-                    Cuota mínima de 100 bs.
-                  </Typography>
-                </Box>
-              </Paper>
-            </Grid>
-            <Grid item {...responsive}>
-              <Paper>
-                <Box
-                  className={classes.reason}
-                  display="flex"
-                  flexDirection="column"
-                  justifyContent="center"
-                  alignItems="center"
-                >
-                  <img src="/img/accesible.svg"></img>
-                  <Typography align="center" gutterBottom variant="subtitle1">
-                    Accesible
-                  </Typography>
-                  <Typography align="center" variant="body2">
-                    Ingresan sus padres sin límite de edad.
-                  </Typography>
-                </Box>
-              </Paper>
-            </Grid>
-            <Grid item {...responsive}>
-              <Paper>
-                <Box
-                  className={classes.reason}
-                  display="flex"
-                  flexDirection="column"
-                  justifyContent="center"
-                  alignItems="center"
-                >
-                  <img src="/img/happy.svg"></img>
-                  <Typography align="center" gutterBottom variant="subtitle1">
-                    Paz
-                  </Typography>
-                  <Typography align="center" variant="body2">
-                    Es la única manera ¡Para vivir en paz!.
-                  </Typography>
-                </Box>
-              </Paper>
-            </Grid>
+            {reasons.map(({ title, description, icon }, i) => (
+              <Grid key={i} item {...responsive}>
+                <Paper>
+                  <Box
+                    className={classes.reason}
+                    display="flex"
+                    flexDirection="column"
+                    justifyContent="center"
+                    alignItems="center"
+                  >
+                    <img src={icon}></img>
+                    <Typography align="center" gutterBottom variant="subtitle1">
+                      {title}
+                    </Typography>
+                    <Typography align="center" variant="body2">
+                      {description}
+                    </Typography>
+                  </Box>
+                </Paper>
+              </Grid>
+            ))}
           </Grid>
           <Box
             className={classes.buttons}

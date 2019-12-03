@@ -7,6 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Back from "@material-ui/icons/ArrowBack";
 import { colors } from "../../config/brand.yml";
 import { siteUrl } from "../../config/defaultSeo.json";
+import firstUpperCase from "../../lib/firstUpperCase";
 const useStyles = makeStyles(theme => ({
   prev: {
     margin: 16
@@ -46,8 +47,9 @@ const useStyles = makeStyles(theme => ({
 const Obituario = ({ pageContext, location }) => {
   let prev = location.state ? location.state.prev : "/obituarios";
   const classes = useStyles();
+  const nombre = firstUpperCase(pageContext.nombre);
   const seo = {
-    siteTitle: `Planex | ${pageContext.nombre}`,
+    siteTitle: `Planex | ${nombre}`,
     siteDescription: pageContext.epitafio ? pageContext.epitafio : false,
     siteCover: pageContext.foto ? pageContext.foto : false,
     siteUrl: `${siteUrl}/obituarios/${pageContext.fields.slug}`
@@ -72,7 +74,7 @@ const Obituario = ({ pageContext, location }) => {
           <img className={classes.decoration} src="/img/funeral.svg"></img>
         </Box>
         <Paper className={classes.text}>
-          <Typography variant="h4">{pageContext.nombre}</Typography>
+          <Typography variant="h4">{nombre}</Typography>
           <Typography gutterBottom>{pageContext.fechaInicio}</Typography>
           <Typography>{pageContext.epitafio}</Typography>
         </Paper>

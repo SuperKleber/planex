@@ -13,6 +13,7 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import { mergeClasses } from "@material-ui/styles";
 import { Link } from "gatsby";
+import photos from "../../config/gallery.yml";
 const useStyles = makeStyles(() => ({
   root: {
     marginBottom: 50
@@ -26,13 +27,7 @@ const useStyles = makeStyles(() => ({
 }));
 const Gallery = () => {
   const classes = useStyles();
-  const photos = [
-    { src: "/img/photo1.png", title: "Foto 1" },
-    { src: "/img/photo2.png", title: "Foto 2" },
-    { src: "/img/photo3.png", title: "Foto 3" },
-    { src: "/img/photo4.png", title: "Foto 4" },
-    { src: "/img/photo5.png", title: "Foto 5" }
-  ];
+
   return (
     <Container className={classes.root}>
       <Box

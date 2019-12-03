@@ -41,6 +41,7 @@ module.exports = {
         name: "obituarios",
         path: `${__dirname}/src/data/dataBlog`
       }
-    }
+    },
+    `gatsby-plugin-netlify-cms`
   ]
 };
