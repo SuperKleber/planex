@@ -75,9 +75,14 @@ const Landing = () => {
     <div className={classes.root}>
       <Grid container spacing={3} className={classes.landing}>
         <Grid item xs={12} className={classes.flexCenter}>
-          <Typography color="secondary" variant="h4">
+          {/* <Typography color="secondary" variant="h4">
             Para vivir en paz
-          </Typography>
+          </Typography> */}
+          <img
+            width="300"
+            src="/img/slogan.png"
+            alt="slogan para vivir en paz"
+          />
         </Grid>
         <Grid item xs={12} className={classes.flexCenter}>
           <Typography color="initial">
@@ -92,7 +97,7 @@ const Landing = () => {
               variant="contained"
               color="primary"
             >
-              Más información
+              Contactanos
             </Button>
           </Link>
           <Modal

@@ -109,31 +109,25 @@ const Menu = () => {
                 Emergencia
               </Button>
               <Modal
-                title="Atención 24 Horas"
-                open={emergency}
-                onClose={() => setEmergency(false)}
-              >
-                <Box>
+                title={
                   <CopyToClipboard
                     text="33469191"
                     onCopy={() => setCopied(true)}
                   >
-                    <Button
-                      className={classes.phoneEmergency}
-                      color="primary"
-                      variant="outlined"
-                      fullWidth={true}
-                    >
-                      (+591) 3-34 69191
-                    </Button>
+                    <Button fullWidth> Atención 24 horas (+591)33469191</Button>
                   </CopyToClipboard>
+                }
+                open={emergency}
+                onClose={() => setEmergency(false)}
+              >
+                <Box>
                   <Alert
                     open={copied}
                     message="Teléfono Copiado"
                     onClose={() => setCopied(false)}
                   ></Alert>
 
-                  <a href="https://api.whatsapp.com/send?phone=59172145666&text=%C2%A1Tengo%20una%20Emergencia!">
+                  <a href="https://api.whatsapp.com/send?phone=59133469191&text=%C2%A1Tengo%20una%20Emergencia!">
                     <Button
                       className={classes.whatsapp}
                       fullWidth={true}
@@ -141,6 +135,7 @@ const Menu = () => {
                       variant="outlined"
                     >
                       <WhatsappIcon></WhatsappIcon>
+                      +59133469191
                     </Button>
                   </a>
                   <a href="tel:+59133469191">
