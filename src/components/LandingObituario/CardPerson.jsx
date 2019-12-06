@@ -50,6 +50,14 @@ const useStyles = makeStyles(theme => ({
       position: "absolute"
     }
   },
+  cardActionArea: {
+    height: "calc(100% - 52px)",
+    display: "flex",
+    justifyContent: "flex-start",
+    alignItems: "initial",
+    flexDirection: "column",
+    width: "100%"
+  },
   backgroundCard: {
     height: 100,
     width: "100%",
@@ -64,13 +72,11 @@ const CardPerson = ({ obituario }) => {
   const [elmentOption, setElementOption] = useState(null);
   const clickOption = event => setElementOption(event.currentTarget);
   const closeOption = event => setElementOption(null);
-  const { nombre, foto, fechaInicio, fechaFin } = obituario;
+  const { nombre, foto, fechaInicio, fechaFin, epitafio } = obituario;
   const prev = typeof window !== "undefined" && window.location.pathname;
   const link = `/obituarios/${obituario.fields.slug}`;
   const linkAbsolute =
     typeof window !== "undefined" && window.location.origin + link;
-  const epitafio =
-    "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quae quod sequi necessitatibus commodi, facere sit omnis cumque voluptate doloremque facilis. Excepturi deserunt ipsa minus ducimus sed tempora odio, ";
   const epitafioLimitCharacter = 150;
   const classes = useStyles();
   const shareMore = () => {
@@ -110,8 +116,8 @@ const CardPerson = ({ obituario }) => {
           <img className="cloud" src="/img/nube-sombra.svg"></img>
         </Box>
       </Link>
-      <Card>
-        <CardActionArea>
+      <Card style={{ height: 350 }}>
+        <CardActionArea className={classes.cardActionArea}>
           <Link
             to={link}
             state={{
@@ -120,9 +126,12 @@ const CardPerson = ({ obituario }) => {
           >
             <Box className={classes.backgroundCard}></Box>
             <CardContent>
-              <Typography gutterBottom variant="h6">
-                {firstUpperCase(nombre)}
-              </Typography>
+              <Typography variant="h6">{firstUpperCase(nombre)}</Typography>
+              {fechaFin && (
+                <Typography gutterBottom variant="caption" component="h6">
+                  {fechaFin}
+                </Typography>
+              )}
               {epitafio && (
                 <Typography variant="body2">
                   {epitafio.length > epitafioLimitCharacter ? (

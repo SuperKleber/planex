@@ -60,3 +60,38 @@ collections:
                 name: photo
                 widget: image
                 required: false
+      - label: Beneficios de Prever
+        name: reasons
+        extension: yml
+        file: "config/reasons.yml"
+        fields:
+          - label: Beneficio
+            name: reason
+            widget: list
+            fields:
+              - label: Título
+                name: title
+                widget: string
+              - label: Descripción
+                name: description
+                widget: text
+              - label: Ícono
+                name: icon
+                hint: ícono en PNG
+                widget: image
+                required: false
+      - label: Galería de imágenes
+        name: gallery
+        extension: yml
+        file: "config/gallery.yml"
+        fields:
+          - label: Imagen
+            name: image
+            widget: list
+            fields:
+              - label: Foto
+                name: src
+                widget: image
+              - label: Título de la foto
+                name: title
+                widget: string
