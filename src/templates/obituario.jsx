@@ -1,4 +1,5 @@
 import React from "react";
+import { FacebookProvider, Comments } from "react-facebook";
 import { Link } from "gatsby";
 import Layout from "../components/Layout";
 import Menu from "../components/Menu";
@@ -54,6 +55,7 @@ const Obituario = ({ pageContext, location }) => {
     siteCover: pageContext.foto ? pageContext.foto : false,
     siteUrl: `${siteUrl}/obituarios/${pageContext.fields.slug}`
   };
+  const urlAbsolute = typeof window !== undefined && window.location.href;
   return (
     <Layout seo={seo}>
       <Menu></Menu>
@@ -78,6 +80,9 @@ const Obituario = ({ pageContext, location }) => {
           <Typography gutterBottom>{pageContext.fechaInicio}</Typography>
           <Typography>{pageContext.epitafio}</Typography>
         </Paper>
+        <FacebookProvider appId="2503959843259543">
+          <Comments href={urlAbsolute} />
+        </FacebookProvider>
       </Box>
     </Layout>
   );

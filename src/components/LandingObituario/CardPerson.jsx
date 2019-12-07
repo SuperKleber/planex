@@ -179,7 +179,10 @@ const CardPerson = ({ obituario }) => {
                 <Typography>Copiar URL</Typography>
               </OptionItem>
             </CopyToClipboard>
-            {/* <OptionItem onClick={shareMore}>...más</OptionItem> */}
+            <OptionItem onClick={shareMore}>
+              <ShareIcon></ShareIcon>
+              ...otros
+            </OptionItem>
           </Options>
           <Alert
             open={copiedShare}
