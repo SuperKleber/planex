@@ -55,7 +55,7 @@ const Obituario = ({ pageContext, location }) => {
     siteCover: pageContext.foto ? pageContext.foto : false,
     siteUrl: `${siteUrl}/obituarios/${pageContext.fields.slug}`
   };
-  const urlAbsolute = typeof window !== undefined && window.location.href;
+  const urlAbsolute = typeof window !== "undefined" && window.location.href;
   return (
     <Layout seo={seo}>
       <Menu></Menu>
