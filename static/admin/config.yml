@@ -1,9 +1,9 @@
-backend:
-  name: test-repo
-
 # backend:
-#   name: git-gateway
-#   branch: master
+#   name: test-repo
+
+backend:
+  name: git-gateway
+  branch: master
 
 publish_mode: editorial_workflow
 media_folder: "/static/img"

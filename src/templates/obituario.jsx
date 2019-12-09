@@ -1,5 +1,5 @@
 import React from "react";
-import { FacebookProvider, Comments } from "react-facebook";
+import { FacebookProvider, Comments, Like, Share } from "react-facebook";
 import { Link } from "gatsby";
 import Layout from "../components/Layout";
 import Menu from "../components/Menu";
@@ -9,6 +9,7 @@ import Back from "@material-ui/icons/ArrowBack";
 import { colors } from "../../config/brand.yml";
 import { siteUrl } from "../../config/defaultSeo.json";
 import firstUpperCase from "../../lib/firstUpperCase";
+import { FacebookIcon, FacebookShareButton } from "react-share";
 const useStyles = makeStyles(theme => ({
   prev: {
     margin: 16
@@ -43,6 +44,17 @@ const useStyles = makeStyles(theme => ({
     left: "54%",
     transform: "translateX(-50%)",
     width: 260
+  },
+  share: {
+    background: "#3b5998",
+    color: "white",
+    paddingRight: 18,
+    transition: "0.2s",
+    "&:hover": {
+      color: "white",
+      background: "#3b5998",
+      borderRadius: 20
+    }
   }
 }));
 const Obituario = ({ pageContext, location }) => {
@@ -55,7 +67,7 @@ const Obituario = ({ pageContext, location }) => {
     siteCover: pageContext.foto ? pageContext.foto : false,
     siteUrl: `${siteUrl}/obituarios/${pageContext.fields.slug}`
   };
-  const urlAbsolute = typeof window !== "undefined" && window.location.href;
+  const urlAbsolute = `${siteUrl}/obituarios/${pageContext.fields.slug}`;
   return (
     <Layout seo={seo}>
       <Menu></Menu>
@@ -79,8 +91,15 @@ const Obituario = ({ pageContext, location }) => {
           <Typography variant="h4">{nombre}</Typography>
           <Typography gutterBottom>{pageContext.fechaInicio}</Typography>
           <Typography>{pageContext.epitafio}</Typography>
+          <FacebookShareButton url={urlAbsolute}>
+            <Button className={classes.share}>
+              <FacebookIcon size={30}></FacebookIcon>
+              Compartir
+            </Button>
+          </FacebookShareButton>
         </Paper>
-        <FacebookProvider appId="2503959843259543">
+
+        <FacebookProvider language="es_LA" appId="2503959843259543">
           <Comments href={urlAbsolute} />
         </FacebookProvider>
       </Box>
