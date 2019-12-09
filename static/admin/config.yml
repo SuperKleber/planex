@@ -11,7 +11,7 @@ media_folder: "/static/img"
 public_folder: "/img"
 collections:
   - name: "dataObituarios"
-    identifier_field: "dataObituarios"
+    identifier_field: name
     extension: yml
     label: "Obituarios"
     folder: "src/data/dataObituarios"
@@ -40,7 +40,7 @@ collections:
         required: false
   - name: "config"
     label: "Configuración del Sitio"
-    identifier_field: "config"
+    identifier_field: name
     files:
       - label: Testimonios
         name: testimonials
