@@ -1,5 +1,6 @@
-backend:
-  name: test-repo
+# backend:
+#   name: test-repo
+#   branch: master
 
 backend:
   name: git-gateway
@@ -57,7 +58,15 @@ collections:
             name: photo
             widget: image
             required: false
-          
+      - label: prueba
+        name: prueba
+        extension: yml
+        file: "config/prueba.yml"
+        fields:
+          - label: title
+            name: title
+            widget: text
+
       - label: Beneficios de Prever
         name: reasons
         extension: yml
