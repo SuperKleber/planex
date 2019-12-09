@@ -13,7 +13,7 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import { mergeClasses } from "@material-ui/styles";
 import { Link } from "gatsby";
-import photos from "../../config/gallery.yml";
+import { gallery as photos } from "../../config/gallery.yml";
 const useStyles = makeStyles(() => ({
   root: {
     marginBottom: 50

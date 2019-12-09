@@ -11,7 +11,7 @@ import { makeStyles, createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import { colors } from "../../config/brand.yml";
 import { Link } from "gatsby";
-import reasons from "../../config/reasons.yml";
+import { reasons } from "../../config/reasons.yml";
 const useStyles = makeStyles(() => ({
   root: {
     marginBottom: 50

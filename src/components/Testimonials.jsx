@@ -2,7 +2,7 @@ import React from "react";
 import { Paper, Box, Typography, Divider } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { colors } from "../../config/brand.yml";
-import testimonials from "../../config/testimonials.yml";
+import { testimonials } from "../../config/testimonials.yml";
 import FormatQuoteIcon from "@material-ui/icons/FormatQuote";
 const color = colors.green;
 const useStyles = makeStyles(theme => ({

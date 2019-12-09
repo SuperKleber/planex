@@ -1,12 +1,13 @@
-- title: Único
-  description: Únicos en el mercado con un Plan de Asistencia Familiar.
-  icon: /img/family.svg
-- title: Económico
-  description: Cuota mínima de 100 bs.
-  icon: /img/save-money.svg
-- title: Accesible
-  description: Ingresan sus padres sin límite de edad.
-  icon: /img/accesible.svg
-- title: Paz
-  description: Es la única manera ¡Para vivir en paz!.
-  icon: /img/happy.svg
+reasons:
+  - title: Único
+    description: Únicos en el mercado con un Plan de Asistencia Familiar.
+    icon: /img/family.svg
+  - title: Económico
+    description: Cuota mínima de 100 bs.
+    icon: /img/save-money.svg
+  - title: Accesible
+    description: Ingresan sus padres sin límite de edad.
+    icon: /img/accesible.svg
+  - title: Paz
+    description: Es la única manera ¡Para vivir en paz!.
+    icon: /img/happy.svg
