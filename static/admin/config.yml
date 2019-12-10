@@ -10,13 +10,12 @@ publish_mode: editorial_workflow
 media_folder: "/static/img"
 public_folder: "/img"
 collections:
-  - name: "dataObituarios"
-    identifier_field: name
+  - name: dataObituarios
+    label: Obituarios
+    identifier_field: nombre
     extension: yml
-    label: "Obituarios"
-    folder: "src/data/dataObituarios"
+    folder: "/src/data/dataObituarios"
     create: true
-    slug: "{{slug}}"
     preview: false
     fields:
       - label: "Nombre"
@@ -40,7 +39,7 @@ collections:
         required: false
   - name: "config"
     label: "Configuración del Sitio"
-    identifier_field: name
+    identifier_field: config
     files:
       - label: Testimonios
         name: testimonials
