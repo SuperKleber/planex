@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { createMuiTheme, makeStyles } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import Helmet from "react-helmet";
@@ -7,7 +7,8 @@ import fontBrushWoff from "../../config/font/BrushScriptRegularSWFTE.woff";
 import fontBrushWoff2 from "../../config/font/BrushScriptRegularSWFTE.woff2";
 import Seo from "./Seo.jsx";
 import Footer from "./Footer";
-import ReactPixel from "react-facebook-pixel"
+import ReactPixel from "react-facebook-pixel";
+import FormContact from "./FormContact";
 const brush = {
   fontFamily: "Brush Script",
   fontStyle: "normal",
@@ -39,11 +40,10 @@ const theme = createMuiTheme({
   }
 });
 const Layout = ({ children, seo }) => {
-  useEffect(()=>{
-    ReactPixel.init("2739923912769068")
-    ReactPixel.pageView()
-    
-  },[])
+  useEffect(() => {
+    ReactPixel.init("2739923912769068");
+    ReactPixel.pageView();
+  }, []);
   return (
     <ThemeProvider theme={theme}>
       <Seo seo={seo}></Seo>
@@ -64,6 +64,7 @@ const Layout = ({ children, seo }) => {
       </Helmet>
       {children}
       <Footer></Footer>
+      <FormContact hidden></FormContact>
       <style jsx="true" global="true">{`
         body {
           margin: 0;

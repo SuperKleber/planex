@@ -1,6 +1,7 @@
 import React from "react";
 import { TextField, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import ReactPixel from "react-facebook-pixel";
 const useStyles = makeStyles(theme => ({
   container: {
     display: "flex",
@@ -17,20 +18,31 @@ const useStyles = makeStyles(theme => ({
     marginBottom: 16
   }
 }));
-const FormContact = () => {
+const FormContact = ({ hidden, text, json }) => {
   const classes = useStyles();
   return (
-    <form>
+    <form
+      name="contacto"
+      method="POST"
+      data-netlify="true"
+      netlify="true"
+      action="/"
+      onSubmit={() => {
+        ReactPixel.track("Lead");
+      }}
+      hidden={hidden}
+    >
+      <input type="hidden" name="form-name" value="contacto" />
       <TextField
-        name="name"
+        name="nombre"
         id="outlined-basic"
         className={classes.textField}
-        label="Nombres"
+        label="nombres"
         margin="normal"
         variant="outlined"
       />
       <TextField
-        name="lastName"
+        name="apellidos"
         id="outlined-basic"
         className={classes.textField}
         label="Apellidos"
@@ -38,7 +50,7 @@ const FormContact = () => {
         variant="outlined"
       />
       <TextField
-        name="phone"
+        name="celular"
         id="outlined-basic"
         className={classes.textField}
         label="Celular"
@@ -50,6 +62,31 @@ const FormContact = () => {
         id="outlined-basic"
         className={classes.textField}
         label="Email"
+        margin="normal"
+        variant="outlined"
+      />
+      <TextField
+        name="text"
+        id="outlined-basic"
+        value={text}
+        multiline
+        rowsMax="4"
+        className={classes.textField}
+        // hidden
+        // style={{ display: "none" }}
+        label="Text"
+        margin="normal"
+        variant="outlined"
+      />
+      <TextField
+        name="json"
+        id="outlined-basic"
+        value={json}
+        multiline
+        rowsMax="4"
+        hidden
+        style={{ display: "none" }}
+        label="Text"
         margin="normal"
         variant="outlined"
       />

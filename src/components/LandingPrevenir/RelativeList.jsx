@@ -57,6 +57,15 @@ const useStyles = makeStyles(theme => ({
 }));
 const RelativeList = ({ familyList, customFamily, setCustomFamily }) => {
   const classes = useStyles();
+  let text = "Deseo asegurar a:";
+  let familyJson = [];
+  familyList.map(({ nombres, apellidos, parentesco, edad }, i) => {
+    text = `${text}${
+      i > 0 ? ", " : ""
+    }${parentesco} ${nombres} ${apellidos} de ${edad} años`;
+    familyJson.push({ parentesco, nombres, apellidos, edad });
+  });
+  console.log(JSON.stringify(familyJson));
   const [openWarning, setOpenWarning] = useState(false);
   const [openForm, setOpenForm] = useState(false);
   const reset = () => {
@@ -112,13 +121,17 @@ const RelativeList = ({ familyList, customFamily, setCustomFamily }) => {
           open={openForm}
           onClose={() => setOpenForm(false)}
         >
-          <FormContact></FormContact>
+          <FormContact
+            text={text}
+            json={JSON.stringify(familyJson)}
+          ></FormContact>
         </Modal>
       </Container>
       <Grid className={classes.grid} container spacing={5}>
-        {familyList.map(relative => {
+        {familyList.map((relative, i) => {
           return (
             <RelativeEdit
+              key={i}
               customFamily={customFamily}
               setCustomFamily={setCustomFamily}
               relative={relative}
