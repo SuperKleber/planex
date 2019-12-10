@@ -65,6 +65,7 @@ const Layout = ({ children, seo }) => {
       {children}
       <Footer></Footer>
       <FormContact hidden></FormContact>
+      <FormContact name="prevision" hidden></FormContact>
       <style jsx="true" global="true">{`
         body {
           margin: 0;

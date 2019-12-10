@@ -18,11 +18,11 @@ const useStyles = makeStyles(theme => ({
     marginBottom: 16
   }
 }));
-const FormContact = ({ hidden, text, json }) => {
+const FormContact = ({ name, hidden, text, json }) => {
   const classes = useStyles();
   return (
     <form
-      name="contacto"
+      name={name ? name : "contacto"}
       method="POST"
       data-netlify="true"
       netlify="true"
@@ -34,7 +34,7 @@ const FormContact = ({ hidden, text, json }) => {
     >
       <input type="hidden" name="form-name" value="contacto" />
       <TextField
-        name="nombre"
+        name="nombres"
         id="outlined-basic"
         className={classes.textField}
         label="nombres"
