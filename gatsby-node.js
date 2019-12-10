@@ -22,7 +22,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const obituarioTemplate = path.resolve("src/templates/obituario.jsx");
   const result = await graphql(`
     {
-      allObituariosYaml {
+      allObituariosYaml(sort: { order: DESC, fields: [fechaFin] }) {
         edges {
           node {
             nombre

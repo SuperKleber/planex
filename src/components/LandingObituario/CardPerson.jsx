@@ -117,13 +117,13 @@ const CardPerson = ({ obituario }) => {
         </Box>
       </Link>
       <Card style={{ height: 350 }}>
-        <CardActionArea className={classes.cardActionArea}>
-          <Link
-            to={link}
-            state={{
-              prev: prev
-            }}
-          >
+        <Link
+          to={link}
+          state={{
+            prev: prev
+          }}
+        >
+          <CardActionArea className={classes.cardActionArea}>
             <Box className={classes.backgroundCard}></Box>
             <CardContent>
               <Typography variant="h6">{firstUpperCase(nombre)}</Typography>
@@ -147,8 +147,8 @@ const CardPerson = ({ obituario }) => {
                 </Typography>
               )}
             </CardContent>
-          </Link>
-        </CardActionArea>
+          </CardActionArea>
+        </Link>
         <CardActions>
           <Button onClick={clickOption} variant="contained" color="primary">
             <ShareIcon />
