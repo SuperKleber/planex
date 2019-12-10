@@ -14,7 +14,7 @@ collections:
     label: Obituarios
     identifier_field: nombre
     extension: yml
-    folder: "/src/data/dataObituarios"
+    folder: "/src/data/dataObituarios/obituarios"
     create: true
     preview: false
     fields:
