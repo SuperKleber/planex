@@ -22,7 +22,7 @@ const FormContact = ({ name, hidden, text, json }) => {
   const classes = useStyles();
   return (
     <form
-      name={name ? name : "contacto"}
+      name={name ? name : "contact"}
       method="POST"
       data-netlify="true"
       netlify="true"
@@ -32,7 +32,7 @@ const FormContact = ({ name, hidden, text, json }) => {
       }}
       hidden={hidden}
     >
-      <input type="hidden" name="form-name" value={name ? name : "contacto"} />
+      <input type="hidden" name="form-name" value={name ? name : "contact"} />
       <TextField
         name="name"
         id="outlined-basic"

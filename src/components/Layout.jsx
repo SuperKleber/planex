@@ -64,8 +64,8 @@ const Layout = ({ children, seo }) => {
       </Helmet>
       {children}
       <Footer></Footer>
-      <FormContact hidden></FormContact>
-      <FormContact name="prevision" hidden></FormContact>
+      <FormContact name="contact" hidden></FormContact>
+      <FormContact name="prev" hidden></FormContact>
       <style jsx="true" global="true">{`
         body {
           margin: 0;
