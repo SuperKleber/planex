@@ -122,7 +122,7 @@ const RelativeList = ({ familyList, customFamily, setCustomFamily }) => {
           onClose={() => setOpenForm(false)}
         >
           <FormContact
-            name="prevision"
+            name="prev"
             text={text}
             json={JSON.stringify(familyJson)}
           ></FormContact>

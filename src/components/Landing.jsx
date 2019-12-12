@@ -105,7 +105,7 @@ const Landing = () => {
             onClose={() => setInfo(false)}
             title="Siempre dispuestos a informarte"
           >
-            <FormContact></FormContact>
+            <FormContact name="contact"></FormContact>
           </Modal>
         </Grid>
         <Grid item xs={12} sm={6} className={classes.flexCenter}>
