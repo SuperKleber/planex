@@ -22,7 +22,7 @@ const FormContact = ({ name, hidden, text, json }) => {
   const classes = useStyles();
   return (
     <form
-      name={name ? name : "contact"}
+      name={name ? name : "contacto"}
       method="POST"
       data-netlify="true"
       netlify="true"
@@ -34,7 +34,7 @@ const FormContact = ({ name, hidden, text, json }) => {
     >
       <input type="hidden" name="form-name" value={name ? name : "contact"} />
       <TextField
-        name="name"
+        name="nombres"
         id="outlined-basic"
         className={classes.textField}
         label="nombres"
@@ -42,7 +42,7 @@ const FormContact = ({ name, hidden, text, json }) => {
         variant="outlined"
       />
       <TextField
-        name="last_name"
+        name="apellidos"
         id="outlined-basic"
         className={classes.textField}
         label="Apellidos"
@@ -50,7 +50,7 @@ const FormContact = ({ name, hidden, text, json }) => {
         variant="outlined"
       />
       <TextField
-        name="phone"
+        name="celular"
         id="outlined-basic"
         className={classes.textField}
         label="Celular"
@@ -66,7 +66,7 @@ const FormContact = ({ name, hidden, text, json }) => {
         variant="outlined"
       />
       <TextField
-        name="text"
+        name="mensaje"
         id="outlined-basic"
         value={text}
         multiline

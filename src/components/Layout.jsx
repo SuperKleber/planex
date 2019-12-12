@@ -8,7 +8,7 @@ import fontBrushWoff2 from "../../config/font/BrushScriptRegularSWFTE.woff2";
 import Seo from "./Seo.jsx";
 import Footer from "./Footer";
 import ReactPixel from "react-facebook-pixel";
-import FormContact from "./FormContact";
+import FormNetlify from "./FormNetlify";
 const brush = {
   fontFamily: "Brush Script",
   fontStyle: "normal",
@@ -64,8 +64,7 @@ const Layout = ({ children, seo }) => {
       </Helmet>
       {children}
       <Footer></Footer>
-      <FormContact name="contact" hidden></FormContact>
-      <FormContact name="prev" hidden></FormContact>
+      <FormNetlify></FormNetlify>
       <style jsx="true" global="true">{`
         body {
           margin: 0;
