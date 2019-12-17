@@ -30,7 +30,8 @@ const Contract = () => {
         />
         <Box>
           <Typography style={{ color: "white", margin: "16px 0" }}>
-            Dale una ojeada a nuestro contacto
+            Puedes ver el contrato para tener toda la información del servicio
+            de previsión
           </Typography>
           <a href="/documents/contrato.pdf">
             <Button
