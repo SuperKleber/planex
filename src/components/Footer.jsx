@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { colors } from "../../config/brand.yml";
 import Reasons from "./Reasons";
 import Gallery from "./Gallery";
+import Contract from "./Contract";
 import { Divider } from "@material-ui/core";
 const useStyles = makeStyles(theme => ({
   footer: {
@@ -20,6 +21,8 @@ const Footer = () => {
   const classes = useStyles();
   return (
     <footer className={classes.footer}>
+      <Contract></Contract>
+      <Divider className={classes.divider}></Divider>
       <Gallery></Gallery>
       <Divider className={classes.divider}></Divider>
       <Reasons></Reasons>
