@@ -17,7 +17,9 @@ import {
   Paper
 } from "@material-ui/core";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+import Circle from "@material-ui/icons/FiberManualRecord";
 import Modal from "../Modal";
+
 import Relative from "./Relative";
 import RelativeList from "./RelativeList.jsx";
 const begin = 0;
@@ -32,22 +34,24 @@ const useStyles = makeStyles(theme => ({
     backgroundSize: "50% !important"
     // backgroundRepeat: "no-repeat !important"
   },
-  grid: {
-    padding: "8px 24px",
+  card: {
+    padding: 24,
     background: "rgba(255,255,255,0.85)",
-    display: "grid",
     maxWidth: "95vw",
-    gridGap: "10px",
-    height: "300px",
-    gridTemplate: "1fr 1fr 1fr / 1fr",
-    justifyContent: "center",
+    display: "flex",
+    flexDirection: "column",
     alignItems: "center",
-    alignContent: "center",
-    justifyItems: "center"
+    justifyContent: "center"
   },
-  gridCopy: {
-    gridRow: "1/2",
-    gridColumn: "1/2"
+  copy: {
+    marginBottom: 24
+  },
+  circle: {
+    fill: colors.green,
+    animation: "circle",
+    animationDuration: ".5s",
+    animationIterationCount: "infinite",
+    animationDirection: "alternate"
   },
   btn: {
     width: 180,
@@ -149,16 +153,24 @@ const LandingPrevenir = () => {
       setFinishForm(true);
     }
   }, []);
+  let max = 24;
+  let min = 5;
+  let random = Math.round(Math.random() * (max - min) + min);
+  console.log(random);
   if (!finishForm) {
     return (
       <div
         className={classes.root}
         style={{ background: `url(${"/img/people-happy.svg"})` }}
       >
-        <Paper className={classes.grid}>
-          <Box className={classes.gridCopy}>
+        <Paper className={classes.card}>
+          <Box className={classes.copy}>
             <Typography variant="h6" align="center">
-              45 Personas Previnieron este mes
+              <Circle
+                style={{ transform: "translateY(5px)" }}
+                className={classes.circle}
+              ></Circle>
+              {random} personas están aseguradas ahora mismo en Santa Cruz
             </Typography>
           </Box>
 
@@ -176,30 +188,8 @@ const LandingPrevenir = () => {
               open={openModal}
               title={false}
               onClose={() => setOpenModal(false)}
-              // title={familyMembers[relativeStep].parentesco}
               maxWidth="xl"
-              // fullWidth={true}
             >
-              {/* <Fade timeout={1000} in={true}>
-                <Box
-                  style={{
-                    display: relativeStep === begin ? "flex" : "none"
-                  }}
-                >
-                  <Relative
-                    template
-                    edad={age}
-                    customFamily={customFamily}
-                    parentescoFunc={index => {
-                      setIndexHidden(index);
-                    }}
-                    setCustomFamily={setCustomFamily}
-                    next={next}
-                    back={back}
-                    buttonText={buttonText}
-                  ></Relative>
-                </Box>
-              </Fade> */}
               {familyMembers.map((relative, i) => {
                 return (
                   <div
@@ -231,11 +221,11 @@ const LandingPrevenir = () => {
               })}
             </Modal>
           </Box>
-          <Box>
+          {/* <Box>
             <Typography variant="h6" align="center">
               Previsión es vivir en Paz
             </Typography>
-          </Box>
+          </Box> */}
         </Paper>
       </div>
     );

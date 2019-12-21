@@ -34,6 +34,7 @@ const FormContact = ({ name, hidden, text, json }) => {
     >
       <input type="hidden" name="form-name" value={name ? name : "contact"} />
       <TextField
+        required
         name="nombres"
         id="outlined-basic"
         className={classes.textField}
@@ -42,6 +43,7 @@ const FormContact = ({ name, hidden, text, json }) => {
         variant="outlined"
       />
       <TextField
+        required
         name="apellidos"
         id="outlined-basic"
         className={classes.textField}
@@ -50,15 +52,19 @@ const FormContact = ({ name, hidden, text, json }) => {
         variant="outlined"
       />
       <TextField
+        required
         name="celular"
         id="outlined-basic"
         className={classes.textField}
         label="Celular"
+        type="number"
         margin="normal"
         variant="outlined"
       />
       <TextField
+        required
         name="email"
+        type="email"
         id="outlined-basic"
         className={classes.textField}
         label="Email"

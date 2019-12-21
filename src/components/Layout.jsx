@@ -86,6 +86,14 @@ const Layout = ({ children, seo }) => {
         .Mui-disabled {
           cursor: initial;
         }
+        @keyframes circle {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
       `}</style>
       {/* // Popup de Autocomplete de @material-ui/lab */}
     </ThemeProvider>

@@ -33,12 +33,11 @@ const useStyles = makeStyles(theme => ({
     transform: "translateX(-50%)",
     zIndex: 2,
     "& .foto": {
-      backgroundPosition: "center !important",
+      backgroundPosition: "top !important",
       backgroundSize: "105% !important",
       width: 90,
       height: 90,
       top: -10,
-
       borderRadius: "50%",
       boxShadow: "0px 2px 7px 0.5px",
       zIndex: 3

@@ -22,6 +22,7 @@ const useStyles = makeStyles(theme => ({
   foto: {
     width: 150,
     height: 150,
+    backgroundSize: "100% !important",
     // boxShadow: " 10px 10px 25px 1px",
     border: `20px solid ${colors.purple}`
   },
@@ -32,6 +33,7 @@ const useStyles = makeStyles(theme => ({
   },
   shadowFoto: {
     position: "absolute",
+    top: 0,
     right: 0,
     width: 75,
     height: 150,
@@ -83,7 +85,11 @@ const Obituario = ({ pageContext, location }) => {
         alignItems="center"
       >
         <Box className={classes.funeral}>
-          <img className={classes.foto} src={pageContext.foto} alt="" />
+          <div
+            className={classes.foto}
+            style={{ background: `url(${pageContext.foto})` }}
+          ></div>
+          {/* <img className={classes.foto} src={pageContext.foto} alt="" /> */}
           <span className={classes.shadowFoto}></span>
           <img className={classes.decoration} src="/img/funeral.svg"></img>
         </Box>
