@@ -86,6 +86,14 @@ const Layout = ({ children, seo }) => {
         .Mui-disabled {
           cursor: initial;
         }
+        // .MuiDialog-paperFullWidth {
+        //   width: auto !important;
+        // }
+        @media (max-width: 550px) {
+          .MuiDialog-paperFullWidth {
+            width: auto !important;
+          }
+        }
         @keyframes circle {
           from {
             opacity: 0;
