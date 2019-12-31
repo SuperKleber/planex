@@ -31,6 +31,7 @@ const useStyles = makeStyles(theme => ({
     position: "relative",
     "& img": {
       width: 75,
+      height: 75,
       position: "absolute",
       borderRadius: "50%",
       border: `7px solid ${color}`,
@@ -88,28 +89,32 @@ const useStyles = makeStyles(theme => ({
 const Testimonials = () => {
   const classes = useStyles();
   return (
-    <Box
-      className={classes.root}
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      flexDirection="column"
-    >
-      <Typography className={classes.testimonialTitle} variant="h5">
-        Testimonios
-      </Typography>
+    <>
+      {testimonials && (
+        <Box
+          className={classes.root}
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          flexDirection="column"
+        >
+          <Typography className={classes.testimonialTitle} variant="h5">
+            Testimonios
+          </Typography>
 
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        flexDirection="column"
-      >
-        {testimonials.map(testimonial => (
-          <Testimonial {...testimonial}></Testimonial>
-        ))}
-      </Box>
-    </Box>
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            flexDirection="column"
+          >
+            {testimonials.map(testimonial => (
+              <Testimonial {...testimonial}></Testimonial>
+            ))}
+          </Box>
+        </Box>
+      )}
+    </>
   );
 };
 const Testimonial = ({ name, photo, text }) => {
