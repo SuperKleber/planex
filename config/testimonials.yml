@@ -1,4 +1,14 @@
 testimonials:
+  - name: German Aurelio Quiroz Parra
+    photo: /img/german.jpg
+    text: >-
+      En nombre de toda mi familia quiero transmitirles nuestros agradecimientos
+      por la atención recibida en el fallecimiento de mi amado padre, igualmente
+      deseamos expresar nuestro agradecimiento a todo el personal que intervino
+      en la emotiva despedida, ya que el servicio fue sin prisas y
+      permitiéndonos tener una despedida cálida. No hay palabras para expresar
+      el agradecimiento a servicios funerarios Prever en estas tristes
+      circunstancias para las familias.
   - name: Eva Evangelina Carreon
     photo: >-
       https://prever.com.bo/imagen/productos/51be35312485667c7b7c2cb1f62e0141.jpg
@@ -11,13 +21,3 @@ testimonials:
     photo: >-
       https://prever.com.bo/imagen/productos/0f596d79ba39a9f57537d05b290d1408.jpg
     text: Atención empática
-  - name: German Aurelio Quiroz Parra
-    photo: /img/german.jpg
-    text: >-
-      En nombre de toda mi familia quiero transmitirles nuestros agradecimientos
-      por la atención recibida en el fallecimiento de mi amado padre, igualmente
-      deseamos expresar nuestro agradecimiento a todo el personal que intervino
-      en la emotiva despedida, ya que el servicio fue sin prisas y
-      permitiéndonos tener una despedida cálida. No hay palabras para expresar
-      el agradecimiento a servicios funerarios Prever en estas tristes
-      circunstancias para las familias.
