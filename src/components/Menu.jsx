@@ -144,7 +144,7 @@ const Menu = () => {
                       color="primary"
                       variant="contained"
                     >
-                      Guardar Contacto
+                      Llamar contacto
                     </Button>
                   </a>
                 </Box>
