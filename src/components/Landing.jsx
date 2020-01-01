@@ -86,7 +86,7 @@ const Landing = () => {
         </Grid>
         <Grid item xs={12} className={classes.flexCenter}>
           <Typography color="initial">
-            Servicios funerarios y prevención nacional exequial
+            Servicios funerarios en emergencia y previsión a nivel nacional
           </Typography>
         </Grid>
         <Grid item xs={12} sm={6} className={classes.flexCenter}>
@@ -97,7 +97,7 @@ const Landing = () => {
               variant="contained"
               color="primary"
             >
-              Contactanos
+              Contáctanos
             </Button>
           </Link>
           <Modal

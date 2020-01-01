@@ -119,6 +119,7 @@ const Menu = () => {
                 }
                 open={emergency}
                 onClose={() => setEmergency(false)}
+                closeButton
               >
                 <Box>
                   <Alert
@@ -135,7 +136,7 @@ const Menu = () => {
                       variant="outlined"
                     >
                       <WhatsappIcon></WhatsappIcon>
-                      +59133469191
+                      +591-33469191
                     </Button>
                   </a>
                   <a href="tel:+59133469191">
