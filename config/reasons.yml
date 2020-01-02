@@ -1,4 +1,7 @@
 reasons:
+  - description: 'No importa donde te encuentres, tenemos cobertura en todo el país.'
+    icon: /img/bolivia.svg
+    title: Cobertura Nacional
   - description: Únicos en el mercado con un Plan de Asistencia Familiar.
     icon: /img/family.svg
     title: Único
@@ -8,6 +11,3 @@ reasons:
   - description: Ingresan sus padres sin límite de edad.
     icon: /img/accesible.svg
     title: Accesible
-  - description: 'No importa donde te encuentres, tenemos cobertura en todo el país.'
-    icon: /img/bolivia.svg
-    title: Cobertura Nacional
