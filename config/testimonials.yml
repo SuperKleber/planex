@@ -1,10 +1,21 @@
 testimonials:
-  - name: Eva Evangelina Carreon
-    text: "Tienen todos los servicios exequiales que se necesita"
-    photo: https://prever.com.bo/imagen/productos/51be35312485667c7b7c2cb1f62e0141.jpg
-  - name: German Monasterio Pacheco
-    text: "Su plan es bastante flexible y me da mucha tranquilidad"
-    photo: https://prever.com.bo/imagen/productos/98eb2f1ec12d0ac2bec384448e654f59.jpg
-  - name: Agustin Rueda Escalante
-    text: "Atención empática"
-    photo: https://prever.com.bo/imagen/productos/0f596d79ba39a9f57537d05b290d1408.jpg
+  - name: German Aurelio Quiroz Parra
+    photo: /uploads/testimonial-german.jpg
+    text: >
+      En nombre de toda mi familia quiero transmitirles nuestros agradecimientos
+      por la atención recibida en el fallecimiento de mi amado padre, igualmente
+      deseamos expresar nuestro agradecimiento a todo el personal que intervino
+      en la emotiva despedida, ya que el servicio fue sin prisas y
+      permitiéndonos tener una despedida cálida. No hay palabras para expresar
+      el agradecimiento a servicios funerarios Prever en estas tristes
+      circunstancias para las familias.
+  - name: Max Edgar Orellana
+    photo: /uploads/testimonial-max.jpg
+    text: >
+      Una de las instituciones que cumplía mis expectativas fue la funeraria
+      Prever por su ubicación y en lo económico ya que tiene los mejores
+      precios, sus salas de velación acogedoras, la atención fue muy atenta y
+      con cordial bienvenida, sobre todo del sr. Arturo que desde el primer
+      momento me dio la seguridad y nos ayudó en todo sin conocernos, agradezco
+      a Prever por el servicio prestado y hacer la despedida de mi mamá tan
+      emotiva.
