@@ -91,7 +91,7 @@ const RelativeList = ({ familyList, customFamily, setCustomFamily }) => {
             variant="outlined"
             onClick={() => setOpenWarning(true)}
           >
-            Eliminar
+            Volver
           </Button>
         </Box>
         <Modal
@@ -174,13 +174,25 @@ const RelativeEdit = ({
       localStorage.setItem(name, JSON.stringify(object));
   };
   const save = relative => {
-    let newCustomFamily = {
+if(template){
+let newCustomFamily = {
+      ...customFamily,
+      [customFamily.parentesco+customFamily.lenght+1]: { ...relative }
+    };
+setCustomFamily({ newCustomFamily });
+    localSave("customFamily", newCustomFamily);
+    setOpenForm(false);
+}else{
+let newCustomFamily = {
       ...customFamily,
       [relative.parentesco]: { ...relative }
     };
-    setCustomFamily({ newCustomFamily });
+setCustomFamily({ newCustomFamily });
     localSave("customFamily", newCustomFamily);
     setOpenForm(false);
+}
+    
+    
   };
   return (
     <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
