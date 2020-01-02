@@ -98,12 +98,30 @@ const Obituario = ({ pageContext, location }) => {
   const classes = useStyles();
   const nombre = firstUpperCase(pageContext.nombre);
   const seo = {
-    siteTitle: `Planex | ${nombre}`,
-    siteDescription: pageContext.epitafio ? pageContext.epitafio : false,
+    siteTitle: `${nombre}`,
+    siteDescription:
+      "Los familiares invitan al velatorio, y posterior traslado de sus restos mortales.",
     siteCover: pageContext.foto ? pageContext.foto : false,
     siteUrl: `${siteUrl}/obituarios/${pageContext.fields.slug}`
   };
   const urlAbsolute = `${siteUrl}/obituarios/${pageContext.fields.slug}`;
+  let fechaMisa, horaMisa, horaTraslado;
+  try {
+    if (pageContext.misa) {
+      const fecha = pageContext.misa.fechaMisa;
+      const onlyFecha = fecha.split("|")[0];
+      const onlyHora = fecha.split("|")[1];
+      fechaMisa = onlyFecha;
+      horaMisa = onlyHora;
+      horaTraslado = `${
+        parseInt(onlyHora.split(":")[0]) + 1 >= 24
+          ? "01"
+          : parseInt(onlyHora.split(":")[0]) + 1
+      }:${onlyHora.split(":")[1]}`;
+    }
+  } catch (e) {
+    console.log("Hubo un error al definir fechas y horas de evento de Misa");
+  }
   return (
     <Layout seo={seo}>
       <Menu></Menu>
@@ -132,76 +150,88 @@ const Obituario = ({ pageContext, location }) => {
           <Typography gutterBottom>{pageContext.fechaInicio}</Typography>
           <Typography>{pageContext.epitafio}</Typography>
 
-          <Button
-            variant="contained"
-            color="secondary"
-            fullWidth
-            onClick={() => setOpenMasse(true)}
-            className={classes.masse}
-          >
-            Evento de Misa
-          </Button>
-          <Modal
-            title="Evento de Misa  17 de mayo"
-            maxWidth
-            fullWidth
-            open={openMasse}
-            onClose={() => setOpenMasse(false)}
-          >
-            <Box
-              display="flex"
-              justifyContent="space-around"
-              alignItems="center"
-              flexWrap="wrap"
-            >
-              <Box
-                display="flex"
-                flexDirection="column"
-                justifyContent="space-around"
-                alignItems="center"
-                className={classes.eventMasseItem}
+          {pageContext.misa && (
+            <>
+              <Button
+                variant="contained"
+                color="secondary"
+                fullWidth
+                onClick={() => setOpenMasse(true)}
+                className={classes.masse}
               >
-                <Typography variant="h5">Misa 1:00</Typography>
-                <img src="/img/iglesia.svg"></img>
-                <a
-                  style={{ width: "100%" }}
-                  href="https://www.google.com/maps/place/Prever+-+Sal%C3%B3n+Velatorio/@-17.7941441,-63.16884,16z/data=!4m5!3m4!1s0x93f1e85d62ea77cb:0xfd9e12d454893aca!8m2!3d-17.7943484!4d-63.1657501"
+                Evento y horarios
+              </Button>
+              <Modal
+                title={`Evento de Misa  ${fechaMisa}`}
+                maxWidth
+                fullWidth
+                open={openMasse}
+                onClose={() => setOpenMasse(false)}
+              >
+                <Box
+                  display="flex"
+                  justifyContent="space-around"
+                  alignItems="center"
+                  flexWrap="wrap"
                 >
-                  <Button color="secondary" fullWidth variant="contained">
-                    Ver en mapa
-                  </Button>
-                </a>
-              </Box>
-              <Box
-                display="flex"
-                flexDirection="column"
-                justifyContent="space-around"
-                alignItems="center"
-                className={classes.eventMasseItem}
-              >
-                <Typography variant="h5"> Traslado 1:00</Typography>
-                <img src="/img/traslado.svg"></img>
-              </Box>
-              <Box
-                display="flex"
-                flexDirection="column"
-                justifyContent="space-around"
-                alignItems="center"
-                className={classes.eventMasseItem}
-              >
-                <Typography variant="h5"> Entierro: 1:00</Typography>
-                <img src="/img/cementerio.svg"></img>
-                <a
-                  style={{ width: "100%" }}
-                  href="https://www.google.com/maps/place/Prever+-+Sal%C3%B3n+Velatorio/@-17.7941441,-63.16884,16z/data=!4m5!3m4!1s0x93f1e85d62ea77cb:0xfd9e12d454893aca!8m2!3d-17.7943484!4d-63.1657501"
-                >
-                  <Button color="secondary" fullWidth variant="contained">
-                    Ver en mapa
-                  </Button>
-                </a>
-              </Box>
-            </Box>
-          </Modal>
+                  <Box
+                    display="flex"
+                    flexDirection="column"
+                    justifyContent="space-around"
+                    alignItems="center"
+                    className={classes.eventMasseItem}
+                  >
+                    <Typography variant="h5">Misa {horaMisa}</Typography>
+                    <img src="/img/iglesia.svg"></img>
+                    <a
+                      style={{ width: "100%" }}
+                      href={pageContext.misa.urlLugarMisa}
+                    >
+                      <Button color="secondary" fullWidth variant="contained">
+                        Ver en mapa
+                      </Button>
+                    </a>
+                  </Box>
+                  <Box
+                    display="flex"
+                    flexDirection="column"
+                    justifyContent="space-around"
+                    alignItems="center"
+                    className={classes.eventMasseItem}
+                  >
+                    <Typography variant="h5">
+                      {" "}
+                      Traslado {horaTraslado}
+                    </Typography>
+                    <img src="/img/traslado.svg"></img>
+                    <div style={{ height: 36 }}></div>
+                  </Box>
+                  <Box
+                    display="flex"
+                    flexDirection="column"
+                    justifyContent="space-around"
+                    alignItems="center"
+                    className={classes.eventMasseItem}
+                  >
+                    <Typography variant="h5">
+                      {" "}
+                      Cementerio: {pageContext.misa.lugarCementerio}
+                    </Typography>
+                    <img src="/img/cementerio.svg"></img>
+                    <a
+                      style={{ width: "100%" }}
+                      href={pageContext.misa.urlLugarCementerio}
+                    >
+                      <Button color="secondary" fullWidth variant="contained">
+                        Ver en mapa
+                      </Button>
+                    </a>
+                  </Box>
+                </Box>
+              </Modal>
+            </>
+          )}
+
           <FacebookShareButton url={urlAbsolute}>
             <Button fullWidth className={classes.share}>
               <FacebookIcon size={30}></FacebookIcon>

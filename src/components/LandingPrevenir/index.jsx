@@ -170,7 +170,7 @@ const LandingPrevenir = () => {
                 style={{ transform: "translateY(5px)" }}
                 className={classes.circle}
               ></Circle>
-              {random} personas están aseguradas ahora mismo en Santa Cruz
+              {random} Personas están armando su plan en este momento
             </Typography>
           </Box>
 
@@ -182,7 +182,7 @@ const LandingPrevenir = () => {
               variant="contained"
               color="primary"
             >
-              Previsión ahora
+              Ingresar
             </Button>
             <Modal
               open={openModal}
