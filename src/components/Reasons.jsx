@@ -105,9 +105,9 @@ const Reasons = () => {
               </Button>
             </Link>
 
-            <Button variant="outlined" color="secondary">
+            {/* <Button variant="outlined" color="secondary">
               Servicio al cliente
-            </Button>
+            </Button> */}
           </Box>
         </Box>
       </Container>

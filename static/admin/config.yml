@@ -9,6 +9,11 @@ backend:
 publish_mode: editorial_workflow
 media_folder: "/static/img"
 public_folder: "/img"
+logo_url: https://planex.netlify.com/img/logo.png
+locale: "es"
+show_preview_links: false
+site_url: https://planex.netlify.com
+display_url: ir la sitio web
 collections:
   - name: dataObituarios
     label: Obituarios
@@ -112,3 +117,17 @@ collections:
               - label: Título de la foto
                 name: title
                 widget: string
+      - label: Otros (Texto y contrato)
+        name: info
+        extension: yml
+        file: "config/info.yml"
+        fields:
+          - label: Texto del Inicio
+            name: indexText
+            widget: string
+          - label: Texto del Landing de Previsión
+            name: prevenirText
+            widget: string
+          - label: Contrato
+            name: contract
+            widget: file
