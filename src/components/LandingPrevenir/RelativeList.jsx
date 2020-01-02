@@ -65,7 +65,6 @@ const RelativeList = ({ familyList, customFamily, setCustomFamily }) => {
     }${parentesco} ${nombres} ${apellidos} de ${edad} años`;
     familyJson.push({ parentesco, nombres, apellidos, edad });
   });
-  console.log(JSON.stringify(familyJson));
   const [openWarning, setOpenWarning] = useState(false);
   const [openForm, setOpenForm] = useState(false);
   const reset = () => {

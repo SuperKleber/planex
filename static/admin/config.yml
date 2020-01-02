@@ -7,13 +7,13 @@ backend:
   branch: master
 
 publish_mode: editorial_workflow
-media_folder: "/static/img"
-public_folder: "/img"
+media_folder: "/static/uploads"
+public_folder: "/uploads"
 logo_url: https://planex.netlify.com/img/logo.png
 locale: "es"
 show_preview_links: false
 site_url: https://planex.netlify.com
-display_url: ir la sitio web
+display_url: https://planex.netlify.com
 collections:
   - name: dataObituarios
     label: Obituarios
@@ -29,6 +29,7 @@ collections:
       - label: Fotografía
         name: foto
         widget: image
+        default: "/img/avatar-prever.png"
         required: false
       - label: Fecha de Fallecimiento
         name: fechaFin
@@ -124,10 +125,13 @@ collections:
         fields:
           - label: Texto del Inicio
             name: indexText
-            widget: string
+            widget: text
           - label: Texto del Landing de Previsión
             name: prevenirText
-            widget: string
+            widget: text
           - label: Contrato
             name: contract
             widget: file
+            media_library:
+              config:
+                multiple: true

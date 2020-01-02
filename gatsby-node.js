@@ -63,6 +63,7 @@ exports.createPages = async ({ graphql, actions }) => {
         context: node
       });
     } catch (error) {
+      console.log("Hubo un Error al crear las páginas de los obituarios");
       console.log(node);
     }
   });

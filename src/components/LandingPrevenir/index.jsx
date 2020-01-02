@@ -95,14 +95,21 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 const LandingPrevenir = () => {
-  const [customFamily, setCustomFamily] = useState({});
+  const [customFamily, setCustomFamily] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [finishForm, setFinishForm] = useState(false);
   const [indexHidden, setIndexHidden] = useState(false); //Familiar oculto porque ya fue seleccionado al principio
   const [relativeStep, setRelativeStep] = useState(begin);
-  const [age, setAge] = useState();
+  // const [age, setAge] = useState();
   const [familyMembers, setFamilyMembers] = useState(family);
   const classes = useStyles();
+  const reset = () => {
+    setCustomFamily(false);
+    setOpenModal(false);
+    setFinishForm(false);
+    setIndexHidden(false);
+    setRelativeStep(begin);
+  };
   const buttonText = (
     <>
       Siguiente<ArrowForwardIcon></ArrowForwardIcon>{" "}
@@ -125,8 +132,12 @@ const LandingPrevenir = () => {
           : relativeStep + 1
       );
     } else {
-      setFinishForm(true);
-      localSave("customFamily", customFamily);
+      if (customFamily === false) {
+        reset();
+      } else {
+        setFinishForm(true);
+        localSave("customFamily", customFamily);
+      }
     }
   };
   const back = () => {
@@ -149,14 +160,18 @@ const LandingPrevenir = () => {
   };
   useEffect(() => {
     if (localStorage.customFamily) {
-      setCustomFamily(JSON.parse(localStorage.customFamily));
-      setFinishForm(true);
+      const saveFamily = JSON.parse(localStorage.customFamily);
+      if (saveFamily === false) {
+        localStorage.clear();
+      } else {
+        setCustomFamily(saveFamily);
+        setFinishForm(true);
+      }
     }
   }, []);
   let max = 24;
   let min = 5;
   let random = Math.round(Math.random() * (max - min) + min);
-  console.log(random);
   if (!finishForm) {
     return (
       <div
