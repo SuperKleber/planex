@@ -139,7 +139,7 @@ const Menu = () => {
                       +591-33469191
                     </Button>
                   </a>
-                  <a href="tel:+59133469191">
+                  <a href="tel:33469191">
                     <Button
                       fullWidth={true}
                       color="primary"
