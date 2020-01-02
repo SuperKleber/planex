@@ -29,7 +29,7 @@ collections:
       - label: Fotografía
         name: foto
         widget: image
-        default: "/img/avatar-prever.png"
+        default: "/uploads/avatar-prever.png"
         required: false
       - label: Fecha de Fallecimiento
         name: fechaFin
