@@ -19,21 +19,16 @@
   img: /img/abuelo.png
   oppositeIndex: 2
 - index: 4
-  parentesco: Conyuge (Hombre)
+  parentesco: Conyuge
   sexo: 0
-  img: /img/hombre1.png
+  img: /img/pareja.png
   oppositeIndex: 5
 - index: 5
-  parentesco: Conyuge (Mujer)
-  sexo: 0
-  img: /img/mujer1.png
-  oppositeIndex: 4
-- index: 6
   parentesco: Hijo
   sexo: 0
   img: /img/chico1.png
   oppositeIndex: 7
-- index: 7
+- index: 6
   parentesco: Hija
   sexo: 0
   img: /img/chica1.png

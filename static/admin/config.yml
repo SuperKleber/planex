@@ -44,9 +44,12 @@ collections:
         widget: object
         required: false
         fields:
-          - label: Fecha y Hora de la Misa
+          - label: Fecha de la Misa
             name: fechaMisa
-            widget: datetime
+            widget: date
+          - label: Hora de la Misa
+            name: horaMisa
+            widget: string
           - label: URL del lugar de la misa
             name: urlLugarMisa
             widget: string

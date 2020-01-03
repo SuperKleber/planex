@@ -57,7 +57,7 @@ const useStyles = makeStyles(theme => ({
 }));
 const RelativeList = ({ familyList, customFamily, setCustomFamily }) => {
   const classes = useStyles();
-  let text = "Deseo asegurar a:";
+  let text = "Deseo hacer un plan para: ";
   let familyJson = [];
   familyList.map(({ nombres, apellidos, parentesco, edad }, i) => {
     text = `${text}${
@@ -173,26 +173,27 @@ const RelativeEdit = ({
     typeof localStorage !== "undefined" &&
       localStorage.setItem(name, JSON.stringify(object));
   };
+  // console.log(customFamily);
   const save = relative => {
-if(template){
-let newCustomFamily = {
-      ...customFamily,
-      [customFamily.parentesco+customFamily.lenght+1]: { ...relative }
-    };
-setCustomFamily({ newCustomFamily });
-    localSave("customFamily", newCustomFamily);
-    setOpenForm(false);
-}else{
-let newCustomFamily = {
-      ...customFamily,
-      [relative.parentesco]: { ...relative }
-    };
-setCustomFamily({ newCustomFamily });
-    localSave("customFamily", newCustomFamily);
-    setOpenForm(false);
-}
-    
-    
+    if (template) {
+      let newCustomFamily = {
+        ...customFamily,
+        [`${relative.parentesco}${Object.values(customFamily).length + 1}`]: {
+          ...relative
+        }
+      };
+      setCustomFamily(newCustomFamily);
+      localSave("customFamily", newCustomFamily);
+      setOpenForm(false);
+    } else {
+      let newCustomFamily = {
+        ...customFamily,
+        [relative.parentesco]: { ...relative }
+      };
+      // setCustomFamily(newCustomFamily);
+      localSave("customFamily", newCustomFamily);
+      setOpenForm(false);
+    }
   };
   return (
     <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>

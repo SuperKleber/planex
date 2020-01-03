@@ -119,7 +119,13 @@ const LandingPrevenir = () => {
     typeof localStorage !== "undefined" &&
       localStorage.setItem(name, JSON.stringify(object));
   };
-  const next = () => {
+  const next = relative => {
+    if (relative) {
+      setCustomFamily({
+        ...customFamily,
+        [relative.parentesco]: { ...relative }
+      });
+    }
     if (familyMembers[relativeStep + 1]) {
       setRelativeStep(
         indexHidden === familyMembers[relativeStep + 1].index

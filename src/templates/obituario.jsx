@@ -105,24 +105,44 @@ const Obituario = ({ pageContext, location }) => {
     siteUrl: `${siteUrl}/obituarios/${pageContext.fields.slug}`
   };
   const urlAbsolute = `${siteUrl}/obituarios/${pageContext.fields.slug}`;
+  console.log(pageContext.misa);
 
   let fechaMisa, horaMisa, horaTraslado;
   try {
     if (pageContext.misa) {
-      const fecha = pageContext.misa.fechaMisa;
-      const onlyFecha = fecha.split("|")[0];
-      const onlyHora = fecha.split("|")[1];
-      fechaMisa = onlyFecha;
-      horaMisa = onlyHora;
-      horaTraslado = `${
-        parseInt(onlyHora.split(":")[0]) + 1 >= 24
-          ? "01"
-          : parseInt(onlyHora.split(":")[0]) + 1
-      }:${onlyHora.split(":")[1]}`;
+      fechaMisa = pageContext.misa.fechaMisa;
+      horaMisa = pageContext.misa.horaMisa;
+      let hora = parseInt(horaMisa.split(":")[0]);
+      let minuto = parseInt(horaMisa.split(":")[1]);
+      let minuto30 =
+        (minuto + 30) % 60 < 10 ? `0${(minuto + 30) % 60}` : (minuto + 30) % 60;
+      horaTraslado =
+        parseInt(horaMisa.split(":")[1]) + 30 > 59
+          ? `${hora + 1}:${minuto30}`
+          : `${hora}:${minuto30}`;
     }
   } catch (e) {
+    fechaMisa = "";
+    horaMisa = "";
+    horaTraslado = "";
     console.log("Hubo un error al definir fechas y horas de evento de Misa");
   }
+  // try {
+  //   if (pageContext.misa) {
+  //     const fecha = pageContext.misa.fechaMisa;
+  //     const onlyFecha = fecha.split("|")[0];
+  //     const onlyHora = fecha.split("|")[1];
+  //     fechaMisa = onlyFecha;
+  //     horaMisa = onlyHora;
+  //     horaTraslado = `${
+  //       parseInt(onlyHora.split(":")[0]) + 1 >= 24
+  //         ? "01"
+  //         : parseInt(onlyHora.split(":")[0]) + 1
+  //     }:${onlyHora.split(":")[1]}`;
+  //   }
+  // } catch (e) {
+  //   console.log("Hubo un error al definir fechas y horas de evento de Misa");
+  // }
   return (
     <Layout seo={seo}>
       <Menu></Menu>

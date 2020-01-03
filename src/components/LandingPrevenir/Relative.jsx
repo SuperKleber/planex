@@ -108,10 +108,6 @@ const Relative = ({
   const saveNext = event => {
     if (complete) {
       next(relative);
-      setCustomFamily({
-        ...customFamily,
-        [relative.parentesco]: { ...relative }
-      });
     } else {
       setError(event.currentTarget);
     }
@@ -119,7 +115,7 @@ const Relative = ({
   const omitted = () => {
     setRelative({ ...relative, descartado: !relative.descartado });
     if (!relative.descartado) {
-      next(relative);
+      next();
     }
   };
 
@@ -157,6 +153,7 @@ const Relative = ({
         <Box display="flex" flexDirection="column">
           <Autocomplete
             freeSolo={template}
+            disableOpenOnFocus={template}
             onChange={(e, value) => {
               if (value) {
                 let newData = {

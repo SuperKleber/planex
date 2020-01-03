@@ -30,7 +30,8 @@ exports.createPages = async ({ graphql, actions }) => {
             fechaInicio(formatString: "dddd DD MMMM YYYY", locale: "es")
             foto
             misa {
-              fechaMisa(formatString: "dddd DD MMMM YYYY|H:m", locale: "es")
+              fechaMisa(formatString: "dddd DD MMMM YYYY", locale: "es")
+              horaMisa
               urlLugarMisa
               lugarCementerio
               urlLugarCementerio
