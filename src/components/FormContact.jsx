@@ -80,7 +80,7 @@ const FormContact = ({ name, hidden, text, json }) => {
         className={classes.textField}
         // hidden
         // style={{ display: "none" }}
-        label="Text"
+        label="Mensaje"
         margin="normal"
         variant="outlined"
       />
