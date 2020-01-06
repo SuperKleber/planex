@@ -111,7 +111,7 @@ const Landing = () => {
         <Grid item xs={12} sm={6} className={classes.flexCenter}>
           <Link to="/prevenir">
             <Button className={classes.btn} variant="outlined" color="default">
-              Previsión
+              Enviar
             </Button>
           </Link>
         </Grid>
