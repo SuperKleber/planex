@@ -84,7 +84,7 @@ const RelativeList = ({ familyList, customFamily, setCustomFamily }) => {
             color="primary"
             onClick={() => setOpenForm(true)}
           >
-            Previsión
+            Enviar
           </Button>
           <Button
             className={classes.button}
