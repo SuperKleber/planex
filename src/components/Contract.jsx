@@ -1,4 +1,5 @@
 import React from "react";
+import {contract} from "../../config/info.yml"
 import { Container, Paper, Typography, Button, Box } from "@material-ui/core";
 import { colors } from "../../config/brand.yml";
 import { makeStyles } from "@material-ui/core/styles";
@@ -33,7 +34,7 @@ const Contract = () => {
             Puedes ver el contrato para tener toda la información del servicio
             de previsión
           </Typography>
-          <a href="/documents/contrato.pdf">
+          <a href={contract}>
             <Button
               fullWidth
               style={{ background: colors.green }}
