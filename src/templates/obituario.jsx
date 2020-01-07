@@ -168,7 +168,7 @@ const Obituario = ({ pageContext, location }) => {
         </Box>
         <Paper className={classes.text}>
           <Typography variant="h4">{nombre}</Typography>
-          <Typography gutterBottom>{pageContext.fechaInicio}</Typography>
+          <Typography gutterBottom>{pageContext.fechaFin}</Typography>
           <Typography>{pageContext.epitafio}</Typography>
 
           {pageContext.misa && (
