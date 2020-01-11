@@ -61,6 +61,8 @@ const Layout = ({ children, seo }) => {
           href="https://fonts.googleapis.com/css?family=Alex+Brush&display=swap"
           rel="stylesheet"
         ></link>
+        <meta property="fb:app_id" content="2503959843259543" />
+        <meta property="fb:admins" content="100001924570972" />
       </Helmet>
       {children}
       <Footer></Footer>

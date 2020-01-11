@@ -127,22 +127,7 @@ const Obituario = ({ pageContext, location }) => {
     horaTraslado = "";
     console.log("Hubo un error al definir fechas y horas de evento de Misa");
   }
-  // try {
-  //   if (pageContext.misa) {
-  //     const fecha = pageContext.misa.fechaMisa;
-  //     const onlyFecha = fecha.split("|")[0];
-  //     const onlyHora = fecha.split("|")[1];
-  //     fechaMisa = onlyFecha;
-  //     horaMisa = onlyHora;
-  //     horaTraslado = `${
-  //       parseInt(onlyHora.split(":")[0]) + 1 >= 24
-  //         ? "01"
-  //         : parseInt(onlyHora.split(":")[0]) + 1
-  //     }:${onlyHora.split(":")[1]}`;
-  //   }
-  // } catch (e) {
-  //   console.log("Hubo un error al definir fechas y horas de evento de Misa");
-  // }
+
   return (
     <Layout seo={seo}>
       <Menu></Menu>
