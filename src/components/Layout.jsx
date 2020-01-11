@@ -63,6 +63,7 @@ const Layout = ({ children, seo }) => {
         ></link>
         <meta property="fb:app_id" content="2503959843259543" />
         <meta property="fb:admins" content="100001924570972" />
+        <meta property="fb:admins" content="100004839931984" />
       </Helmet>
       {children}
       <Footer></Footer>

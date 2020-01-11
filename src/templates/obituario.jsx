@@ -127,7 +127,6 @@ const Obituario = ({ pageContext, location }) => {
     horaTraslado = "";
     console.log("Hubo un error al definir fechas y horas de evento de Misa");
   }
-
   return (
     <Layout seo={seo}>
       <Menu></Menu>
