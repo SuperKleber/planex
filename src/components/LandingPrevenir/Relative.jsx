@@ -235,26 +235,11 @@ const Relative = ({
             value={relative.apellidos}
             onChange={e => setInput("apellidos", e.target.value)}
           />
-          {/* <Box display="flex" className={classes.gender}>
-              <Button
-                fullWidth={true}
-                onClick={() => setInput("sexo", 1)}
-                color={relative.sexo === 1 ? "secondary" : "default"}
-                variant={relative.sexo === 1 ? "contained" : "text"}
-              >
-                Masculino
-              </Button>
-              <Button
-                fullWidth={true}
-                onClick={() => setInput("sexo", 2)}
-                color={relative.sexo === 2 ? "secondary" : "default"}
-                variant={relative.sexo === 2 ? "contained" : "text"}
-              >
-                Femenino
-              </Button>
-            </Box> */}
           {buttons ? (
-            <Box className={classes.buttons}>
+            <Box
+              className={classes.buttons}
+              style={{ "-ms-grid-columns": "1fr 1fr 2fr" }}
+            >
               <Button color="default" variant="outlined" onClick={back}>
                 <ArrowBackIcon></ArrowBackIcon>
               </Button>
