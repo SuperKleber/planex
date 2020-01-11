@@ -105,7 +105,6 @@ const Obituario = ({ pageContext, location }) => {
     siteUrl: `${siteUrl}/obituarios/${pageContext.fields.slug}`
   };
   const urlAbsolute = `${siteUrl}/obituarios/${pageContext.fields.slug}`;
-  console.log(pageContext.misa);
 
   let fechaMisa, horaMisa, horaTraslado;
   try {

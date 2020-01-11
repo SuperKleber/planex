@@ -109,8 +109,8 @@ const Testimonials = () => {
             alignItems="center"
             flexDirection="column"
           >
-            {testimonials.map(testimonial => (
-              <Testimonial {...testimonial}></Testimonial>
+            {testimonials.map((testimonial, i) => (
+              <Testimonial key={i} {...testimonial}></Testimonial>
             ))}
           </Box>
         </Box>
