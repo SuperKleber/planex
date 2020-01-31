@@ -34,6 +34,8 @@ collections:
       - label: Fecha de Fallecimiento
         name: fechaFin
         widget: date
+        timeFormat: true
+        format: "DD/MM/YY"
         required: false
       - label: Epitafio
         name: epitafio
@@ -48,6 +50,8 @@ collections:
             name: fechaMisa
             required: false
             widget: date
+            timeFormat: true
+            format: "DD/MM/YY"
           - label: Hora de la Misa
             name: horaMisa
             widget: string
