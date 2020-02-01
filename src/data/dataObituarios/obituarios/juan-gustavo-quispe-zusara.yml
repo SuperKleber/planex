@@ -5,8 +5,8 @@ epitafio: >-
   "Los buenos vivirán eternamente y recibirán de la manos de Dios un reino
   glorioso".
 misa:
-  fechaMisa: 02-02-20
-  horaMisa: '09:00'
+  fechaMisa: 2020-02-02
+  horaMisa: "09:00"
   lugarCementerio: '"Jardín de los Recuerdos"'
   urlLugarCementerio: >-
     https://www.google.com/maps/place/Cementerio+Norte/@-17.7483364,-63.16258,17z/data=!3m1!4b1!4m5!3m4!1s0x93f1e7b5bf3e120d:0xf52524a1db468a48!8m2!3d-17.7483364!4d-63.1603913
