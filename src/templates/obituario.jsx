@@ -282,7 +282,7 @@ const Obituario = ({ pageContext, location }) => {
           <Comments href={urlAbsolute} />
         </FacebookProvider>
       </Box>
-      <div ref={obituarioImg} className={classes.obituarioImg}>
+      <div ref={obituarioImg} style={{display: "none"}} hidden className={classes.obituarioImg}>
         <Box display="flex" justifyContent="space-around">
 
           <Box
@@ -307,7 +307,6 @@ const Obituario = ({ pageContext, location }) => {
             <Typography>{nombre}</Typography>
             <Typography gutterBottom>{pageContext.fechaFin}</Typography>
             <Typography>{pageContext.epitafio}</Typography>
-            <Typography>{pageContext.misa.fechaMisa}</Typography>
           </Box>
         </Box>
       </div>
