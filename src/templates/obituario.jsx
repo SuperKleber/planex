@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { FacebookProvider, Comments, Like, Share } from "react-facebook";
 import { Link } from "gatsby";
+import Domtoimage from 'dom-to-image'
+import { saveAs } from 'file-saver'
 import Layout from "../components/Layout";
 import Menu from "../components/Menu";
 import {
@@ -90,15 +92,27 @@ const useStyles = makeStyles(theme => ({
       background: "#3b5998",
       borderRadius: 20
     }
+  },
+  obituarioImg: {
+    background: colors.green,
+    width: 500,
+    height: 281.25,
+    padding: 50
+  },
+  obituarioImgText: {
+    background: colors.green,
+    padding: 50
   }
 }));
 const Obituario = ({ pageContext, location }) => {
   const [openMasse, setOpenMasse] = useState(false);
+  const obituarioImg = useRef(null)
   let prev = location.state ? location.state.prev : "/obituarios";
   const classes = useStyles();
   const nombre = firstUpperCase(pageContext.nombre);
   const seo = {
     siteTitle: `${nombre}`,
+    siteTitle: `${pageContext.fechaFin}`,
     siteDescription:
       "Los familiares invitan al velatorio, y posterior traslado de sus restos mortales.",
     siteCover: pageContext.foto ? pageContext.foto : false,
@@ -126,6 +140,23 @@ const Obituario = ({ pageContext, location }) => {
     horaTraslado = "";
     console.log("Hubo un error al definir fechas y horas de evento de Misa");
   }
+  const saveImage = () => {
+    // Domtoimage.toPng(obituarioImg.current)
+    //   .then((dataUrl) => {
+    //     let img = new Image();
+    //     img.src = dataUrl;
+    //     typeof document !== "undefined" && document.body.appendChild(img)
+    //   }).catch((e) => {
+    //     console.error("No se pudo guardar la imagen")
+    //   })
+    Domtoimage.toBlob(obituarioImg.current, { width: 300, height: 300 })
+      .then(blob => {
+        saveAs(blob, "myImage.png")
+      }).catch(e => {
+        console.error("Hubo un error al guardar la Image")
+        console.error(e)
+      })
+  }
   return (
     <Layout seo={seo}>
       <Menu></Menu>
@@ -134,23 +165,26 @@ const Obituario = ({ pageContext, location }) => {
           <Back></Back>
         </Fab>
       </Link>
+      <Button onClick={saveImage}> Descargar </Button>
       <Box
+
         flexDirection="column"
         display="flex"
         justifyContent="center"
         alignItems="center"
+
       >
-        <Box className={classes.funeral}>
+        <Box className={classes.funeral} >
           <div
             className={classes.foto}
             style={{ background: `url(${pageContext.foto})` }}
           ></div>
-          {/* <img className={classes.foto} src={pageContext.foto} alt="" /> */}
           <span className={classes.shadowFoto}></span>
           <img className={classes.decoration} src="/img/funeral.svg"></img>
         </Box>
         <Paper className={classes.text}>
           <Typography variant="h4">{nombre}</Typography>
+          <Typography variant="h4">{pageContext.fechaFin}</Typography>
           <Typography gutterBottom>{pageContext.fechaFin}</Typography>
           <Typography>{pageContext.epitafio}</Typography>
 
@@ -164,7 +198,7 @@ const Obituario = ({ pageContext, location }) => {
                 className={classes.masse}
               >
                 Evento y horarios
-              </Button>
+                </Button>
               <Modal
                 title={`Evento de Misa  ${fechaMisa}`}
                 maxWidth
@@ -193,7 +227,7 @@ const Obituario = ({ pageContext, location }) => {
                     >
                       <Button color="secondary" fullWidth variant="contained">
                         Ver en mapa
-                      </Button>
+                        </Button>
                     </a>
                   </Box>
                   <Box
@@ -228,7 +262,7 @@ const Obituario = ({ pageContext, location }) => {
                     >
                       <Button color="secondary" fullWidth variant="contained">
                         Ver en mapa
-                      </Button>
+                        </Button>
                     </a>
                   </Box>
                 </Box>
@@ -240,7 +274,7 @@ const Obituario = ({ pageContext, location }) => {
             <Button fullWidth className={classes.share}>
               <FacebookIcon size={30}></FacebookIcon>
               Compartir
-            </Button>
+              </Button>
           </FacebookShareButton>
         </Paper>
 
@@ -248,6 +282,35 @@ const Obituario = ({ pageContext, location }) => {
           <Comments href={urlAbsolute} />
         </FacebookProvider>
       </Box>
+      <div ref={obituarioImg} className={classes.obituarioImg}>
+        <Box display="flex" justifyContent="space-around">
+
+          <Box
+            style={{ width: 190 }}
+            className={classes.funeral}
+            flexDirection="column"
+            display="flex"
+            justifyContent="center"
+            alignItems="center">
+
+
+            <div
+              className={classes.foto}
+              style={{ background: `url(${pageContext.foto})` }}
+            ></div>
+            <span className={classes.shadowFoto}></span>
+            <img className={classes.decoration} src="/img/funeral.svg"></img>
+
+          </Box>
+          <Box className={classes.obituarioImgText}>
+
+            <Typography>{nombre}</Typography>
+            <Typography gutterBottom>{pageContext.fechaFin}</Typography>
+            <Typography>{pageContext.epitafio}</Typography>
+            <Typography>{pageContext.misa.fechaMisa}</Typography>
+          </Box>
+        </Box>
+      </div>
     </Layout>
   );
 };

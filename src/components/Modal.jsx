@@ -24,7 +24,7 @@ const Modal = ({ children, open, onClose, title, maxWidth, fullWidth, closeButto
       open={open}
       className={classes.dialog}
       onClose={onClose}
-      maxWidth={maxWidth ? maxWidth : "sm"}
+      maxWidth={maxWidth ? "xs" : "sm"}
       aria-labelledby="responsive-dialog-title"
       fullWidth={fullWidth ? fullWidth : false}
     >
