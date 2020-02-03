@@ -1,8 +1,8 @@
 import React, { useState, useRef } from "react";
 import { FacebookProvider, Comments, Like, Share } from "react-facebook";
 import { Link } from "gatsby";
-import Domtoimage from 'dom-to-image'
-import { saveAs } from 'file-saver'
+import Domtoimage from "dom-to-image";
+import { saveAs } from "file-saver";
 import Layout from "../components/Layout";
 import Menu from "../components/Menu";
 import {
@@ -27,35 +27,38 @@ const useStyles = makeStyles(theme => ({
   funeral: {
     position: "relative",
     boxShadow: " 10px 10px 25px 1px",
-    height: 190
+    height: "100%",
+    width: "100%",
+    border: `20px solid ${colors.purple}`,
   },
   foto: {
-    width: 150,
-    height: 150,
+    // width: "calc(100% - 21%)",
+    // height: "calc(100% - 21%)",
+    width: "100%",
+    height: "100%",
     backgroundSize: "100% !important",
     // boxShadow: " 10px 10px 25px 1px",
-    border: `20px solid ${colors.purple}`
-  },
-  text: {
-    width: 280,
-    margin: "24px 0",
-    padding: 16
   },
   shadowFoto: {
     position: "absolute",
-    top: 0,
-    right: 0,
-    width: 75,
-    height: 150,
+    top: -20,
+    right: -20,
+    width: "50%",
+    height: "100%",
     border: "20px solid rgba(0,0,0,0.4)",
     borderLeft: "none"
   },
   decoration: {
     position: "absolute",
-    bottom: -1,
+    bottom: -22,
     left: "54%",
     transform: "translateX(-50%)",
-    width: 260
+    width: "136.8%"
+  },
+  text: {
+    width: 280,
+    margin: "24px 0",
+    padding: 16
   },
   masse: {
     margin: "8px 0",
@@ -95,18 +98,32 @@ const useStyles = makeStyles(theme => ({
   },
   obituarioImg: {
     background: colors.green,
-    width: 500,
-    height: 281.25,
-    padding: 50
+    width: 1824,
+    height: 1025,
   },
-  obituarioImgText: {
-    background: colors.green,
-    padding: 50
-  }
+  obituarioImgPaper: {
+    maxWidth: 750,
+    padding: 16,
+    margin: "16px 0",
+    "& *": {
+      fontSize: "2.5em"
+    }
+  },
+  obituarioImgCallToAction: {
+    // border: `8px solid ${colors.purple}`,
+    background: colors.purple,
+    maxWidth: 500,
+    padding: 16,
+    margin: "16px 0",
+    "& *": {
+      fontSize: "2em",
+      color: "white"
+    }
+  },
 }));
 const Obituario = ({ pageContext, location }) => {
   const [openMasse, setOpenMasse] = useState(false);
-  const obituarioImg = useRef(null)
+  const obituarioImg = useRef(null);
   let prev = location.state ? location.state.prev : "/obituarios";
   const classes = useStyles();
   const nombre = firstUpperCase(pageContext.nombre);
@@ -149,14 +166,16 @@ const Obituario = ({ pageContext, location }) => {
     //   }).catch((e) => {
     //     console.error("No se pudo guardar la imagen")
     //   })
-    Domtoimage.toBlob(obituarioImg.current, { width: 300, height: 300 })
+    Domtoimage.toBlob(obituarioImg.current, { width: 1824, height: 1025 })
       .then(blob => {
-        saveAs(blob, "myImage.png")
-      }).catch(e => {
-        console.error("Hubo un error al guardar la Image")
-        console.error(e)
+        saveAs(blob, "myImage.png");
       })
-  }
+      .catch(e => {
+        console.error("Hubo un error al guardar la Image");
+        console.error(e);
+      });
+  };
+  const hiddenImg = { opacity: "0", transform: "scale(0)", position: "absolute", top: "-100vh" } // Oculta la imagen que descargará
   return (
     <Layout seo={seo}>
       <Menu></Menu>
@@ -167,21 +186,14 @@ const Obituario = ({ pageContext, location }) => {
       </Link>
       <Button onClick={saveImage}> Descargar </Button>
       <Box
-
         flexDirection="column"
         display="flex"
         justifyContent="center"
         alignItems="center"
-
       >
-        <Box className={classes.funeral} >
-          <div
-            className={classes.foto}
-            style={{ background: `url(${pageContext.foto})` }}
-          ></div>
-          <span className={classes.shadowFoto}></span>
-          <img className={classes.decoration} src="/img/funeral.svg"></img>
-        </Box>
+        <ObituarioImg foto={pageContext.foto} size={200}>
+
+        </ObituarioImg>
         <Paper className={classes.text}>
           <Typography variant="h4">{nombre}</Typography>
           <Typography variant="h4">{pageContext.fechaFin}</Typography>
@@ -198,7 +210,7 @@ const Obituario = ({ pageContext, location }) => {
                 className={classes.masse}
               >
                 Evento y horarios
-                </Button>
+              </Button>
               <Modal
                 title={`Evento de Misa  ${fechaMisa}`}
                 maxWidth
@@ -227,7 +239,7 @@ const Obituario = ({ pageContext, location }) => {
                     >
                       <Button color="secondary" fullWidth variant="contained">
                         Ver en mapa
-                        </Button>
+                      </Button>
                     </a>
                   </Box>
                   <Box
@@ -238,7 +250,6 @@ const Obituario = ({ pageContext, location }) => {
                     className={classes.eventMasseItem}
                   >
                     <Typography variant="h5">
-                      {" "}
                       Traslado {horaTraslado}
                     </Typography>
                     <img src="/img/traslado.svg"></img>
@@ -252,7 +263,6 @@ const Obituario = ({ pageContext, location }) => {
                     className={classes.eventMasseItem}
                   >
                     <Typography variant="h5">
-                      {" "}
                       Cementerio: {pageContext.misa.lugarCementerio}
                     </Typography>
                     <img src="/img/cementerio.svg"></img>
@@ -262,7 +272,7 @@ const Obituario = ({ pageContext, location }) => {
                     >
                       <Button color="secondary" fullWidth variant="contained">
                         Ver en mapa
-                        </Button>
+                      </Button>
                     </a>
                   </Box>
                 </Box>
@@ -274,7 +284,7 @@ const Obituario = ({ pageContext, location }) => {
             <Button fullWidth className={classes.share}>
               <FacebookIcon size={30}></FacebookIcon>
               Compartir
-              </Button>
+            </Button>
           </FacebookShareButton>
         </Paper>
 
@@ -282,35 +292,42 @@ const Obituario = ({ pageContext, location }) => {
           <Comments href={urlAbsolute} />
         </FacebookProvider>
       </Box>
-      <div ref={obituarioImg} style={{display: "none"}} hidden className={classes.obituarioImg}>
-        <Box display="flex" justifyContent="space-around">
+      <div style={{}}>
+        <div ref={obituarioImg} className={classes.obituarioImg}>
+          <Box display="flex" justifyContent="space-around" alignItems="center" style={{ height: "100%" }}>
+            <ObituarioImg foto={pageContext.foto} size={500}></ObituarioImg>
+            <div>
 
-          <Box
-            style={{ width: 190 }}
-            className={classes.funeral}
-            flexDirection="column"
-            display="flex"
-            justifyContent="center"
-            alignItems="center">
-
-
-            <div
-              className={classes.foto}
-              style={{ background: `url(${pageContext.foto})` }}
-            ></div>
-            <span className={classes.shadowFoto}></span>
-            <img className={classes.decoration} src="/img/funeral.svg"></img>
-
+              <Paper className={classes.obituarioImgPaper}>
+                <Typography variant="h4">{nombre}</Typography>
+                <Typography gutterBottom>{pageContext.fechaFin}</Typography>
+                <Typography>{pageContext.epitafio}</Typography>
+              </Paper>
+              <Paper className={classes.obituarioImgCallToAction}>
+                <Typography >Deja tus condolencias en:</Typography>
+                <Typography >planex.com.bo/obituarios</Typography>
+              </Paper>
+            </div>
           </Box>
-          <Box className={classes.obituarioImgText}>
-
-            <Typography>{nombre}</Typography>
-            <Typography gutterBottom>{pageContext.fechaFin}</Typography>
-            <Typography>{pageContext.epitafio}</Typography>
-          </Box>
-        </Box>
+        </div>
       </div>
-    </Layout>
+    </Layout >
   );
 };
+
+const ObituarioImg = ({ foto, size }) => {
+  const classes = useStyles()
+  return (
+
+    <Box className={classes.funeral} style={{ width: size, height: size }}>
+      <div
+        className={classes.foto}
+        style={{ background: `url(${foto})` }}
+      ></div>
+      <span className={classes.shadowFoto}></span>
+      <img className={classes.decoration} src="/img/funeral.svg"></img>
+    </Box>
+  )
+}
+
 export default Obituario;
