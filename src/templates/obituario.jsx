@@ -292,7 +292,7 @@ const Obituario = ({ pageContext, location }) => {
           <Comments href={urlAbsolute} />
         </FacebookProvider>
       </Box>
-      <div style={{}}>
+      <div style={hiddenImg}>
         <div ref={obituarioImg} className={classes.obituarioImg}>
           <Box display="flex" justifyContent="space-around" alignItems="center" style={{ height: "100%" }}>
             <ObituarioImg foto={pageContext.foto} size={500}></ObituarioImg>
