@@ -118,17 +118,16 @@ const useStyles = makeStyles(theme => ({
     }
   },
   obituarioImgMisa: {
-    background: colors.green,
+    // background: colors.green,
     maxWidth: 750,
     padding: 16,
     margin: "16px 0",
     "& *": {
-      color: "white",
+      // color: "white",
       fontSize: "1.9em"
     }
   },
   obituarioImgCallToAction: {
-    // border: `8px solid ${colors.purple}`,
     background: colors.purple,
     maxWidth: 500,
     padding: 16,
