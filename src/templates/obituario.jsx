@@ -146,9 +146,8 @@ const Obituario = ({ pageContext, location }) => {
   const nombre = firstUpperCase(pageContext.nombre);
   const seo = {
     siteTitle: `${nombre}`,
-    siteTitle: `${pageContext.fechaFin}`,
     siteDescription:
-      "Los familiares invitan al velatorio, y posterior traslado de sus restos mortales.",
+      `Los familiares invitan a dejar sus condolencias ingresando aquí.`,
     siteCover: pageContext.foto ? pageContext.foto : false,
     siteUrl: `${siteUrl}/obituarios/${pageContext.fields.slug}`
   };
