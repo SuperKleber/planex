@@ -13,6 +13,7 @@ const useStyles = makeStyles(theme => ({
     zIndex: 2,
     // color: "slategray",
     "@media (max-width: 550px)": {
+      height: "calc(100vh - 112px)",
       alignItems: "flex-start",
       margin: "0"
     }
@@ -116,24 +117,23 @@ const Landing = () => {
           </Link>
         </Grid>
       </Grid>
-      <Box>
-        <img
-          className={classes.valley}
-          src="./img/paisaje-sin-cielo.png"
-          alt=""
-        />
-        <img className={classes.house} src="./img/casita-solita.png" alt="" />
-      </Box>
+      <Background></Background>
     </div>
   );
 };
 
-export default Landing;
-
-const Illustration = () => {
+export const Background = () => {
+  const classes = useStyles();
   return (
     <Box>
-      <img src="" alt="" />
+      <img
+        className={classes.valley}
+        src="./img/paisaje-sin-cielo.png"
+        alt=""
+      />
+      <img className={classes.house} src="./img/casita-solita.png" alt="" />
     </Box>
   );
 };
+
+export default Landing;

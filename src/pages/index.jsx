@@ -6,7 +6,7 @@ import Landing from "../components/Landing";
 const Index = () => {
   return (
     <Layout>
-      <Menu></Menu>
+      <Menu menuFloat={false}></Menu>
       <Landing></Landing>
     </Layout>
   );
