@@ -35,7 +35,6 @@ collections:
         name: fechaFin
         widget: date
         timeFormat: true
-        # format: YYYY-MM-DD
         required: false
       - label: Epitafio
         name: epitafio
@@ -51,7 +50,6 @@ collections:
             required: false
             widget: date
             timeFormat: true
-            # format: YYYY-MM-DD
           - label: Hora de la Misa
             name: horaMisa
             widget: string
