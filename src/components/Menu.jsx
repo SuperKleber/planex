@@ -27,6 +27,7 @@ import Modal from "../components/Modal";
 import { colors } from "../../config/brand.yml";
 import { Link } from "gatsby";
 import Alert from "./Alert";
+import ReactPixel from "react-facebook-pixel";
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
@@ -56,7 +57,7 @@ const useStyles = makeStyles(theme => ({
   menuFloat: {
     position: "fixed",
     bottom: "5vh",
-    zIndex: 5
+    zIndex: 1
   }
 }));
 const Menu = ({ menuFloat = true }) => {
@@ -173,7 +174,18 @@ const Menu = ({ menuFloat = true }) => {
                   <img src="/img/logo.png" alt="Logo Prever" height="45" />
                 </Button>
               </Link>
-              <a href="https://api.whatsapp.com/send?phone=59133469191&text=Buenas,%20vengo%20de%20su%20sitio%20web.">
+              <a
+                onClick={() =>
+                  ReactPixel.track("Contact", {
+                    type: "whatsapp",
+                    num: "72145667",
+                    description: "planes de previsión",
+                    textButton: "logo de whatsapp"
+                  })
+                }
+                target="_black"
+                href="https://api.whatsapp.com/send?phone=59172145667&text=Buenas,%20vengo%20de%20su%20sitio%20web."
+              >
                 <Button
                   variant="contained"
                   style={{ background: "#7AD06D", height: 57 }}

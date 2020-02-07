@@ -5,6 +5,8 @@ import Layout from "../components/Layout";
 import Menu from "../components/Menu";
 import { Background } from "../components/Landing";
 import Alert from "../components/Alert";
+import ReactPixel from "react-facebook-pixel";
+
 import { Box, Paper, Button, Typography, Container } from "@material-ui/core";
 const useStyles = makeStyles(() => ({
   landingGuardarContacto: {
@@ -43,7 +45,19 @@ const GuardarContacto = () => {
               flexDirection="column"
             >
               <CopyToClipboard text="33469191" onCopy={() => setCopied(true)}>
-                <Button fullWidth>Número: 33469191</Button>
+                <Button
+                  onClick={() =>
+                    ReactPixel.track("Contact", {
+                      type: "copied",
+                      num: "33469191",
+                      description: "Copiar botón de emergencia",
+                      textButton: "Emergencia: 33469191"
+                    })
+                  }
+                  fullWidth
+                >
+                  Emergencia: 33469191
+                </Button>
               </CopyToClipboard>
               <Alert
                 open={copied}
@@ -53,7 +67,18 @@ const GuardarContacto = () => {
               <Typography align="center">
                 "Prever Emergencia Servicios Funerarios"
               </Typography>
-              <a href="tel:33469191">
+              <a
+                onClick={() =>
+                  ReactPixel.track("Contact", {
+                    type: "call",
+                    num: "33469191",
+                    description: "botón de emergencia",
+                    textButton: "Guardar Contacto"
+                  })
+                }
+                target="_blank"
+                href="tel:33469191"
+              >
                 <Button variant="contained" color="primary" fullWidth>
                   Guardar Contacto
                 </Button>
