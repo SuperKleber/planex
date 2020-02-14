@@ -42,17 +42,20 @@ const theme = createMuiTheme({
 console.clear();
 console.log(
   "%cSitio web hecho por kleber.digital " +
-  "%cWhatsapp: +591 70657034 " +
-  "%cWeb: www.kleber.digital",
+    "%cWhatsapp: +591 70657034 " +
+    "%cWeb: www.kleber.digital",
   "font-family: Arial; background:#2a2f36; color: #00ffec; font-size: 30px; border:2px solid #00ffec; padding: 8px; border-radius: 5px; margin: 10px 0",
   "font-family: Arial; background:#075e54; color: #ece5dd; font-size: 15px; padding: 8px; border-radius: 5px; margin: 10px 10px 10px 0;",
   "font-family: Arial; font-weight: bold; background: #00ffec; color: #2a2f36; font-size: 15px; padding: 8px; border-radius: 5px;"
 );
 
-const Layout = ({ children, seo }) => {
+const Layout = ({ children, seo, pixel }) => {
   useEffect(() => {
     ReactPixel.init("2739923912769068");
     ReactPixel.pageView();
+    {
+      pixel && ReactPixel.track("viewContent", { title: pixel });
+    }
   }, []);
   return (
     <ThemeProvider theme={theme}>
