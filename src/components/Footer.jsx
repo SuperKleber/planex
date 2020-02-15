@@ -9,7 +9,8 @@ import { Divider } from "@material-ui/core";
 const useStyles = makeStyles(theme => ({
   footer: {
     background: colors.purple,
-    // background: "#045b38",
+    // background: "#ffffff",
+    // background: "#000000",
     padding: "50px 0"
   },
   divider: {

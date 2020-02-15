@@ -176,12 +176,12 @@ const RelativeEdit = ({
   // console.log(customFamily);
   const save = relative => {
     if (template) {
-      let newCustomFamily = {
+      let newCustomFamily = [
         ...customFamily,
-        [`${relative.parentesco}${Object.values(customFamily).length + 1}`]: {
+        {
           ...relative
         }
-      };
+      ];
       setCustomFamily(newCustomFamily);
       localSave("customFamily", newCustomFamily);
       setOpenForm(false);

@@ -67,6 +67,10 @@ const Layout = ({ children, seo, pixel }) => {
         />
         <meta name="mobile-web-app-capable" content="yes"></meta>
         <link
+          href="https://fonts.googleapis.com/css?family=Raleway&display=swap"
+          rel="stylesheet"
+        ></link>
+        <link
           href="https://fonts.googleapis.com/css?family=Lobster&display=swap"
           rel="stylesheet"
         ></link>
@@ -85,7 +89,7 @@ const Layout = ({ children, seo, pixel }) => {
         body {
           margin: 0;
           min-height: 100vh;
-          background: linear-gradient(#d4feff 15%, #ffffff 85%);
+          // background: linear-gradient(#d4feff 15%, #ffffff 85%);
           overflow-x: hidden;
         }
 
