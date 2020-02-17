@@ -96,9 +96,9 @@ const Menu = ({ menuFloat = true }) => {
                   <Link to="/">
                     <MenuItem>Inicio</MenuItem>
                   </Link>
-                  <Link to="/prevenir">
+                  {/* <Link to="/prevenir">
                     <MenuItem>Previsión</MenuItem>
-                  </Link>
+                  </Link> */}
                   <Link to="obituarios">
                     <MenuItem>Obituarios</MenuItem>
                   </Link>
