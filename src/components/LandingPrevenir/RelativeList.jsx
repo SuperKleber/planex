@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Grid,
   Box,
@@ -7,7 +7,9 @@ import {
   Paper,
   Typography,
   Button,
-  Container
+  Container,
+  CardHeader,
+  IconButton
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
@@ -17,6 +19,7 @@ import Modal from "../Modal";
 import Relative from "./Relative";
 import SaveIcon from "@material-ui/icons/Save";
 import FormContact from "../FormContact";
+import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 const useStyles = makeStyles(theme => ({
   grid: {
     width: "100%",
@@ -47,6 +50,12 @@ const useStyles = makeStyles(theme => ({
       height: 100
     }
   },
+  close: {
+    position: "absolute",
+    right: 0,
+    top: 0,
+    zIndex: 2
+  },
   imgContainer: {
     // height: 100,
 
@@ -55,16 +64,9 @@ const useStyles = makeStyles(theme => ({
     }
   }
 }));
-const RelativeList = ({ familyList, customFamily, setCustomFamily }) => {
+const RelativeList = ({ customFamily, setCustomFamily }) => {
   const classes = useStyles();
-  let text = "Deseo hacer un plan para: ";
-  let familyJson = [];
-  familyList.map(({ nombres, apellidos, parentesco, edad }, i) => {
-    text = `${text}${
-      i > 0 ? ", " : ""
-    }${parentesco} ${nombres} ${apellidos} de ${edad} años`;
-    familyJson.push({ parentesco, nombres, apellidos, edad });
-  });
+
   const [openWarning, setOpenWarning] = useState(false);
   const [openForm, setOpenForm] = useState(false);
   const reset = () => {
@@ -76,62 +78,12 @@ const RelativeList = ({ familyList, customFamily, setCustomFamily }) => {
   };
   return (
     <Box>
-      <Container maxWidth={false}>
-        <Box display="flex" justifyContent="center" alignItems="center">
-          <Button
-            className={classes.button}
-            variant="contained"
-            color="primary"
-            onClick={() => setOpenForm(true)}
-          >
-            Enviar
-          </Button>
-          <Button
-            className={classes.button}
-            variant="outlined"
-            onClick={() => setOpenWarning(true)}
-          >
-            Volver
-          </Button>
-        </Box>
-        <Modal
-          open={openWarning}
-          onClose={closeWarning}
-          title="Se reiniciará todos los datos que ha guardado ¿Seguro que quiere eliminar todo?"
-        >
-          <Box width={220} display="flex" justifyContent="space-between">
-            <Button
-              onClick={() => {
-                closeWarning();
-                reset();
-              }}
-              variant="outlined"
-              color="secondary"
-            >
-              Eliminar
-            </Button>
-            <Button onClick={closeWarning} variant="outlined">
-              Cancelar
-            </Button>
-          </Box>
-        </Modal>
-        <Modal
-          title="Llene sus datos"
-          open={openForm}
-          onClose={() => setOpenForm(false)}
-        >
-          <FormContact
-            name="prevision"
-            text={text}
-            json={JSON.stringify(familyJson)}
-          ></FormContact>
-        </Modal>
-      </Container>
       <Grid className={classes.grid} container spacing={5}>
-        {familyList.map((relative, i) => {
+        {customFamily.map((relative, i) => {
           return (
             <RelativeEdit
               key={i}
+              index={i}
               customFamily={customFamily}
               setCustomFamily={setCustomFamily}
               relative={relative}
@@ -148,6 +100,7 @@ const RelativeList = ({ familyList, customFamily, setCustomFamily }) => {
   );
 };
 const RelativeEdit = ({
+  index,
   relative,
   template,
   customFamily,
@@ -195,9 +148,49 @@ const RelativeEdit = ({
       setOpenForm(false);
     }
   };
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (window.localStorage) {
+        if (window.localStorage.customFamily) {
+          setCustomFamily(JSON.parse(window.localStorage.customFamily));
+        }
+      }
+    }
+  }, []);
+
+  // console.log(customFamily);
+  const del = () => {
+    let oldData = [...customFamily];
+    let newData = [];
+    console.log(oldData);
+    oldData.map((el, i) => {
+      i !== index && newData.push(el);
+    });
+    console.log(newData);
+    setCustomFamily(newData);
+    localSave("customFamily", newData);
+  };
   return (
-    <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
+    <Grid
+      style={{ position: "Relative" }}
+      item
+      xs={12}
+      sm={6}
+      md={6}
+      lg={4}
+      xl={3}
+    >
       <Card>
+        {!template && (
+          <IconButton
+            variant="contained"
+            className={classes.close}
+            onClick={del}
+          >
+            <HighlightOffIcon style={{ color: colors.red }}></HighlightOffIcon>
+          </IconButton>
+        )}
+
         <CardActionArea
           className={`${classes.card} ${template && classes.add}`}
           onClick={() => setOpenForm(true)}
