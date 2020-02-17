@@ -75,105 +75,106 @@ const Menu = ({ menuFloat = true }) => {
     <div className={classes.root}>
       <AppBar className={classes.appBar} color="default" position="static">
         <Toolbar>
-          <Grid container spacing={3}>
-            <Grid className={classes.flexCenter} item xs={6}>
-              <IconButton
-                onClick={handleClick}
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-              >
-                <MenuIcon />
-              </IconButton>
+          <Container>
+            <Grid container spacing={3}>
+              <Grid className={classes.flexCenter} item xs={6}>
+                <IconButton
+                  onClick={handleClick}
+                  edge="start"
+                  color="inherit"
+                  aria-label="menu"
+                >
+                  <MenuIcon />
+                </IconButton>
 
-              <MenuResponsive
-                anchorEl={anchorEl}
-                keepMounted
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
+                <MenuResponsive
+                  anchorEl={anchorEl}
+                  keepMounted
+                  open={Boolean(anchorEl)}
+                  onClose={handleClose}
+                >
+                  <Link to="/">
+                    <MenuItem>Inicio</MenuItem>
+                  </Link>
+                  <Link to="/prevenir">
+                    <MenuItem>Previsión</MenuItem>
+                  </Link>
+                  <Link to="obituarios">
+                    <MenuItem>Obituarios</MenuItem>
+                  </Link>
+                </MenuResponsive>
+              </Grid>
+              <Grid
+                className={`${classes.flexCenter} ${classes.buttonMenu}`}
+                item
+                xs={6}
               >
-                <Link to="/">
-                  <MenuItem>Inicio</MenuItem>
-                </Link>
-                <Link to="/prevenir">
-                  <MenuItem>Previsión</MenuItem>
-                </Link>
-                <Link to="obituarios">
-                  <MenuItem>Obituarios</MenuItem>
-                </Link>
-              </MenuResponsive>
-            </Grid>
-            <Grid
-              className={`${classes.flexCenter} ${classes.buttonMenu}`}
-              item
-              xs={6}
-            >
-              <Button
-                onClick={() => setEmergency(!emergency)}
-                variant="contained"
-                color="primary"
-              >
-                Emergencia
-              </Button>
-              <Modal
-                title={
-                  <CopyToClipboard
-                    text="33469191"
-                    onCopy={() => setCopied(true)}
-                  >
-                    <Button fullWidth> Atención 24 horas (+591)33469191</Button>
-                  </CopyToClipboard>
-                }
-                open={emergency}
-                onClose={() => setEmergency(false)}
-                closeButton
-              >
-                <Box>
-                  <Alert
-                    open={copied}
-                    message="Teléfono Copiado"
-                    onClose={() => setCopied(false)}
-                  ></Alert>
-                  <a href="https://api.whatsapp.com/send?phone=59133469191&text=%C2%A1Tengo%20una%20Emergencia!">
-                    <Button
-                      className={classes.whatsapp}
-                      fullWidth={true}
-                      color="primary"
-                      variant="outlined"
+                <Button
+                  onClick={() => setEmergency(!emergency)}
+                  variant="contained"
+                  color="primary"
+                >
+                  Emergencia
+                </Button>
+                <Modal
+                  title={
+                    <CopyToClipboard
+                      text="33469191"
+                      onCopy={() => setCopied(true)}
                     >
-                      <WhatsappIcon></WhatsappIcon>
-                      +591-33469191
-                    </Button>
-                  </a>
-                  <a href="tel:33469191">
-                    <Button
-                      fullWidth={true}
-                      color="primary"
-                      variant="contained"
-                    >
-                      Llamar contacto
-                    </Button>
-                  </a>
-                </Box>
-              </Modal>
+                      <Button fullWidth>
+                        {" "}
+                        Atención 24 horas (+591)33469191
+                      </Button>
+                    </CopyToClipboard>
+                  }
+                  open={emergency}
+                  onClose={() => setEmergency(false)}
+                  closeButton
+                >
+                  <Box>
+                    <Alert
+                      open={copied}
+                      message="Teléfono Copiado"
+                      onClose={() => setCopied(false)}
+                    ></Alert>
+                    <a href="https://api.whatsapp.com/send?phone=59133469191&text=%C2%A1Tengo%20una%20Emergencia!">
+                      <Button
+                        className={classes.whatsapp}
+                        fullWidth={true}
+                        color="primary"
+                        variant="outlined"
+                      >
+                        <WhatsappIcon></WhatsappIcon>
+                        +591-33469191
+                      </Button>
+                    </a>
+                    <a href="tel:33469191">
+                      <Button
+                        fullWidth={true}
+                        color="primary"
+                        variant="contained"
+                      >
+                        Llamar contacto
+                      </Button>
+                    </a>
+                  </Box>
+                </Modal>
+              </Grid>
+              {/* <Logo></Logo> */}
             </Grid>
-            {/* <Logo></Logo> */}
-          </Grid>
+          </Container>
         </Toolbar>
       </AppBar>
       {menuFloat && (
         <Box className={classes.menuFloat} style={{ width: "100%" }}>
           <Container>
-            <Box
-              display="flex"
-              justifyContent="space-between"
-              alignItems="center"
-            >
-              <Link to="/">
+            <Box display="flex" justifyContent="flex-end" alignItems="center">
+              {/* <Link to="/">
                 <Button variant="contained" style={{ background: "white" }}>
                   <img src="/img/logo.png" alt="Logo Prever" height="45" />
                 </Button>
-              </Link>
+              </Link> */}
               <a
                 onClick={() =>
                   ReactPixel.track("Contact", {

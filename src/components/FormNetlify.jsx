@@ -31,8 +31,10 @@ const FormNetlify = () => {
         <input type="text" name="apellidos" />
         <input type="text" name="celular" />
         <input type="email" name="email" />
-        <input type="text" name="mensaje" />
-        <input type="text" name="json" />
+        <input type="text" name="plan" />
+        <input type="text" name="direccion" />
+        <input type="text" name="csv" />
+        <input type="text" name="familyJson" />
       </form>
     </>
   );
