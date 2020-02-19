@@ -185,7 +185,7 @@ const Menu = ({ menuFloat = true }) => {
                   })
                 }
                 target="_black"
-                href="https://api.whatsapp.com/send?phone=59172145667&text=Buenas,%20vengo%20de%20su%20sitio%20web."
+                href="https://api.whatsapp.com/send?phone=59172145667&text=Hola,%20vengo%20de%20su%20sitio%20web,%20quisiera%20más%20información%20"
               >
                 <Button
                   variant="contained"

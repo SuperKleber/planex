@@ -102,7 +102,7 @@ const Info = () => {
   const listRuby = [
     {
       icon: "/img/velatorio.svg",
-      text: "Salón Velatorio"
+      text: "Salón Velatorio o Domicilio"
     },
 
     {
@@ -113,10 +113,10 @@ const Info = () => {
       icon: "/img/necrologico-virtual.svg",
       text: "Necrológico virtual"
     },
-    {
-      icon: "/img/formol.svg",
-      text: "Servicio de formolización"
-    },
+    // {
+    //   icon: "/img/formol.svg",
+    //   text: "Servicio de formolización"
+    // },
     {
       icon: "/img/ataud.svg",
       text: "Cofre para Inhumación"
@@ -154,8 +154,9 @@ const Info = () => {
                 proceso funerario.
               </Typography>
               <Typography component="h6">
-                Nuestros afiliados recibirán asistencia funeraria completa de
-                forma inmediata cubriendo cualquier gasto.
+                Es el primer plan desarrollado en el país con cobertura
+                nacional, destinada a satisfacer todas las eventualidades ante
+                el fallecimiento de un afiliado.
               </Typography>
               <br />
               <br />
