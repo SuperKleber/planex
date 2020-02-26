@@ -54,7 +54,7 @@ const Layout = ({ children, seo, pixel }) => {
     ReactPixel.init("2739923912769068");
     ReactPixel.pageView();
     {
-      pixel && ReactPixel.track("viewContent", { title: pixel });
+      pixel && ReactPixel.track("ViewContent", { title: pixel });
     }
   }, []);
   return (
