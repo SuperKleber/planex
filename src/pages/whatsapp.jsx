@@ -4,6 +4,8 @@ import ReactPixel from "react-facebook-pixel";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { Container, Box, Typography } from "@material-ui/core";
 const Whatsapp = () => {
+  const message = "Hola, vi su anuncio, quiero más infomación.";
+  const messageWhatsapp = message.replace(/ /gi, "%20");
   useEffect(() => {
     ReactPixel.track("Contact", {
       type: "whatsapp",
@@ -13,8 +15,7 @@ const Whatsapp = () => {
     });
     setTimeout(() => {
       if (typeof window !== "undefined") {
-        window.location.href =
-          "https://api.whatsapp.com/send?phone=59172145667&text=Buenas,%20vi%20su%20anuncio,%20quiero%20más%20información%20por%20favor.";
+        window.location.href = `https://api.whatsapp.com/send?phone=59172145667&text=${messageWhatsapp}`;
       }
     }, 300);
   }, []);

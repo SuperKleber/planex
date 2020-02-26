@@ -13,6 +13,7 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import ReactPixel from "react-facebook-pixel";
 import RelativeList from "./LandingPrevenir/RelativeList";
+import ConfirmLead from "./ConfirmLead";
 const encode = data => {
   return Object.keys(data)
     .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
@@ -35,7 +36,7 @@ const useStyles = makeStyles(theme => ({
     marginBottom: 16
   }
 }));
-const FormContact = ({ initialPlan }) => {
+const FormContact = ({ initialPlan, lead, setLead }) => {
   const classes = useStyles();
 
   const [customFamily, setCustomFamily] = useState([]);
@@ -50,7 +51,7 @@ const FormContact = ({ initialPlan }) => {
   const [familyJson, setFamilyJson] = useState([]);
 
   const submit = e => {
-    ReactPixel.track("Lead");
+    e.preventDefault();
     let data = {
       nombres,
       apellidos,
@@ -66,7 +67,9 @@ const FormContact = ({ initialPlan }) => {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode({ "form-name": "prevision", ...data })
     }).then(res => {
-      console.log("éxito");
+      // ReactPixel.track("Lead");
+      setLead(true);
+      console.log(data);
     });
   };
   useEffect(() => {
@@ -75,7 +78,6 @@ const FormContact = ({ initialPlan }) => {
       let newCsv = '"parentesco", "nombres", "apellidos", "edad"\n';
 
       customFamily.map(({ nombres, apellidos, parentesco, edad }) => {
-        console.log("customFamily");
         newCsv = `${newCsv} "${parentesco}", "${nombres}", "${apellidos}", "${edad}"\n`;
         newFamilyJson.push({ parentesco, nombres, apellidos, edad });
       });
@@ -83,135 +85,159 @@ const FormContact = ({ initialPlan }) => {
       setFamilyJson([...newFamilyJson]);
     }
   }, [customFamily]);
-  return (
-    <form
-      name="prevision"
-      method="POST"
-      data-netlify="true"
-      netlify="true"
-      action="/"
-      onSubmit={() => ReactPixel.track("Lead")}
-    >
-      <input type="hidden" name="form-name" value="prevision" />
-      <TextField
-        required
-        name="nombres"
-        // value={nombres}
-        // onChange={e => setNombres(e.target.value)}
-        id="outlined-basic"
-        className={classes.textField}
-        label="Nombres"
-        margin="normal"
-        variant="outlined"
-      />
-      <TextField
-        required
-        name="apellidos"
-        // value={apellidos}
-        // onChange={e => setApellidos(e.target.value)}
-        id="outlined-basic"
-        className={classes.textField}
-        label="Apellidos"
-        margin="normal"
-        variant="outlined"
-      />
-      <TextField
-        required
-        name="celular"
-        // value={celular}
-        // onChange={e => setCelular(e.target.value)}
-        id="outlined-basic"
-        className={classes.textField}
-        label="Celular"
-        type="number"
-        margin="normal"
-        variant="outlined"
-      />
-      <TextField
-        required
-        name="email"
-        // value={email}
-        // onChange={e => setEmail(e.target.value)}
-        type="email"
-        id="outlined-basic"
-        className={classes.textField}
-        label="Email"
-        margin="normal"
-        variant="outlined"
-      />
-      <TextField
-        required
-        // name="direccion"
-        // value={direccion}
-        onChange={e => setDireccion(e.target.value)}
-        type="text"
-        id="outlined-basic"
-        className={classes.textField}
-        label="Dirección"
-        margin="normal"
-        variant="outlined"
-      />
-      <input hidden type="text" value={csv} name="csv" />
-      <input hidden type="text" value={familyJson} name="familyJson" />
-      <input hidden type="text" value={plan} name="plan" />
-      <FormControl
-        variant="outlined"
-        className={classes.textField}
-        style={{ width: "100%", margin: "16px 0" }}
+  if (!lead) {
+    return (
+      <form
+        name="prevision"
+        method="POST"
+        data-netlify="true"
+        netlify="true"
+        action="/"
+        onSubmit={submit}
       >
-        <InputLabel id="planes">Seleccione su plan</InputLabel>
-        <Select
-          onChange={event => setPlan(event.target.value)}
-          value={plan}
-          labelId="planes"
+        <input type="hidden" name="form-name" value="prevision" />
+        <TextField
+          required
+          name="nombres"
+          value={nombres}
+          onChange={e => setNombres(e.target.value)}
+          id="outlined-basic"
+          className={classes.textField}
+          label="Nombres"
+          margin="normal"
+          variant="outlined"
+        />
+        <TextField
+          required
+          name="apellidos"
+          value={apellidos}
+          onChange={e => setApellidos(e.target.value)}
+          id="outlined-basic"
+          className={classes.textField}
+          label="Apellidos"
+          margin="normal"
+          variant="outlined"
+        />
+        <TextField
+          required
+          name="celular"
+          value={celular}
+          onChange={e => setCelular(e.target.value)}
+          id="outlined-basic"
+          className={classes.textField}
+          label="Celular"
+          type="number"
+          margin="normal"
+          variant="outlined"
+        />
+        <TextField
+          required
+          name="email"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+          type="email"
+          id="outlined-basic"
+          className={classes.textField}
+          label="Email"
+          margin="normal"
+          variant="outlined"
+        />
+        <TextField
+          required
+          name="direccion"
+          value={direccion}
+          onChange={e => setDireccion(e.target.value)}
+          type="text"
+          id="outlined-basic"
+          className={classes.textField}
+          label="Dirección"
+          margin="normal"
+          variant="outlined"
+        />
+        <input hidden type="text" defaultValue={csv} name="csv" />
+        <input hidden type="text" defaultValue={familyJson} name="familyJson" />
+        <input hidden type="text" defaultValue={plan} name="plan" />
+        <FormControl
+          variant="outlined"
+          className={classes.textField}
+          style={{ width: "100%", margin: "16px 0" }}
         >
-          <MenuItem value="ruby">
-            <Box display="flex" justifyContent="flex-start" alignItems="center">
-              <img
-                src="/img/ruby.svg"
-                style={{ width: 20, marginRight: 8 }}
-              ></img>
-              RUBY
-            </Box>
-          </MenuItem>
-          <MenuItem value="silver">
-            <Box display="flex" justifyContent="flex-start" alignItems="center">
-              <img
-                src="/img/lingote-de-plata.svg"
-                style={{ width: 20, marginRight: 8 }}
-              ></img>
-              SILVER
-            </Box>
-          </MenuItem>
-          <MenuItem value="gold">
-            <Box display="flex" justifyContent="flex-start" alignItems="center">
-              <img
-                src="/img/lingote-de-oro.svg"
-                style={{ width: 20, marginRight: 8 }}
-              ></img>
-              GOLD
-            </Box>
-          </MenuItem>
-        </Select>
-      </FormControl>
-      <Typography style={{ marginLeft: 20, marginTop: 8, color: colors.green }}>
-        Agrega a tus familiares
-      </Typography>
-      <RelativeList
-        customFamily={customFamily}
-        setCustomFamily={setCustomFamily}
-      ></RelativeList>
-      <Button
-        className={classes.submit}
-        type="submit"
-        color="primary"
-        variant="contained"
-        fullWidth={true}
-      >
-        Enviar
-      </Button>
-    </form>
-  );
+          <InputLabel id="planes">Seleccione su plan</InputLabel>
+          <Select
+            onChange={event => setPlan(event.target.value)}
+            value={plan}
+            labelid="planes"
+          >
+            <MenuItem value="ruby">
+              <Box
+                display="flex"
+                justifyContent="flex-start"
+                alignItems="center"
+              >
+                <img
+                  src="/img/ruby.svg"
+                  style={{ width: 20, marginRight: 8 }}
+                ></img>
+                RUBY
+              </Box>
+            </MenuItem>
+            <MenuItem value="silver">
+              <Box
+                display="flex"
+                justifyContent="flex-start"
+                alignItems="center"
+              >
+                <img
+                  src="/img/lingote-de-plata.svg"
+                  style={{ width: 20, marginRight: 8 }}
+                ></img>
+                SILVER
+              </Box>
+            </MenuItem>
+            <MenuItem value="gold">
+              <Box
+                display="flex"
+                justifyContent="flex-start"
+                alignItems="center"
+              >
+                <img
+                  src="/img/lingote-de-oro.svg"
+                  style={{ width: 20, marginRight: 8 }}
+                ></img>
+                GOLD
+              </Box>
+            </MenuItem>
+          </Select>
+        </FormControl>
+        <Typography
+          style={{ marginLeft: 20, marginTop: 8, color: colors.green }}
+        >
+          Agrega a tus familiares
+        </Typography>
+        <RelativeList
+          customFamily={customFamily}
+          setCustomFamily={setCustomFamily}
+        ></RelativeList>
+        <Button
+          className={classes.submit}
+          type="submit"
+          color="primary"
+          variant="contained"
+          fullWidth={true}
+        >
+          Enviar
+        </Button>
+      </form>
+    );
+  } else {
+    return (
+      <ConfirmLead
+        nombres={nombres}
+        apellidos={apellidos}
+        plan={plan}
+      ></ConfirmLead>
+    );
+  }
 };
 
 export default FormContact;

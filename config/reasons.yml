@@ -1,5 +1,5 @@
 reasons:
-  - description: 'No importa donde te encuentres, tenemos cobertura en todo el país.'
+  - description: "No importa donde te encuentres, tenemos cobertura en todo el país."
     icon: /img/bolivia.svg
     title: Cobertura Nacional
   - description: Este plan te brinda el servicio funerario de manera INMEDIATA
@@ -12,4 +12,4 @@ reasons:
       Listos para atenderte sin límite de edad para la permanencia dentro del
       plan.
     icon: /img/accesible.svg
-    title: Fásil
+    title: Fácil

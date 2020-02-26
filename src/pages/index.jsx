@@ -19,6 +19,7 @@ import Menu from "../components/Menu";
 import RelativeList from "../components/LandingPrevenir/RelativeList";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "../components/Modal";
+import ConfirmLead from "../components/ConfirmLead";
 const useStyles = makeStyles(() => ({
   landing: {
     height: "calc(100vh - 64px)",
@@ -98,6 +99,7 @@ const useStyles = makeStyles(() => ({
 const Info = () => {
   const classes = useStyles();
   const [openModal, setOpenModal] = useState(false);
+  const [lead, setLead] = useState(false);
   const [initialPlan, setInitialPlan] = useState("ruby");
   const listRuby = [
     {
@@ -215,9 +217,19 @@ const Info = () => {
         <Modal
           open={openModal}
           onClose={() => setOpenModal(false)}
-          title="Te llevamos el contrato a la puerta de tu casa sin costo"
+          title={
+            !lead
+              ? "📋 Te llevamos el contrato a la puerta de tu casa sin costo"
+              : "✅ Procesamos tu solicitud, pronto sabrás de nosotros"
+          }
         >
-          <FormPlanex initialPlan={initialPlan}></FormPlanex>
+          {
+            <FormPlanex
+              initialPlan={initialPlan}
+              lead={lead}
+              setLead={setLead}
+            ></FormPlanex>
+          }
         </Modal>
       </Container>
     </Layout>

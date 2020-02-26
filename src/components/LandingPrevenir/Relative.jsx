@@ -205,15 +205,6 @@ const Relative = ({
               />
             )}
           />
-          <TextField
-            disabled={relative.descartado}
-            id="standard-basic"
-            label="Edad"
-            margin="normal"
-            variant="outlined"
-            value={relative.edad}
-            onChange={e => setInput("edad", e.target.value)}
-          />
 
           <TextField
             disabled={relative.descartado}
@@ -235,6 +226,16 @@ const Relative = ({
             value={relative.apellidos}
             onChange={e => setInput("apellidos", e.target.value)}
           />
+          <TextField
+            disabled={relative.descartado}
+            id="standard-basic"
+            label="Edad"
+            margin="normal"
+            variant="outlined"
+            value={relative.edad}
+            onChange={e => setInput("edad", e.target.value)}
+          />
+
           {buttons ? (
             <Box
               className={classes.buttons}
