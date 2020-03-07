@@ -17,7 +17,7 @@ const useStyles = makeStyles(() => ({
     marginBottom: 50
   },
   title: {
-    color: "white",
+    color: "black",
 
     marginBottom: 24
   },
@@ -99,11 +99,11 @@ const Reasons = () => {
             justifyContent="center"
             alignItems="center"
           >
-            <Link to="/prevenir">
+            <a href="#planes">
               <Button variant="contained" color="primary">
-                Previsión
+                Ver planes
               </Button>
-            </Link>
+            </a>
 
             {/* <Button variant="outlined" color="secondary">
               Servicio al cliente

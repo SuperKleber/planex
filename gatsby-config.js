@@ -42,6 +42,8 @@ module.exports = {
         path: `${__dirname}/src/data/dataBlog`
       }
     },
-    `gatsby-plugin-netlify-cms`
+    `gatsby-plugin-netlify-cms`,
+    "gatsby-plugin-sitemap",
+    "gatsby-plugin-robots-txt"
   ]
 };

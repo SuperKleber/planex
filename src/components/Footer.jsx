@@ -8,7 +8,7 @@ import Contract from "./Contract";
 import { Divider } from "@material-ui/core";
 const useStyles = makeStyles(theme => ({
   footer: {
-    background: colors.purple,
+    background: `linear-gradient(#ffffff, ${colors.lightBlue})`,
     // background: "#ffffff",
     // background: "#000000",
     padding: "50px 0"
@@ -22,13 +22,9 @@ const Footer = () => {
   const classes = useStyles();
   return (
     <footer className={classes.footer}>
-      <Contract></Contract>
-      <Divider className={classes.divider}></Divider>
-      <Gallery></Gallery>
-      <Divider className={classes.divider}></Divider>
       <Reasons></Reasons>
-      <Divider className={classes.divider}></Divider>
       <Testimonials></Testimonials>
+      {/* <Gallery></Gallery> */}
     </footer>
   );
 };

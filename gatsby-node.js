@@ -1,7 +1,9 @@
 const createPaginatedPages = require("gatsby-paginate");
 const { createFilePath } = require(`gatsby-source-filesystem`);
+const fs = require("fs");
 const path = require(`path`);
 const slug = require("./lib/slug");
+
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions;
   if (node.internal.type) {
@@ -47,6 +49,18 @@ exports.createPages = async ({ graphql, actions }) => {
   if (result.errors) {
     throw result.errors;
   }
+  let objectToSave = { variable: "1", variable2: "2" };
+
+  // fs.writeFile(
+  //   "/static/uploads/archivo.json",
+  //   JSON.stringify(objectToSave),
+  //   "utf8",
+  //   err => {
+  //     if (err) throw err;
+  //     console.log("The file has been saved!");
+  //   }
+  // );
+
   createPaginatedPages({
     edges: result.data.allObituariosYaml.edges,
     createPage: createPage,

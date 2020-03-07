@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   },
   testimonialTitle: {
     marginBottom: 50,
-    color: "white"
+    color: "black"
   },
   testimonialName: {
     display: "inline-block",

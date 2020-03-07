@@ -20,7 +20,7 @@ const useStyles = makeStyles(() => ({
   },
   title: {
     "& *": {
-      color: "white"
+      color: "black"
     },
     marginBottom: 16
   }
@@ -39,7 +39,7 @@ const Gallery = () => {
       >
         <Typography>Fotos del establecimiento ubicado en Santa Cruz</Typography>
         <a href="https://www.google.com/maps/place/Prever+-+Sal%C3%B3n+Velatorio/@-17.7941441,-63.16884,16z/data=!4m5!3m4!1s0x93f1e85d62ea77cb:0xfd9e12d454893aca!8m2!3d-17.7943484!4d-63.1657501">
-          <Button variant="contained" color="secondary">
+          <Button variant="contained" color="primary">
             Ver en mapa
           </Button>
         </a>
