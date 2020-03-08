@@ -106,13 +106,14 @@ const useStyles = makeStyles(theme => ({
   obituarioImg: {
     position: "relative",
     background: colors.lightBlue,
-    width: 1824,
-    height: 1025
+    width: "100%",
+    height: "100vh"
   },
   logoPrever: {
+    width: 120,
     position: "absolute",
-    top: 120,
-    left: 120,
+    top: 20,
+    left: 80,
     transform: "rotateZ(6deg)"
   },
   obituarioImgPaper: {
@@ -120,7 +121,7 @@ const useStyles = makeStyles(theme => ({
     padding: 16,
     margin: "16px 0",
     "& *": {
-      fontSize: "2.5em"
+      // fontSize: "2.5em"
     }
   },
   obituarioImgMisa: {
@@ -130,7 +131,7 @@ const useStyles = makeStyles(theme => ({
     margin: "16px 0",
     "& *": {
       // color: "white",
-      fontSize: "1.9em"
+      // fontSize: "1.9em"
     }
   },
   obituarioImgCallToAction: {
@@ -139,13 +140,19 @@ const useStyles = makeStyles(theme => ({
     padding: 16,
     margin: "16px 0",
     "& *": {
-      fontSize: "2em",
+      // fontSize: "2em",
       color: "white"
     }
   }
 }));
 const Obituario = ({ pageContext, location }) => {
   const [openMasse, setOpenMasse] = useState(false);
+  const [hiddenImg, setHiddenImg] = useState({
+    opacity: "0",
+    transform: "scale(0)",
+    position: "absolute",
+    top: "-100vh"
+  }); //Oculta imagen que se descargará
   const obituarioImg = useRef(null);
   let prev = location.state ? location.state.prev : "/obituarios";
   const classes = useStyles();
@@ -179,8 +186,9 @@ const Obituario = ({ pageContext, location }) => {
     console.log("Hubo un error al definir fechas y horas de evento de Misa");
   }
   const saveImage = () => {
+    setHiddenImg({});
     const name = nombre.replace(/ /gi, "-").toLowerCase();
-    Domtoimage.toBlob(obituarioImg.current, { width: 1824, height: 1025 })
+    Domtoimage.toJpeg(obituarioImg.current)
       .then(blob => {
         saveAs(blob, `prever-${name}`);
       })
@@ -189,12 +197,7 @@ const Obituario = ({ pageContext, location }) => {
         console.error(e);
       });
   };
-  const hiddenImg = {
-    opacity: "0",
-    transform: "scale(0)",
-    position: "absolute",
-    top: "-100vh"
-  }; // Oculta la imagen que descargará
+
   return (
     <Layout seo={seo}>
       <Menu></Menu>
@@ -303,15 +306,17 @@ const Obituario = ({ pageContext, location }) => {
             </Button>
           </FacebookShareButton>
           {pageContext.misa && (
-            <Button
-              variant="outlined"
-              fullWidth
-              style={{ margin: "8px 0" }}
-              onClick={saveImage}
-            >
-              <ImageIcon></ImageIcon>
-              Descargar
-            </Button>
+            <a href="#obituarioImg">
+              <Button
+                variant="outlined"
+                fullWidth
+                style={{ margin: "8px 0" }}
+                onClick={saveImage}
+              >
+                <ImageIcon></ImageIcon>
+                Descargar
+              </Button>
+            </a>
           )}
         </Paper>
 
@@ -320,7 +325,11 @@ const Obituario = ({ pageContext, location }) => {
         </FacebookProvider>
       </Box>
       <div style={hiddenImg}>
-        <div ref={obituarioImg} className={classes.obituarioImg}>
+        <div
+          ref={obituarioImg}
+          id="obituarioImg"
+          className={classes.obituarioImg}
+        >
           <Box
             display="flex"
             justifyContent="space-around"
@@ -333,7 +342,7 @@ const Obituario = ({ pageContext, location }) => {
               alignItems="center"
               flexDirection="column"
             >
-              <ObituarioImg foto={pageContext.foto} size={500}></ObituarioImg>
+              <ObituarioImg foto={pageContext.foto} size={300}></ObituarioImg>
 
               <img
                 className={classes.logoPrever}
@@ -363,6 +372,16 @@ const Obituario = ({ pageContext, location }) => {
                 </Paper>
               )}
               <Paper className={classes.obituarioImgCallToAction}>
+                <Box display="flex">
+                  <Typography>
+                    <FacebookProvider language="es_LA" appId="2503959843259543">
+                      <CommentsCount href={urlAbsolute} />
+                    </FacebookProvider>
+                  </Typography>
+                  <Typography gutterBottom style={{ marginLeft: 4 }}>
+                    CONDOLENCIAS
+                  </Typography>
+                </Box>
                 <Typography>Deja tus condolencias en:</Typography>
                 <Typography>planex.com.bo/obituarios</Typography>
               </Paper>
