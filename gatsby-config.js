@@ -42,6 +42,14 @@ module.exports = {
         path: `${__dirname}/src/data/dataBlog`
       }
     },
+    {
+      resolve: "gatsby-plugin-web-font-loader",
+      options: {
+        google: {
+          families: ["Raleway", "Lobster", "Alex Brush"]
+        }
+      }
+    },
     `gatsby-plugin-netlify-cms`,
     "gatsby-plugin-sitemap",
     "gatsby-plugin-robots-txt"

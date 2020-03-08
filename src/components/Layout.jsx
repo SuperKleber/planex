@@ -66,7 +66,7 @@ const Layout = ({ children, seo, pixel }) => {
           content="width=device-width, initial-scale=1.0, user-scalable=no"
         />
         <meta name="mobile-web-app-capable" content="yes"></meta>
-        <link
+        {/* <link
           href="https://fonts.googleapis.com/css?family=Raleway&display=swap"
           rel="stylesheet"
         ></link>
@@ -77,7 +77,25 @@ const Layout = ({ children, seo, pixel }) => {
         <link
           href="https://fonts.googleapis.com/css?family=Alex+Brush&display=swap"
           rel="stylesheet"
+        ></link> */}
+        {/* <link
+          rel="preload"
+          as="style"
+          href="https://fonts.googleapis.com/css?family=Raleway&display=swap"
+          rel="stylesheet"
         ></link>
+        <link
+          rel="preload"
+          as="style"
+          href="https://fonts.googleapis.com/css?family=Lobster&display=swap"
+          rel="stylesheet"
+        ></link>
+        <link
+          rel="preload"
+          as="style"
+          href="https://fonts.googleapis.com/css?family=Alex+Brush&display=swap"
+          rel="stylesheet"
+        ></link> */}
         <meta property="fb:app_id" content="2503959843259543" />
         <meta property="fb:admins" content="100001924570972" />
         <meta property="fb:admins" content="100004839931984" />
