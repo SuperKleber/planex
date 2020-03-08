@@ -15,6 +15,8 @@ import CopyIcon from "@material-ui/icons/FileCopy";
 import ShareIcon from "@material-ui/icons/Share";
 import { makeStyles } from "@material-ui/core/styles";
 import { borderRadius } from "@material-ui/system";
+import { FacebookProvider, CommentsCount } from "react-facebook";
+import { siteUrl } from "../../../config/defaultSeo.json";
 import { Link } from "gatsby";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { FacebookIcon, FacebookShareButton } from "react-share";
@@ -57,6 +59,15 @@ const useStyles = makeStyles(theme => ({
     flexDirection: "column",
     width: "100%"
   },
+  CardContent: {
+    // display: "flex",
+    // flexDirection: "column",
+    // height: "calc(100% - 100px)",
+    // paddingBottom: 8
+  },
+  CommentsCount: {
+    // marginTop: "auto"
+  },
   backgroundCard: {
     height: 100,
     width: "100%",
@@ -76,8 +87,9 @@ const CardPerson = ({ obituario }) => {
   const link = `/obituarios/${obituario.fields.slug}`;
   const linkAbsolute =
     typeof window !== "undefined" && window.location.origin + link;
-  const epitafioLimitCharacter = 150;
+  const epitafioLimitCharacter = 100;
   const classes = useStyles();
+  const urlAbsolute = `${siteUrl}/obituarios/${obituario.fields.slug}`;
   const shareMore = () => {
     try {
       if ("share" in navigator) {
@@ -115,7 +127,7 @@ const CardPerson = ({ obituario }) => {
           <img className="cloud" src="/img/nube-sombra.svg"></img>
         </Box>
       </Link>
-      <Card style={{ height: 350 }}>
+      <Card style={{ height: 370 }}>
         <Link
           to={link}
           state={{
@@ -124,7 +136,7 @@ const CardPerson = ({ obituario }) => {
         >
           <CardActionArea className={classes.cardActionArea}>
             <Box className={classes.backgroundCard}></Box>
-            <CardContent>
+            <CardContent className={classes.CardContent}>
               <Typography variant="h6">{firstUpperCase(nombre)}</Typography>
               {fechaFin && (
                 <Typography gutterBottom variant="caption" component="h6">
@@ -194,7 +206,18 @@ const CardPerson = ({ obituario }) => {
               prev: prev
             }}
           >
-            <Button>Leer más</Button>
+            <Button>
+              <Box display="flex" className={classes.CommentsCount}>
+                <FacebookProvider language="es_LA" appId="2503959843259543">
+                  <Typography>
+                    <CommentsCount href={urlAbsolute} />
+                  </Typography>
+                  <Typography style={{ marginLeft: 4 }}>
+                    Condolencias
+                  </Typography>
+                </FacebookProvider>
+              </Box>
+            </Button>
           </Link>
         </CardActions>
       </Card>

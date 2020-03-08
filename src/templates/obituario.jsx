@@ -1,5 +1,11 @@
 import React, { useState, useRef } from "react";
-import { FacebookProvider, Comments, Like, Share } from "react-facebook";
+import {
+  FacebookProvider,
+  Comments,
+  CommentsCount,
+  Like,
+  Share
+} from "react-facebook";
 import { Link } from "gatsby";
 import Domtoimage from "dom-to-image";
 import { saveAs } from "file-saver";
@@ -146,8 +152,7 @@ const Obituario = ({ pageContext, location }) => {
   const nombre = firstUpperCase(pageContext.nombre);
   const seo = {
     siteTitle: `${nombre}`,
-    siteDescription:
-      `Los familiares invitan a dejar sus condolencias ingresando aquí.`,
+    siteDescription: `Los familiares invitan a dejar sus condolencias ingresando aquí.`,
     siteCover: pageContext.foto ? pageContext.foto : false,
     siteUrl: `${siteUrl}/obituarios/${pageContext.fields.slug}`
   };
@@ -298,7 +303,12 @@ const Obituario = ({ pageContext, location }) => {
             </Button>
           </FacebookShareButton>
           {pageContext.misa && (
-            <Button variant="outlined" fullWidth style={{ margin: "8px 0" }} onClick={saveImage}>
+            <Button
+              variant="outlined"
+              fullWidth
+              style={{ margin: "8px 0" }}
+              onClick={saveImage}
+            >
               <ImageIcon></ImageIcon>
               Descargar
             </Button>
