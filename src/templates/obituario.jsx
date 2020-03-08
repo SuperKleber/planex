@@ -104,41 +104,82 @@ const useStyles = makeStyles(theme => ({
     }
   },
   obituarioImg: {
+    display: "flex",
     position: "relative",
     background: colors.lightBlue,
     width: "100%",
-    height: "100vh"
+    height: "100vh",
+    "@media (max-width: 550px)": {
+      width: "100vw",
+      height: "100vw"
+    }
+  },
+  obituarioImgSize: {
+    "@media (max-width: 550px)": {
+      width: "100px !important",
+      height: "100px !important",
+      position: "absolute !important",
+      top: 0,
+      left: "5%"
+    }
   },
   logoPrever: {
+    zIndex: 2,
     width: 120,
     position: "absolute",
     top: 20,
     left: 80,
-    transform: "rotateZ(6deg)"
-  },
-  obituarioImgPaper: {
-    maxWidth: 750,
-    padding: 16,
-    margin: "16px 0",
-    "& *": {
-      // fontSize: "2.5em"
+    transform: "rotateZ(6deg)",
+    "@media (max-width: 550px)": {
+      width: 80,
+      top: 25,
+      left: "calc(88% - 80px)"
     }
   },
-  obituarioImgMisa: {
-    // background: colors.green,
-    maxWidth: 750,
+  obituarioImgPaper: {
+    // maxWidth: 750,
+
+    width: 450,
     padding: 16,
     margin: "16px 0",
-    "& *": {
-      // color: "white",
-      // fontSize: "1.9em"
+    "@media (max-width: 880px)": {
+      width: 300
+    },
+    "@media (max-width: 550px)": {
+      position: "absolute !important",
+
+      width: 150,
+      "& *": {
+        fontSize: "0.8em !important"
+      }
+    }
+  },
+  obituarioImgInfo: {
+    "@media (max-width: 550px)": {
+      top: "40%",
+      width: "80vw",
+      left: "50%",
+      transform: "translateX(-50%)"
+    }
+  },
+
+  obituarioImgMisa: {
+    "@media (max-width: 550px)": {
+      top: 0,
+      right: "5%"
     }
   },
   obituarioImgCallToAction: {
     background: colors.purple,
-    maxWidth: 500,
-    padding: 16,
-    margin: "16px 0",
+
+    "@media (max-width: 550px)": {
+      bottom: 0,
+      margin: 0,
+      left: "50%",
+      height: "15vw",
+      width: "80vw",
+      transform: "translateX(-50%)"
+    },
     "& *": {
       // fontSize: "2em",
       color: "white"
@@ -326,15 +367,15 @@ const Obituario = ({ pageContext, location }) => {
       </Box>
       <div style={hiddenImg}>
         <div
+          className={classes.obituarioImg}
           ref={obituarioImg}
           id="obituarioImg"
-          className={classes.obituarioImg}
         >
           <Box
             display="flex"
             justifyContent="space-around"
             alignItems="center"
-            style={{ height: "100%" }}
+            style={{ height: "100%", width: "100%" }}
           >
             <Box
               display="flex"
@@ -342,7 +383,11 @@ const Obituario = ({ pageContext, location }) => {
               alignItems="center"
               flexDirection="column"
             >
-              <ObituarioImg foto={pageContext.foto} size={300}></ObituarioImg>
+              <ObituarioImg
+                foto={pageContext.foto}
+                size={250}
+                styleCustom={classes.obituarioImgSize}
+              ></ObituarioImg>
 
               <img
                 className={classes.logoPrever}
@@ -352,14 +397,20 @@ const Obituario = ({ pageContext, location }) => {
             </Box>
 
             <div>
-              <Paper className={classes.obituarioImgPaper}>
+              <Paper
+                className={`${classes.obituarioImgPaper} ${classes.obituarioImgInfo}`}
+              >
                 <Typography variant="h4">{nombre}</Typography>
                 <Typography gutterBottom>{pageContext.fechaFin}</Typography>
-                <Typography>{pageContext.epitafio}</Typography>
+                <Typography className="epitafio">
+                  {pageContext.epitafio}
+                </Typography>
               </Paper>
 
               {pageContext.misa && (
-                <Paper className={classes.obituarioImgMisa}>
+                <Paper
+                  className={`${classes.obituarioImgPaper} ${classes.obituarioImgMisa}`}
+                >
                   <Typography variant="h6" gutterBottom>
                     Velatorio:
                   </Typography>
@@ -371,7 +422,9 @@ const Obituario = ({ pageContext, location }) => {
                   </Typography>
                 </Paper>
               )}
-              <Paper className={classes.obituarioImgCallToAction}>
+              <Paper
+                className={`${classes.obituarioImgPaper} ${classes.obituarioImgCallToAction}`}
+              >
                 <Box display="flex">
                   <Typography>
                     <FacebookProvider language="es_LA" appId="2503959843259543">
@@ -393,10 +446,13 @@ const Obituario = ({ pageContext, location }) => {
   );
 };
 
-const ObituarioImg = ({ foto, size }) => {
+const ObituarioImg = ({ foto, size, styleCustom }) => {
   const classes = useStyles();
   return (
-    <Paper className={classes.funeral} style={{ width: size, height: size }}>
+    <Paper
+      className={`${classes.funeral} ${styleCustom}`}
+      style={{ width: size, height: size }}
+    >
       <div
         className={classes.foto}
         style={{ background: `url(${foto})` }}

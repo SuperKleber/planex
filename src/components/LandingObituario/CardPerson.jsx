@@ -15,12 +15,12 @@ import CopyIcon from "@material-ui/icons/FileCopy";
 import ShareIcon from "@material-ui/icons/Share";
 import { makeStyles } from "@material-ui/core/styles";
 import { borderRadius } from "@material-ui/system";
-import { FacebookProvider, CommentsCount } from "react-facebook";
 import { siteUrl } from "../../../config/defaultSeo.json";
 import { Link } from "gatsby";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { FacebookIcon, FacebookShareButton } from "react-share";
 import Alert from "../Alert";
+import { FacebookProvider, CommentsCount } from "react-facebook";
 import firstUpperCase from "../../../lib/firstUpperCase";
 const useStyles = makeStyles(theme => ({
   root: {
@@ -110,118 +110,121 @@ const CardPerson = ({ obituario }) => {
     }
   };
   return (
-    <Box className={classes.root}>
-      <Link
-        to={link}
-        state={{
-          prev: prev
-        }}
-      >
-        <Box
-          className={classes.cardImage}
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-        >
-          <span className="foto" style={{ background: `url(${foto})` }}></span>
-          <img className="cloud" src="/img/nube-sombra.svg"></img>
-        </Box>
-      </Link>
-      <Card style={{ height: 370 }}>
+    <FacebookProvider language="es_LA" appId="2503959843259543">
+      <Box className={classes.root}>
         <Link
           to={link}
           state={{
             prev: prev
           }}
         >
-          <CardActionArea className={classes.cardActionArea}>
-            <Box className={classes.backgroundCard}></Box>
-            <CardContent className={classes.CardContent}>
-              <Typography variant="h6">{firstUpperCase(nombre)}</Typography>
-              {fechaFin && (
-                <Typography gutterBottom variant="caption" component="h6">
-                  {fechaFin}
-                </Typography>
-              )}
-              {epitafio && (
-                <Typography variant="body2">
-                  {epitafio.length > epitafioLimitCharacter ? (
-                    <>
-                      {`${epitafio.substr(0, epitafioLimitCharacter)}`}
-                      <Typography component="span" color="primary">
-                        ...ver más
-                      </Typography>
-                    </>
-                  ) : (
-                    epitafio
-                  )}
-                </Typography>
-              )}
-            </CardContent>
-          </CardActionArea>
-        </Link>
-        <CardActions>
-          <Button onClick={clickOption} variant="contained" color="primary">
-            <ShareIcon />
-            Compartir
-          </Button>
-          <Options
-            anchorEl={elmentOption}
-            keepMounted
-            open={Boolean(elmentOption)}
-            onClose={closeOption}
+          <Box
+            className={classes.cardImage}
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
           >
-            <FacebookShareButton url={linkAbsolute}>
-              <OptionItem>
-                <FacebookIcon
-                  className={classes.iconFacebook}
-                  size={25}
-                  round
-                ></FacebookIcon>
-                <Typography>Facebook</Typography>
-              </OptionItem>
-            </FacebookShareButton>
-            <CopyToClipboard
-              text={linkAbsolute}
-              onCopy={() => setCopiedShare(true)}
-            >
-              <OptionItem>
-                <CopyIcon></CopyIcon>
-                <Typography>Copiar URL</Typography>
-              </OptionItem>
-            </CopyToClipboard>
-            <OptionItem onClick={shareMore}>
-              <ShareIcon></ShareIcon>
-              ...otros
-            </OptionItem>
-          </Options>
-          <Alert
-            open={copiedShare}
-            message="URL copiada"
-            onClose={() => setCopiedShare(false)}
-          ></Alert>
+            <span
+              className="foto"
+              style={{ background: `url(${foto})` }}
+            ></span>
+            <img className="cloud" src="/img/nube-sombra.svg"></img>
+          </Box>
+        </Link>
+        <Card style={{ height: 370 }}>
           <Link
             to={link}
             state={{
               prev: prev
             }}
           >
-            <Button>
-              <Box display="flex" className={classes.CommentsCount}>
-                <FacebookProvider language="es_LA" appId="2503959843259543">
+            <CardActionArea className={classes.cardActionArea}>
+              <Box className={classes.backgroundCard}></Box>
+              <CardContent className={classes.CardContent}>
+                <Typography variant="h6">{firstUpperCase(nombre)}</Typography>
+                {fechaFin && (
+                  <Typography gutterBottom variant="caption" component="h6">
+                    {fechaFin}
+                  </Typography>
+                )}
+                {epitafio && (
+                  <Typography variant="body2">
+                    {epitafio.length > epitafioLimitCharacter ? (
+                      <>
+                        {`${epitafio.substr(0, epitafioLimitCharacter)}`}
+                        <Typography component="span" color="primary">
+                          ...ver más
+                        </Typography>
+                      </>
+                    ) : (
+                      epitafio
+                    )}
+                  </Typography>
+                )}
+              </CardContent>
+            </CardActionArea>
+          </Link>
+          <CardActions>
+            <Button onClick={clickOption} variant="contained" color="primary">
+              <ShareIcon />
+              Compartir
+            </Button>
+            <Options
+              anchorEl={elmentOption}
+              keepMounted
+              open={Boolean(elmentOption)}
+              onClose={closeOption}
+            >
+              <FacebookShareButton url={linkAbsolute}>
+                <OptionItem>
+                  <FacebookIcon
+                    className={classes.iconFacebook}
+                    size={25}
+                    round
+                  ></FacebookIcon>
+                  <Typography>Facebook</Typography>
+                </OptionItem>
+              </FacebookShareButton>
+              <CopyToClipboard
+                text={linkAbsolute}
+                onCopy={() => setCopiedShare(true)}
+              >
+                <OptionItem>
+                  <CopyIcon></CopyIcon>
+                  <Typography>Copiar URL</Typography>
+                </OptionItem>
+              </CopyToClipboard>
+              <OptionItem onClick={shareMore}>
+                <ShareIcon></ShareIcon>
+                ...otros
+              </OptionItem>
+            </Options>
+            <Alert
+              open={copiedShare}
+              message="URL copiada"
+              onClose={() => setCopiedShare(false)}
+            ></Alert>
+            <Link
+              to={link}
+              state={{
+                prev: prev
+              }}
+            >
+              <Button>
+                <Box display="flex" className={classes.CommentsCount}>
                   <Typography>
                     <CommentsCount href={urlAbsolute} />
                   </Typography>
                   <Typography style={{ marginLeft: 4 }}>
                     Condolencias
                   </Typography>
-                </FacebookProvider>
-              </Box>
-            </Button>
-          </Link>
-        </CardActions>
-      </Card>
-    </Box>
+                </Box>
+              </Button>
+            </Link>
+          </CardActions>
+        </Card>
+      </Box>
+    </FacebookProvider>
   );
 };
 export default CardPerson;
