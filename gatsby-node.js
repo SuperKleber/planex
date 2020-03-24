@@ -1,6 +1,6 @@
 const createPaginatedPages = require("gatsby-paginate");
 const { createFilePath } = require(`gatsby-source-filesystem`);
-const fs = require("fs");
+
 const path = require(`path`);
 const slug = require("./lib/slug");
 

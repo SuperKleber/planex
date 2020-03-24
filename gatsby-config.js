@@ -7,6 +7,47 @@ const {
   siteCover,
   faviconDefault
 } = require("./config/defaultSeo.json");
+require("dotenv").config({
+  path: `/.env`
+});
+const myQuery = `{
+  allObituariosYaml(sort: { order: DESC, fields: [fechaFin] }) {
+    edges {
+      node {
+        id
+        nombre
+        foto
+        fields {
+          slug
+        }
+      }
+    }
+  }
+}`;
+const queries = [
+  {
+    query: myQuery,
+    transformer: ({ data }) =>
+      data.allObituariosYaml.edges.map(({ node }) => {
+        const obituario = {
+          objectID: node.id,
+          foto:
+            node.foto == null
+              ? `${siteUrl}/uploads/avatar-prever.png`
+              : node.foto.indexOf("http://prever.com.bo") == 0
+              ? node.foto
+              : `${siteUrl}${node.foto}`,
+          nombre: node.nombre,
+          url: `${siteUrl}/obituarios/${node.fields.slug}`
+        };
+        return obituario;
+      }), // optional
+    indexName: "obituarios", // overrides main index name, optional
+    settings: {
+      // optional, any index settings
+    }
+  }
+];
 module.exports = {
   /* Your site config here */
   siteMetadata: {
@@ -52,6 +93,27 @@ module.exports = {
     },
     `gatsby-plugin-netlify-cms`,
     "gatsby-plugin-sitemap",
-    "gatsby-plugin-robots-txt"
+    "gatsby-plugin-robots-txt",
+
+    // {
+    //   resolve: `gatsby-plugin-algolia`,
+    //   options: {
+    //     appId: process.env.ALGOLIA_APP_ID,
+    //     apiKey: process.env.ALGOLIA_API_KEY,
+    //     indexName: "obituarios", // for all queries
+    //     queries,
+    //     chunkSize: 10000 // default: 1000
+    //   }
+    // }
+    {
+      resolve: `gatsby-plugin-algolia`,
+      options: {
+        appId: "4JFWWG6LZM",
+        apiKey: "4c0aa34e2df5114f2d59de0b73b912ee",
+        indexName: "obituarios", // for all queries
+        queries,
+        chunkSize: 10000 // default: 1000
+      }
+    }
   ]
 };
