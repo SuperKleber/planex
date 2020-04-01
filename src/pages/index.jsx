@@ -20,6 +20,7 @@ import RelativeList from "../components/LandingPrevenir/RelativeList";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "../components/Modal";
 import ConfirmLead from "../components/ConfirmLead";
+import ReactPixel from "react-facebook-pixel";
 const useStyles = makeStyles(() => ({
   landing: {
     height: "calc(100vh - 64px)",

@@ -5,8 +5,14 @@ import LandingObituario from "../components/LandingObituario";
 import { PaginateMenu } from "../components/LandingObituario/PaginateMenu";
 import SearchApp from "../components/SearchApp";
 const Obituarios = ({ pageContext }) => {
+  const seo = {
+    siteTitle: "Obituarios necrológicos | Planex",
+    siteDescription: "👵🏻👴🏻 Busca a tu fallecido aquí",
+    siteUrl: "https://planex.com.bo/obituarios",
+    siteCover: "/img/obituarios.png"
+  };
   return (
-    <Layout>
+    <Layout seo={seo}>
       <Menu></Menu>
       <PaginateMenu
         index={pageContext.index}

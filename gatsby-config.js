@@ -8,7 +8,7 @@ const {
   faviconDefault
 } = require("./config/defaultSeo.json");
 require("dotenv").config({
-  path: `/.env`
+  path: `.env.${process.env.NODE_ENV}`
 });
 const myQuery = `{
   allObituariosYaml(sort: { order: DESC, fields: [fechaFin] }) {
@@ -108,9 +108,9 @@ module.exports = {
     {
       resolve: `gatsby-plugin-algolia`,
       options: {
-        appId: "4JFWWG6LZM",
-        apiKey: "4c0aa34e2df5114f2d59de0b73b912ee",
-        indexName: "obituarios", // for all queries
+        appId: process.env.ALGOLIA_APP_ID,
+        apiKey: process.env.ALGOLIA_API_KEY,
+        indexName: process.env.ALGOLIA_INDEX_NAME, // for all queries
         queries,
         chunkSize: 10000 // default: 1000
       }

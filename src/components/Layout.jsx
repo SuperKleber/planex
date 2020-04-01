@@ -124,6 +124,7 @@ const Layout = ({ children, seo, pixel }) => {
         body {
           margin: 0;
           min-height: 100vh;
+          background: #fdfdfd;
           // background: linear-gradient(#d4feff 15%, #ffffff 85%);
           overflow-x: hidden;
         }

@@ -24,9 +24,13 @@ import {
 } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import CardPerson from "./LandingObituario/CardPerson";
+// const searchClient = algoliasearch(
+//   "4JFWWG6LZM",
+//   "78142e94c2de4b3d959e0498f03395c3"
+// );
 const searchClient = algoliasearch(
-  "4JFWWG6LZM",
-  "78142e94c2de4b3d959e0498f03395c3"
+  process.env.ALGOLIA_APP_ID,
+  process.env.ALGOLIA_API_KEY
 );
 const SearchBox = ({ refine, isSearchStalled, onFocus, onBlur }) => {
   return (

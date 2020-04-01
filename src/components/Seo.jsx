@@ -18,6 +18,7 @@ const Seo = ({ seo }) => {
     <Helmet>
       <title>{title}</title>
       <meta name="description" content={description} />
+      <meta name="img" content={absoluteImg} />
       <meta name="image" content={absoluteImg} />
       <link rel="canonical" href={url} />
       <meta property="og:url" content={url} />
@@ -27,10 +28,15 @@ const Seo = ({ seo }) => {
       <meta property="og:image:width" content="400" />
       <meta property="og:image:height" content="400" />
       <meta property="og:image:alt" content={title} />
+      <meta property="og:img" content={absoluteImg} />
+      <meta property="og:img:width" content="400" />
+      <meta property="og:img:height" content="400" />
+      <meta property="og:img:alt" content={title} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={absoluteImg} />
+      <meta name="twitter:img" content={absoluteImg} />
       {/* FAVICON */}
       <link
         rel="apple-touch-icon"

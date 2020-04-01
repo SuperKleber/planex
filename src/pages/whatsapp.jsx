@@ -19,8 +19,13 @@ const Whatsapp = () => {
       }
     }, 300);
   }, []);
+  const seo = {
+    siteDescription: "WHATSAPP 🤳🏼 comunícate con nosotros",
+    siteUrl: "https://planex.com.bo/whatsapp",
+    siteCover: "/img/whatsapp.png"
+  };
   return (
-    <Layout>
+    <Layout seo={seo}>
       <Container style={{ height: "100vh" }}>
         <Box
           display="flex"
