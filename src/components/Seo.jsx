@@ -1,5 +1,4 @@
 import React from "react";
-import { DialogTitle } from "@material-ui/core";
 import defaultSeo from "../../config/defaultSeo.json";
 import Helmet from "react-helmet";
 const Seo = ({ seo }) => {

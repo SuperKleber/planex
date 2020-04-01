@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import Layout from "../components/Layout";
 import Menu from "../components/Menu";
-import { Background } from "../components/Landing";
 import Alert from "../components/Alert";
 import ReactPixel from "react-facebook-pixel";
 

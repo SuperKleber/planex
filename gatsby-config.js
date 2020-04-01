@@ -27,9 +27,25 @@ const myQuery = `{
 const queries = [
   {
     query: myQuery,
-    transformer: ({ data }) =>
-      data.allObituariosYaml.edges.map(({ node }) => {
-        const obituario = {
+    // transformer: ({ data }) =>
+    //   data.allObituariosYaml.edges.map(({ node }) => {
+    //     const obituario = {
+    //       objectID: node.id,
+    //       foto:
+    //         node.foto == null
+    //           ? `${siteUrl}/uploads/avatar-prever.png`
+    //           : node.foto.indexOf("http://prever.com.bo") == 0
+    //           ? node.foto
+    //           : `${siteUrl}${node.foto}`,
+    //       nombre: node.nombre,
+    //       url: `${siteUrl}/obituarios/${node.fields.slug}`
+    //     };
+    //     return obituario;
+    //   }), // optional
+    transformer: ({ data }) => {
+      let { node } = data.allObituariosYaml.edges[0];
+      const obituarios = [
+        {
           objectID: node.id,
           foto:
             node.foto == null
@@ -39,9 +55,10 @@ const queries = [
               : `${siteUrl}${node.foto}`,
           nombre: node.nombre,
           url: `${siteUrl}/obituarios/${node.fields.slug}`
-        };
-        return obituario;
-      }), // optional
+        }
+      ];
+      return obituarios;
+    }, // optional
     indexName: "obituarios", // overrides main index name, optional
     settings: {
       // optional, any index settings
@@ -93,17 +110,17 @@ module.exports = {
     },
     `gatsby-plugin-netlify-cms`,
     "gatsby-plugin-sitemap",
-    "gatsby-plugin-robots-txt",
+    "gatsby-plugin-robots-txt"
 
-    {
-      resolve: `gatsby-plugin-algolia`,
-      options: {
-        appId: process.env.ALGOLIA_APP_ID,
-        apiKey: process.env.ALGOLIA_API_ADMIN,
-        indexName: process.env.ALGOLIA_INDEX_NAME, // for all queries
-        queries,
-        chunkSize: 10000 // default: 1000
-      }
-    }
+    // {
+    //   resolve: `gatsby-plugin-algolia`,
+    //   options: {
+    //     appId: process.env.ALGOLIA_APP_ID,
+    //     apiKey: process.env.ALGOLIA_API_ADMIN,
+    //     indexName: process.env.ALGOLIA_INDEX_NAME, // for all queries
+    //     queries,
+    //     chunkSize: 10000 // default: 1000
+    //   }
+    // }
   ]
 };

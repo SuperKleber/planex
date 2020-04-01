@@ -1,18 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { siteUrl } from "../../config/defaultSeo.json";
 import algoliasearch from "algoliasearch/lite";
 import { Link } from "gatsby";
 import {
   Highlight,
   InstantSearch,
-  RefinementList,
   Configure,
   connectHits,
   connectSearchBox
 } from "react-instantsearch-dom";
 import {
   Container,
-  Typography,
   Box,
   List,
   ListItem,
@@ -23,11 +21,6 @@ import {
   TextField
 } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
-import CardPerson from "./LandingObituario/CardPerson";
-// const searchClient = algoliasearch(
-//   "4JFWWG6LZM",
-//   "78142e94c2de4b3d959e0498f03395c3"
-// );
 let searchClient = algoliasearch("0000", "0000");
 try {
   searchClient = algoliasearch(

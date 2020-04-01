@@ -1,5 +1,5 @@
 import React from "react";
-import { Paper, Box, Typography, Divider } from "@material-ui/core";
+import { Paper, Box, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { colors } from "../../config/brand.yml";
 import { testimonials } from "../../config/testimonials.yml";

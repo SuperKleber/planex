@@ -1,24 +1,11 @@
 import React, { useState, useRef } from "react";
-import {
-  FacebookProvider,
-  Comments,
-  CommentsCount,
-  Like,
-  Share
-} from "react-facebook";
+import { FacebookProvider, Comments, CommentsCount } from "react-facebook";
 import { Link } from "gatsby";
 import Domtoimage from "dom-to-image";
 import { saveAs } from "file-saver";
 import Layout from "../components/Layout";
 import Menu from "../components/Menu";
-import {
-  Paper,
-  Box,
-  Typography,
-  Button,
-  Fab,
-  Divider
-} from "@material-ui/core";
+import { Paper, Box, Typography, Button, Fab } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Back from "@material-ui/icons/ArrowBack";
 import ImageIcon from "@material-ui/icons/ImageOutlined";
