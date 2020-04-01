@@ -10,6 +10,14 @@ const {
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`
 });
+let appId = "process.env.ALGOLIA_APP_ID";
+let apiKey = "process.env.ALGOLIA_API_KEY";
+let indexName = "process.env.ALGOLIA_INDEX_NAME";
+try {
+  appId = process.env.ALGOLIA_APP_ID;
+  apiKey = process.env.ALGOLIA_API_KEY;
+  indexName = process.env.ALGOLIA_INDEX_NAME;
+} catch (error) {}
 const myQuery = `{
   allObituariosYaml(sort: { order: DESC, fields: [fechaFin] }) {
     edges {
@@ -108,9 +116,9 @@ module.exports = {
     {
       resolve: `gatsby-plugin-algolia`,
       options: {
-        appId: process.env.ALGOLIA_APP_ID,
-        apiKey: process.env.ALGOLIA_API_KEY,
-        indexName: process.env.ALGOLIA_INDEX_NAME, // for all queries
+        appId: appId,
+        apiKey: apiKey,
+        indexName: indexName, // for all queries
         queries,
         chunkSize: 10000 // default: 1000
       }
