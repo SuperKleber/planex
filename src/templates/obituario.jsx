@@ -191,7 +191,15 @@ const Obituario = ({ pageContext, location }) => {
     siteCover: pageContext.foto ? pageContext.foto : false,
     siteUrl: `${siteUrl}/obituarios/${pageContext.fields.slug}`
   };
-  const urlAbsolute = `${siteUrl}/obituarios/${pageContext.fields.slug}`;
+
+  // La siguiente definición es simplemente para corregir
+  // el error de URL de facebook sobre "ninita-luciana-nava-duran"
+  // es una solución provisinal, el cual espero encontrar algo mejor
+  const urlAbsolute = `${siteUrl}/obituarios/${
+    pageContext.fields.slug == "ninita-luciana-nava-duran"
+      ? "ninita:-luciana-nava-duran"
+      : pageContext.fields.slug
+  }`;
 
   let fechaMisa, horaMisa, horaTraslado;
   try {
