@@ -25,6 +25,7 @@ const Footer = () => {
       <Reasons></Reasons>
       <Testimonials></Testimonials>
       {/* <Gallery></Gallery> */}
+      <Contract />
     </footer>
   );
 };
