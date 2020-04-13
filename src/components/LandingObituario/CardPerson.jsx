@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   Card,
   CardMedia,
@@ -80,6 +80,8 @@ const useStyles = makeStyles(theme => ({
 const CardPerson = ({ obituario }) => {
   const [copiedShare, setCopiedShare] = useState(false);
   const [elmentOption, setElementOption] = useState(null);
+  const [count, setCount] = useState("");
+  const countDiv = useRef(null);
   const clickOption = event => setElementOption(event.currentTarget);
   const closeOption = event => setElementOption(null);
   const { nombre, foto, fechaInicio, fechaFin, epitafio } = obituario;
@@ -89,7 +91,14 @@ const CardPerson = ({ obituario }) => {
     typeof window !== "undefined" && window.location.origin + link;
   const epitafioLimitCharacter = 100;
   const classes = useStyles();
-  const urlAbsolute = `${siteUrl}/obituarios/${obituario.fields.slug}`;
+  // La siguiente definición es simplemente para corregir
+  // el error de URL de facebook sobre "ninita-luciana-nava-duran"
+  // es una solución provisinal, el cual espero encontrar algo mejor
+  const urlAbsolute = `${siteUrl}/obituarios/${
+    obituario.fields.slug == "ninita-luciana-nava-duran"
+      ? "ninita:-luciana-nava-duran"
+      : obituario.fields.slug
+  }`;
   const shareMore = () => {
     try {
       if ("share" in navigator) {
@@ -109,6 +118,26 @@ const CardPerson = ({ obituario }) => {
       console.warn(error);
     }
   };
+  useEffect(() => {
+    const handleCount = intentos => {
+      if (intentos > 0) {
+        setTimeout(() => {
+          try {
+            let htmlCount = countDiv.current.querySelector(".fb_comments_count")
+              .textContent;
+            setCount(`${htmlCount} `);
+            console.log("Conteo de comentarios correcto");
+          } catch (error) {
+            console.warn("intento de conteo de comentarios fallido");
+            handleCount(intentos - 1);
+          }
+        }, 1000);
+      } else {
+        setCount("");
+      }
+    };
+    handleCount(5);
+  }, []);
   return (
     <FacebookProvider language="es_LA" appId="2503959843259543">
       <Box className={classes.root}>
@@ -210,13 +239,15 @@ const CardPerson = ({ obituario }) => {
                 prev: prev
               }}
             >
+              <div ref={countDiv} hidden style={{ display: "none" }}>
+                <Typography>
+                  <CommentsCount href={urlAbsolute} />
+                </Typography>
+              </div>
               <Button>
                 <Box display="flex" className={classes.CommentsCount}>
-                  <Typography>
-                    <CommentsCount href={urlAbsolute} />
-                  </Typography>
                   <Typography style={{ marginLeft: 4 }}>
-                    Condolencias
+                    {count}Condolencias
                   </Typography>
                 </Box>
               </Button>
