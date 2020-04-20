@@ -130,6 +130,36 @@ const PaymentMethod = () => {
           </Box>
         )
       }
+    },
+    {
+      title: "Pago ventanilla FASSIL",
+      img: "/img/bank.svg",
+      modal: {
+        children: () => (
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            flexDirection="column"
+          >
+            <List>
+              <ListItem>
+                <ListItemText>Banco: FASSIL</ListItemText>
+              </ListItem>
+              <Divider />
+              <ListItem>
+                <ListItemText>Nombre: INSTITUCIÓN PREVER</ListItemText>
+              </ListItem>
+              <Divider />
+              <ListItem>
+                <ListItemText>
+                  Glosa: Su código de contrato o el nombre completo del titular
+                </ListItemText>
+              </ListItem>
+            </List>
+          </Box>
+        )
+      }
     }
     // {
     //   title: "Escaneo de QR con banca móvil",
