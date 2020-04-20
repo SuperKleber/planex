@@ -9,7 +9,8 @@ import {
   List,
   ListItem,
   ListItemText,
-  Divider
+  Divider,
+  Button
 } from "@material-ui/core";
 import Modal from "./Modal";
 import { makeStyles } from "@material-ui/core/styles";
@@ -17,7 +18,7 @@ const useStyles = makeStyles(() => ({
   root: {
     minHeight: "calc(100vh - 90px)",
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
     alignItems: "center",
     "@media (max-width: 550px)": {
       flexDirection: "column"
@@ -42,38 +43,38 @@ const PaymentMethod = () => {
   const [modal, setModal] = useState({ title: "", children: () => <></> });
   const classes = useStyles();
   const paymentMethods = [
+    // {
+    //   title: "Pago online con tarjeta",
+    //   img: "/img/tarjeta.svg",
+    //   modal: {
+    //     children: () => (
+    //       <div
+    //         className="gumroad-product-embed"
+    //         data-gumroad-product-id="uhlth"
+    //       >
+    //         <iframe
+    //           allowFullScreen="allowfullscreen"
+    //           className="gumroad-embed-iframe"
+    //           scrolling="yes"
+    //           id={`gumroad-embed-iframe-uhlth`}
+    //           style={{
+    //             display: "block !important",
+    //             border: "none !important",
+    //             margin: "0 auto !important",
+    //             padding: "0 !important",
+    //             maxWidth: "100% !important",
+    //             width: "100%",
+    //             height: 1300,
+    //             border: "none"
+    //           }}
+    //           src={`https://gumroad.com/l/uhlth?null&&as_embed=true&referrer=https%3A%2F%2Fkleber.digital%2Fproductos%2F&origin=https%3A%2F%2Fkleber.digital&locale=es`}
+    //         />
+    //       </div>
+    //     )
+    //   }
+    // },
     {
-      title: "Pago online con tarjeta",
-      img: "/img/tarjeta.svg",
-      modal: {
-        children: () => (
-          <div
-            className="gumroad-product-embed"
-            data-gumroad-product-id="uhlth"
-          >
-            <iframe
-              allowFullScreen="allowfullscreen"
-              className="gumroad-embed-iframe"
-              scrolling="yes"
-              id={`gumroad-embed-iframe-uhlth`}
-              style={{
-                display: "block !important",
-                border: "none !important",
-                margin: "0 auto !important",
-                padding: "0 !important",
-                maxWidth: "100% !important",
-                width: "100%",
-                height: 1300,
-                border: "none"
-              }}
-              src={`https://gumroad.com/l/uhlth?null&&as_embed=true&referrer=https%3A%2F%2Fkleber.digital%2Fproductos%2F&origin=https%3A%2F%2Fkleber.digital&locale=es`}
-            />
-          </div>
-        )
-      }
-    },
-    {
-      title: "Transferencia Bancaria",
+      title: "Transferencia Inter-bancaria",
       img: "/img/bankmovil.svg",
       modal: {
         children: () => (
@@ -106,12 +107,37 @@ const PaymentMethod = () => {
       }
     },
     {
-      title: "Escaneo de QR con banca móvil",
-      img: "/img/qr.svg",
+      title: "Pago en oficina",
+      img: "/img/oficina.svg",
       modal: {
-        children: () => <Typography>QR </Typography>
+        children: () => (
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            flexDirection="column"
+          >
+            <Typography>
+              2do Anillo | Av. Santa Cruz | Esq. Bautista Saveedra
+            </Typography>
+            <hr />
+            <a href="https://goo.gl/maps/qTvRRNbYRoKbVvHJ9">
+              <Button color="primary" variant="contained">
+                Ver en mapa
+              </Button>
+            </a>
+            <hr />
+          </Box>
+        )
       }
     }
+    // {
+    //   title: "Escaneo de QR con banca móvil",
+    //   img: "/img/qr.svg",
+    //   modal: {
+    //     children: () => <Typography>QR </Typography>
+    //   }
+    // }
   ];
   return (
     <Box className={classes.root}>
