@@ -11,6 +11,7 @@ import { makeStyles, createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import { colors } from "../../config/brand.yml";
 import { reasons } from "../../config/reasons.yml";
+import { Link } from "gatsby";
 const useStyles = makeStyles(() => ({
   root: {
     marginBottom: 50
@@ -98,11 +99,11 @@ const Reasons = () => {
             justifyContent="center"
             alignItems="center"
           >
-            <a href="#planes">
+            <Link to="/#planes">
               <Button variant="contained" color="primary">
                 Ver planes
               </Button>
-            </a>
+            </Link>
 
             {/* <Button variant="outlined" color="secondary">
               Servicio al cliente

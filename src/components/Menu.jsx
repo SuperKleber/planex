@@ -110,8 +110,11 @@ const Menu = ({ menuFloat = true }) => {
                 {/* <Link to="/prevenir">
                     <MenuItem>Previsión</MenuItem>
                   </Link> */}
-                <Link to="obituarios">
+                <Link to="/obituarios">
                   <MenuItem>Obituarios</MenuItem>
+                </Link>
+                <Link to="/pagos">
+                  <MenuItem>Métodos de pago</MenuItem>
                 </Link>
               </MenuResponsive>
               <Box

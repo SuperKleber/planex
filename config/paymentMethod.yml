@@ -1,0 +1,3 @@
+paymentMethod:
+  - title: Pago con tarjeta
+    cover: "/img/tarjetaPay.png"
