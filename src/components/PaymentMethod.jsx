@@ -85,7 +85,7 @@ const PaymentMethod = () => {
               </ListItem>
               <Divider />
               <ListItem>
-                <ListItemText>Nombre: SIGLOS S.R.L.</ListItemText>
+                <ListItemText>Nombre: SIGLOS</ListItemText>
               </ListItem>
               <Divider />
               <ListItem>
@@ -117,8 +117,12 @@ const PaymentMethod = () => {
             alignItems="center"
             flexDirection="column"
           >
-            <Typography>
+            <Typography variant="subtitle1">
               2do Anillo | Av. Santa Cruz | Esq. Bautista Saveedra
+            </Typography>
+            <Typography variant="caption">
+              Abierto <strong>24 horas</strong> del día, <strong>7 días</strong>{" "}
+              a la semana
             </Typography>
             <hr />
             <a href="https://goo.gl/maps/qTvRRNbYRoKbVvHJ9">
