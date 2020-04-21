@@ -93,6 +93,10 @@ const PaymentMethod = () => {
               </ListItem>
               <Divider />
               <ListItem>
+                <ListItemText>NIT: 177090029</ListItemText>
+              </ListItem>
+              <Divider />
+              <ListItem>
                 <ListItemText>Cuenta Corriente BOB</ListItemText>
               </ListItem>
               <Divider />
