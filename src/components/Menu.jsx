@@ -122,7 +122,16 @@ const Menu = ({ menuFloat = true }) => {
                 justifyContent="space-between"
                 alignItems="center"
               >
-                <Link to="/#planes">
+                <Link to="/pagos">
+                  <Button
+                    variant="outlined"
+                    style={{ marginRight: 8 }}
+                    color="primary"
+                  >
+                    ¿Cómo pagar?
+                  </Button>
+                </Link>
+                {/* <Link to="/#planes">
                   <Button
                     variant="outlined"
                     style={{ marginRight: 8 }}
@@ -130,7 +139,7 @@ const Menu = ({ menuFloat = true }) => {
                   >
                     Planes🕊️
                   </Button>
-                </Link>
+                </Link> */}
                 <Button
                   onClick={() => {
                     setEmergency(!emergency);
