@@ -1,10 +1,10 @@
 nombre: GABRIEL ROJAS ROJAS
 foto: /uploads/fe5b87e4-f783-4732-a413-707b454e29e2.jpg
-fechaFin: 2020-01-13T03:07:21.884Z
-epitafio: 'Yo soy la resurrección y la vida el que en mi cree, aunque haya muerto vivirá.'
+fechaFin: "2020-01-13T03:07:21.884Z"
+epitafio: "Yo soy la resurrección y la vida el que en mi cree, aunque haya muerto vivirá."
 misa:
   fechaMisa: 2020-01-14T03:07:21.922Z
-  horaMisa: '16:00'
+  horaMisa: "16:00"
   lugarCementerio: EL PAJONAL
-  urlLugarCementerio: 'https://goo.gl/maps/3YcgdqJxKL7ndfnAA'
-  urlLugarMisa: 'https://goo.gl/maps/C1DRLfc5Sj9i2nPu9'
+  urlLugarCementerio: "https://goo.gl/maps/3YcgdqJxKL7ndfnAA"
+  urlLugarMisa: "https://goo.gl/maps/C1DRLfc5Sj9i2nPu9"

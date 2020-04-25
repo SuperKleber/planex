@@ -1,12 +1,12 @@
 nombre: MARÍA DEL CARMEN ALCOBA RÍOS
 foto: /uploads/obituario-3706.jpg
-fechaFin: 2020-02-29T22:30:00.000Z
+fechaFin: "2020-02-29T22:30:00.000Z"
 epitafio: >-
   Pasaste como una estrella fugaz en nuestras vidas pero tu luz brillara por
   siempre en nuestros corazones.
 misa:
   fechaMisa: 2020-03-01T19:00:00.000Z
-  horaMisa: '15:00'
+  horaMisa: "15:00"
   lugarCementerio: '"General"'
   urlLugarCementerio: >-
     https://www.google.com/maps/place/Cementerio+General+de+Santa+Cruz/@-17.7813592,-63.174306,17z/data=!3m1!4b1!4m5!3m4!1s0x93f1e8710b09696d:0x3f4b368b93efacb!8m2!3d-17.7813592!4d-63.1721173?shorturl=1

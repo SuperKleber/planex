@@ -1,12 +1,12 @@
 nombre: ROSA LUDVY ESPINOZA LIMON
 foto: /uploads/obituario-3705.jpg
-fechaFin: 2020-02-27T09:00:00.000Z
+fechaFin: "2020-02-27T09:00:00.000Z"
 epitafio: >-
   Gracias Señor por darnos su vida y ejemplo, fuente de amor, comprensión y
   rectitud.
 misa:
   fechaMisa: 2020-02-28T13:00:00.000Z
-  horaMisa: '09:00'
+  horaMisa: "09:00"
   lugarCementerio: '"La Cuchilla"'
   urlLugarCementerio: >-
     https://www.google.com/maps/place/Cementerio+La+Cuchilla/@-17.8204948,-63.19924,17z/data=!3m1!4b1!4m5!3m4!1s0x93f1e82cab12c6d1:0x146dc6ea281a3f9a!8m2!3d-17.8204948!4d-63.1970513?shorturl=1

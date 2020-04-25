@@ -1,12 +1,12 @@
 nombre: JOSE MARCELO IRIARTE YUJA (MARCELITO)
 foto: /uploads/obituario-3676.jpg
-fechaFin: 2020-01-18T23:41:57.225Z
+fechaFin: "2020-01-18T23:41:57.225Z"
 epitafio: |-
   Le dijo Dios: Yo soy la resurrección y la vida.
   El que cree en mi, aunque este muerto vivirá.
 misa:
   fechaMisa: 2020-01-19T23:41:57.268Z
-  horaMisa: '08:30'
+  horaMisa: "08:30"
   lugarCementerio: '"TRASLADO A SANTA ANA DEL YACUMA"'
-  urlLugarCementerio: 'https://goo.gl/maps/FUTjVAKEvpprT8QR9'
-  urlLugarMisa: 'https://goo.gl/maps/LARupLfuAavbEVBJ7'
+  urlLugarCementerio: "https://goo.gl/maps/FUTjVAKEvpprT8QR9"
+  urlLugarMisa: "https://goo.gl/maps/LARupLfuAavbEVBJ7"

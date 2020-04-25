@@ -1,13 +1,13 @@
 nombre: JORGE JOHNS MANSILLA
 foto: /uploads/obituario-3689.jpg
-fechaFin: 2020-02-04T00:00:00.000Z
+fechaFin: "2020-02-04T00:00:00.000Z"
 epitafio: >-
   El señor es mi pastor, nada me faltará, en lugares de delicados pastos me hará
   descansar, junto a aguas de reposo me pastoreará.
 misa:
   fechaMisa: 2020-02-05T00:00:00.000Z
-  horaMisa: '14:30'
+  horaMisa: "14:30"
   lugarCementerio: MONTE SACRO
-  urlLugarCementerio: 'https://goo.gl/maps/VW5xDRQaNNaEUDCf9'
+  urlLugarCementerio: "https://goo.gl/maps/VW5xDRQaNNaEUDCf9"
   urlLugarMisa: >-
     https://www.google.com/maps/place/Prever+-+Sal%C3%B3n+Velatorio/@-17.7941441,-63.16884,16z/data=!4m5!3m4!1s0x93f1e85d62ea77cb:0xfd9e12d454893aca!8m2!3d-17.7943484!4d-63.1657501
