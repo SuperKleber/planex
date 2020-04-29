@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import { FacebookProvider, Comments, CommentsCount } from "react-facebook";
+import { Disqus, CommentCount } from "gatsby-plugin-disqus";
 import { Link } from "gatsby";
 import Domtoimage from "dom-to-image";
 import { saveAs } from "file-saver";
@@ -171,6 +172,9 @@ const useStyles = makeStyles(theme => ({
       // fontSize: "2em",
       color: "white"
     }
+  },
+  disqus: {
+    width: "312px"
   }
 }));
 const Obituario = ({ pageContext, location }) => {
@@ -233,7 +237,11 @@ const Obituario = ({ pageContext, location }) => {
         console.error(e);
       });
   };
-
+  const disqusConfig = {
+    url: urlAbsolute,
+    identifier: pageContext.id,
+    title: pageContext.nombre
+  };
   return (
     <Layout seo={seo}>
       <Menu></Menu>
@@ -355,10 +363,15 @@ const Obituario = ({ pageContext, location }) => {
             </a>
           )}
         </Paper>
-
-        <FacebookProvider language="es_LA" appId="2503959843259543">
+        <CommentCount
+          className={classes.disqus}
+          config={disqusConfig}
+          placeholder={"..."}
+        ></CommentCount>
+        <Disqus className={classes.disqus} config={disqusConfig}></Disqus>
+        {/* <FacebookProvider language="es_LA" appId="2503959843259543">
           <Comments href={urlAbsolute} />
-        </FacebookProvider>
+        </FacebookProvider> */}
       </Box>
       <div style={hiddenImg}>
         <div
@@ -421,11 +434,11 @@ const Obituario = ({ pageContext, location }) => {
                 className={`${classes.obituarioImgPaper} ${classes.obituarioImgCallToAction}`}
               >
                 <Box display="flex">
-                  <Typography>
+                  {/* <Typography>
                     <FacebookProvider language="es_LA" appId="2503959843259543">
                       <CommentsCount href={urlAbsolute} />
                     </FacebookProvider>
-                  </Typography>
+                  </Typography> */}
                   <Typography gutterBottom style={{ marginLeft: 4 }}>
                     CONDOLENCIAS
                   </Typography>

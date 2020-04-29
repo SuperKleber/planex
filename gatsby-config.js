@@ -110,7 +110,13 @@ module.exports = {
     },
     `gatsby-plugin-netlify-cms`,
     "gatsby-plugin-sitemap",
-    "gatsby-plugin-robots-txt"
+    "gatsby-plugin-robots-txt",
+    {
+      resolve: `gatsby-plugin-disqus`,
+      options: {
+        shortname: `planex`
+      }
+    }
 
     // {
     //   resolve: `gatsby-plugin-algolia`,

@@ -1,6 +1,8 @@
 colors:
   lightBlue: "#d4feff"
   purple: "#663387"
+  purpleDark: "#3f2256"
+  purpleLight: "#9751ce"
   gold: "#a27400"
   green: "#23cc79"
   red: "#94323f"
