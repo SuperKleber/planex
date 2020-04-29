@@ -1,6 +1,5 @@
 import React, { useState, useRef } from "react";
 import { FacebookProvider, Comments, CommentsCount } from "react-facebook";
-import { Disqus, CommentCount } from "gatsby-plugin-disqus";
 import { Link } from "gatsby";
 import Domtoimage from "dom-to-image";
 import { saveAs } from "file-saver";
@@ -22,6 +21,7 @@ import { siteUrl } from "../../config/defaultSeo.json";
 import firstUpperCase from "../../lib/firstUpperCase";
 import { FacebookIcon, FacebookShareButton } from "react-share";
 import Modal from "../components/Modal";
+import CountCommentsFacebook from "../components/CountCommentsFacebook";
 const useStyles = makeStyles(theme => ({
   prev: {
     margin: 16
@@ -180,8 +180,11 @@ const useStyles = makeStyles(theme => ({
       color: "white"
     }
   },
-  disqus: {
-    width: "312px"
+  commentCount: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
   }
 }));
 const Obituario = ({ pageContext, location }) => {
@@ -244,11 +247,7 @@ const Obituario = ({ pageContext, location }) => {
         console.error(e);
       });
   };
-  const disqusConfig = {
-    url: urlAbsolute,
-    identifier: pageContext.id,
-    title: pageContext.nombre
-  };
+
   return (
     <Layout seo={seo}>
       <Menu></Menu>
@@ -269,8 +268,8 @@ const Obituario = ({ pageContext, location }) => {
           <Typography variant="h4">{nombre}</Typography>
           <Typography gutterBottom>{pageContext.fechaFin}</Typography>
           <Typography>{pageContext.epitafio}</Typography>
-          {/* 
-          {pageContext.misa && (
+
+          {/* {pageContext.misa && (
             <>
               <Button
                 variant="contained"
@@ -349,20 +348,12 @@ const Obituario = ({ pageContext, location }) => {
               </Modal>
             </>
           )} */}
+
           <Divider></Divider>
+          <Typography align="center" style={{ margin: "8px 0" }}>
+            <CountCommentsFacebook url={urlAbsolute} />
+          </Typography>
           <a href="#condolencias">
-            <CommentCount
-              style={{
-                fontFamily: "sans-serif",
-                textAlign: "center",
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-                margin: "8px 0"
-              }}
-              config={disqusConfig}
-              placeholder={"Sé la primera condolencia"}
-            ></CommentCount>
             <Button color="primary" variant="contained" fullWidth>
               Enviar condolencias 😪
             </Button>
@@ -388,11 +379,9 @@ const Obituario = ({ pageContext, location }) => {
           )} */}
         </Paper>
         <div id="condolencias">
-          <Disqus className={classes.disqus} config={disqusConfig}></Disqus>
-
-          {/* <FacebookProvider language="es_LA" appId="2503959843259543">
-          <Comments href={urlAbsolute} />
-        </FacebookProvider> */}
+          <FacebookProvider language="es_LA" appId="2503959843259543">
+            <Comments href={urlAbsolute} />
+          </FacebookProvider>
         </div>
       </Box>
       <div style={hiddenImg}>
@@ -456,11 +445,11 @@ const Obituario = ({ pageContext, location }) => {
                 className={`${classes.obituarioImgPaper} ${classes.obituarioImgCallToAction}`}
               >
                 <Box display="flex">
-                  {/* <Typography>
+                  <Typography>
                     <FacebookProvider language="es_LA" appId="2503959843259543">
                       <CommentsCount href={urlAbsolute} />
                     </FacebookProvider>
-                  </Typography> */}
+                  </Typography>
                   <Typography gutterBottom style={{ marginLeft: 4 }}>
                     CONDOLENCIAS
                   </Typography>
