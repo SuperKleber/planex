@@ -6,7 +6,14 @@ import Domtoimage from "dom-to-image";
 import { saveAs } from "file-saver";
 import Layout from "../components/Layout";
 import Menu from "../components/Menu";
-import { Paper, Box, Typography, Button, Fab } from "@material-ui/core";
+import {
+  Paper,
+  Box,
+  Typography,
+  Button,
+  Fab,
+  Divider
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Back from "@material-ui/icons/ArrowBack";
 import ImageIcon from "@material-ui/icons/ImageOutlined";
@@ -262,7 +269,7 @@ const Obituario = ({ pageContext, location }) => {
           <Typography variant="h4">{nombre}</Typography>
           <Typography gutterBottom>{pageContext.fechaFin}</Typography>
           <Typography>{pageContext.epitafio}</Typography>
-
+          {/* 
           {pageContext.misa && (
             <>
               <Button
@@ -341,15 +348,32 @@ const Obituario = ({ pageContext, location }) => {
                 </Box>
               </Modal>
             </>
-          )}
-
+          )} */}
+          <Divider></Divider>
+          <a href="#condolencias">
+            <CommentCount
+              style={{
+                fontFamily: "sans-serif",
+                textAlign: "center",
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                margin: "8px 0"
+              }}
+              config={disqusConfig}
+              placeholder={"Sé la primera condolencia"}
+            ></CommentCount>
+            <Button color="primary" variant="contained" fullWidth>
+              Enviar condolencias 😪
+            </Button>
+          </a>
           <FacebookShareButton url={urlAbsolute}>
             <Button fullWidth className={classes.share}>
               <FacebookIcon size={30}></FacebookIcon>
               Compartir
             </Button>
           </FacebookShareButton>
-          {pageContext.misa && (
+          {/* {pageContext.misa && (
             <a href="#obituarioImg">
               <Button
                 variant="outlined"
@@ -361,17 +385,15 @@ const Obituario = ({ pageContext, location }) => {
                 Descargar
               </Button>
             </a>
-          )}
+          )} */}
         </Paper>
-        <CommentCount
-          className={classes.disqus}
-          config={disqusConfig}
-          placeholder={"..."}
-        ></CommentCount>
-        <Disqus className={classes.disqus} config={disqusConfig}></Disqus>
-        {/* <FacebookProvider language="es_LA" appId="2503959843259543">
+        <div id="condolencias">
+          <Disqus className={classes.disqus} config={disqusConfig}></Disqus>
+
+          {/* <FacebookProvider language="es_LA" appId="2503959843259543">
           <Comments href={urlAbsolute} />
         </FacebookProvider> */}
+        </div>
       </Box>
       <div style={hiddenImg}>
         <div
