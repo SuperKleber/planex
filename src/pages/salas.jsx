@@ -95,7 +95,7 @@ const Salas = () => {
               SIEMPRE ABIERTOS 24/7
             </Typography>
             <Typography gutterBottom variant="subtitle1">
-              En estos tiempos de pandemias adaptamos nuestros servicio con
+              En estos tiempos de pandemias adaptamos nuestros servicios con
               todas las normas de bioseguridad
             </Typography>
             <a className={classes.contactMobile} href="tel:33469191">
@@ -148,7 +148,7 @@ const Salas = () => {
                   <Divider />
                   <ListItem>
                     <ListItemText>
-                      Te damas Certificado de atención para que puedas transitar
+                      Te damos Certificado de atención para que puedas transitar
                     </ListItemText>
                   </ListItem>
                   <Divider />
