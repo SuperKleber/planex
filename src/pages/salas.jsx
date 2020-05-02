@@ -22,6 +22,7 @@ import {
 } from "@material-ui/core";
 import Menu from "../components/Menu";
 import { colors } from "../../config/brand.yml";
+import PhoneIcon from "@material-ui/icons/Phone";
 const useStyles = makeStyles({
   root: {
     width: "100%",
@@ -57,6 +58,17 @@ const useStyles = makeStyles({
   media: {
     height: 170,
     width: 340
+  },
+  contact: {
+    "@media (max-width: 550px)": {
+      display: "none"
+    }
+  },
+  contactMobile: {
+    display: "none",
+    "@media (max-width: 550px)": {
+      display: "flex"
+    }
   }
 });
 const Salas = () => {
@@ -86,6 +98,27 @@ const Salas = () => {
               En estos tiempos de pandemias adaptamos nuestros servicio con
               todas las normas de bioseguridad
             </Typography>
+            <a className={classes.contactMobile} href="tel:+59133469191">
+              <Button variant="contained" color="primary">
+                <PhoneIcon></PhoneIcon> Guardar contacto de EMERGENCIA
+              </Button>
+            </a>
+            <Paper className={classes.contact} style={{ padding: 8 }}>
+              <Typography variant="subtitle1">
+                Guarda este número de EMERGENCIA funeraria
+                <strong
+                  style={{
+                    marginLeft: 8,
+                    color: colors.purple,
+                    border: `1px solid ${colors.purple}`,
+                    padding: "0 12px",
+                    borderRadius: 16
+                  }}
+                >
+                  33469191
+                </strong>
+              </Typography>
+            </Paper>
           </Box>
           <br />
           <Box
@@ -103,9 +136,9 @@ const Salas = () => {
               ></CardMedia>
               <CardContent>
                 <Typography gutterBottom variant="h5" component="h2">
-                  Servicio funerario completo
+                  Servicio funerario express
                 </Typography>
-                <Chip label="3190Bs" color="primary" variant="outlined"></Chip>
+                <Chip label="3490Bs" color="primary" variant="outlined"></Chip>
                 <List>
                   <ListItem>
                     <ListItemText>
@@ -121,11 +154,33 @@ const Salas = () => {
                   </ListItem>
                   <Divider />
                   <ListItem>
-                    <ListItemText>Salón velatorio y cafetería</ListItemText>
+                    <ListItemText>
+                      Salón velatorio y cafetería
+                      <Chip
+                        variant="outlined"
+                        label="oferta"
+                        style={{
+                          color: colors.green,
+                          border: `1px solid ${colors.green}`,
+                          marginLeft: 8
+                        }}
+                      ></Chip>
+                    </ListItemText>
                   </ListItem>
                   <Divider />
                   <ListItem>
-                    <ListItemText>Necrológico virtual</ListItemText>
+                    <ListItemText>
+                      Necrológico virtual
+                      <Chip
+                        variant="outlined"
+                        label="-50% descuento"
+                        style={{
+                          color: colors.green,
+                          border: `1px solid ${colors.green}`,
+                          marginLeft: 8
+                        }}
+                      ></Chip>
+                    </ListItemText>
                   </ListItem>
                 </List>
               </CardContent>
@@ -152,15 +207,29 @@ const Salas = () => {
                 </Typography>
                 <Chip label="4490Bs" variant="outlined" />
                 <br />
+
                 <br />
                 <Typography variant="body2" color="textSecondary" component="p">
                   Todos necesitamos despedir a nuestros seres queridos, si no
                   puedes venir a nuestros Salones de velación nosotros iremos
                   donde usted.
                 </Typography>
-                <Typography variant="caption" color="textSecondary">
-                  Recomendamos por temas de salubridad asistir al Salón
-                  Velatorio
+                <Divider></Divider>
+                <br />
+                <Typography color="textSecondary">
+                  <Chip
+                    variant="outlined"
+                    label="WARNING"
+                    style={{
+                      color: colors.gold,
+                      border: `1px solid ${colors.gold}`,
+                      marginRight: 8
+                    }}
+                  ></Chip>
+                  <strong>
+                    Recomendamos por temas de salubridad asistir al Salón
+                    Velatorio. NO LE HABRAS TU HOGAR AL VIRUS
+                  </strong>
                 </Typography>
               </CardContent>
               <CardActions>

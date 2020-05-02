@@ -111,10 +111,13 @@ const Menu = ({ menuFloat = true }) => {
                     <MenuItem>Previsión</MenuItem>
                   </Link> */}
                 <Link to="/obituarios">
-                  <MenuItem>Obituarios</MenuItem>
+                  <MenuItem>Obituarios 👴🏼👵🏽</MenuItem>
                 </Link>
                 <Link to="/pagos">
                   <MenuItem>Métodos de pago</MenuItem>
+                </Link>
+                <Link to="/salas">
+                  <MenuItem>Salón Velatorio 🕯️</MenuItem>
                 </Link>
               </MenuResponsive>
               <Box
@@ -131,6 +134,7 @@ const Menu = ({ menuFloat = true }) => {
                     ¿Cómo pagar?
                   </Button>
                 </Link>
+
                 {/* <Link to="/#planes">
                   <Button
                     variant="outlined"
