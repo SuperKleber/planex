@@ -98,7 +98,7 @@ const Salas = () => {
               En estos tiempos de pandemias adaptamos nuestros servicio con
               todas las normas de bioseguridad
             </Typography>
-            <a className={classes.contactMobile} href="tel:+59133469191">
+            <a className={classes.contactMobile} href="tel:33469191">
               <Button variant="contained" color="primary">
                 <PhoneIcon></PhoneIcon> Guardar contacto de EMERGENCIA
               </Button>
