@@ -106,6 +106,16 @@ const PaymentMethod = () => {
                 </ListItemText>
               </ListItem>
             </List>
+            <a
+              target="_blank"
+              href="https://www.algolia.com/realtime-search-demo/consultar-codigo-de-cliente"
+            >
+              <Typography variant="caption" color="primary">
+                ¿Cuál es mi código de contrato?
+              </Typography>
+            </a>
+            <br />
+            <br />
           </Box>
         )
       }
@@ -129,7 +139,7 @@ const PaymentMethod = () => {
               a la semana
             </Typography>
             <hr />
-            <a href="https://goo.gl/maps/qTvRRNbYRoKbVvHJ9">
+            <a target="_blank" href="https://goo.gl/maps/qTvRRNbYRoKbVvHJ9">
               <Button color="primary" variant="contained">
                 Ver en mapa
               </Button>
@@ -165,6 +175,16 @@ const PaymentMethod = () => {
                 </ListItemText>
               </ListItem>
             </List>
+            <hr />
+            <a
+              target="_blank"
+              href="https://www.algolia.com/realtime-search-demo/consultar-codigo-de-cliente"
+            >
+              <Typography variant="caption" color="primary">
+                ¿Cuál es mi código de contrato?
+              </Typography>
+            </a>
+            <hr />
           </Box>
         )
       }
