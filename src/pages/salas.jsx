@@ -148,8 +148,7 @@ const Salas = () => {
                   <Divider />
                   <ListItem>
                     <ListItemText>
-                      Te damas Certificado de atención para que puedas
-                      movilizarte
+                      Te damas Certificado de atención para que puedas transitar
                     </ListItemText>
                   </ListItem>
                   <Divider />
@@ -226,10 +225,7 @@ const Salas = () => {
                       marginRight: 8
                     }}
                   ></Chip>
-                  <strong>
-                    Recomendamos por temas de salubridad asistir al Salón
-                    Velatorio. NO LE HABRAS TU HOGAR AL VIRUS
-                  </strong>
+                  <strong>RECOMENDAMOS NO LE ABRAS TU HOGAR AL VIRUS</strong>
                 </Typography>
               </CardContent>
               <CardActions>
