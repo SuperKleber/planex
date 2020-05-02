@@ -7,7 +7,7 @@ const encuesta = () => {
     <Layout>
       <Menu></Menu>
       <iframe
-        src="https://docs.google.com/forms/d/e/1FAIpQLSd2toD7Cvq6NuBx8Cv0WKeyRbaKXD1i_av87mlBqVct6kWB_w/viewform?embedded=true"
+        src="https://docs.google.com/forms/d/e/1FAIpQLSfcO1nRpGEl0W8vr6O2Ur2CsB8wp-_EKXxDUm72tJa0yRQmnQ/viewform?embedded=true"
         style={{ width: "100%", height: "100vh" }}
         frameBorder={0}
         marginHeight={0}
