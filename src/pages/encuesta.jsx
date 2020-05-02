@@ -8,7 +8,7 @@ const encuesta = () => {
     <Layout>
       <Menu></Menu>
       <Container>
-        <Box
+        {/* <Box
           style={{ width: "100%" }}
           display="flex"
           justifyContent="center"
@@ -22,7 +22,7 @@ const encuesta = () => {
               Consulta tu código de Cliente Prever
             </Button>
           </a>
-        </Box>
+        </Box> */}
         <iframe
           src="https://docs.google.com/forms/d/e/1FAIpQLSfcO1nRpGEl0W8vr6O2Ur2CsB8wp-_EKXxDUm72tJa0yRQmnQ/viewform?embedded=true"
           style={{ width: "100%", height: "100vh" }}
