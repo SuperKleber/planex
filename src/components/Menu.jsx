@@ -158,7 +158,18 @@ const Menu = ({ menuFloat = true }) => {
           </Container>
           <Modal
             title={
-              <CopyToClipboard text="33469191" onCopy={() => setCopied(true)}>
+              <CopyToClipboard
+                text="33469191"
+                onCopy={() => {
+                  setCopied(true);
+                  ReactPixel.track("Contact", {
+                    type: "copy",
+                    num: "33469191",
+                    description: "Copiar teléfono de emergencia",
+                    textButton: "Atención 24 horas (+591)33469191"
+                  });
+                }}
+              >
                 <Button fullWidth>Atención 24 horas (+591)33469191</Button>
               </CopyToClipboard>
             }
@@ -173,6 +184,14 @@ const Menu = ({ menuFloat = true }) => {
                 onClose={() => setCopied(false)}
               ></Alert>
               <a
+                onClick={() => {
+                  ReactPixel.track("Contact", {
+                    type: "whatsapp",
+                    num: "33469191",
+                    description: "whatsapp de emergencia",
+                    textButton: "+591-33469191"
+                  });
+                }}
                 href={`https://api.whatsapp.com/send?phone=59133469191&text=${messageEmergencyWhatsapp}`}
               >
                 <Button
@@ -185,7 +204,17 @@ const Menu = ({ menuFloat = true }) => {
                   +591-33469191
                 </Button>
               </a>
-              <a href="tel:33469191">
+              <a
+                onClick={() => {
+                  ReactPixel.track("Contact", {
+                    type: "phone",
+                    num: "33469191",
+                    description: "teléfono de emergencia",
+                    textButton: "Llamar contacto"
+                  });
+                }}
+                href="tel:33469191"
+              >
                 <Button fullWidth={true} color="primary" variant="contained">
                   Llamar contacto
                 </Button>

@@ -1,5 +1,5 @@
 import React from "react";
-
+import ReactPixel from "react-facebook-pixel";
 import Layout from "../components/Layout";
 import { makeStyles } from "@material-ui/core/styles";
 import {
@@ -98,7 +98,18 @@ const Salas = () => {
               En estos tiempos de pandemias adaptamos nuestros servicios con
               todas las normas de bioseguridad
             </Typography>
-            <a className={classes.contactMobile} href="tel:33469191">
+            <a
+              className={classes.contactMobile}
+              onClick={() => {
+                ReactPixel.track("Contact", {
+                  type: "phone",
+                  num: "33469191",
+                  description: "teléfono de emergencia",
+                  textButton: "Llamar contacto"
+                });
+              }}
+              href="tel:33469191"
+            >
               <Button variant="contained" color="primary">
                 <PhoneIcon></PhoneIcon> Guardar contacto de EMERGENCIA
               </Button>
@@ -185,6 +196,14 @@ const Salas = () => {
               </CardContent>
               <CardActions>
                 <a
+                  onClick={() => {
+                    ReactPixel.track("Contact", {
+                      type: "whatsapp",
+                      num: "33469191",
+                      description: "Servicio salón velatorio",
+                      textButton: " Consultar Servicio"
+                    });
+                  }}
                   target="_blank"
                   href="https://api.whatsapp.com/send?phone=59133469191&text=Quiero%20información%20del%20serivicio%20funerario%20en%20salas"
                 >
@@ -230,6 +249,14 @@ const Salas = () => {
               </CardContent>
               <CardActions>
                 <a
+                  onClick={() => {
+                    ReactPixel.track("Contact", {
+                      type: "whatsapp",
+                      num: "33469191",
+                      description: "Servicio velatorio domicilio",
+                      textButton: "Consultar Servicio"
+                    });
+                  }}
                   target="_blank"
                   href="https://api.whatsapp.com/send?phone=59133469191&text=Quiero%20información%20del%20serivicio%20funerario%20a%20domicilio"
                 >
