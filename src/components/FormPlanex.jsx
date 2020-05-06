@@ -36,9 +36,10 @@ const useStyles = makeStyles(theme => ({
     marginBottom: 16
   }
 }));
-const FormContact = ({ initialPlan, lead, setLead }) => {
+const FormContact = ({ initialPlan, onSent = () => null }) => {
   const classes = useStyles();
 
+  const [sent, setSent] = useState(false);
   const [customFamily, setCustomFamily] = useState([]);
 
   const [nombres, setNombres] = useState("");
@@ -67,12 +68,14 @@ const FormContact = ({ initialPlan, lead, setLead }) => {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode({ "form-name": "prevision", ...data })
     }).then(res => {
-      // ReactPixel.track("Lead");
-      setLead(true);
+      ReactPixel.track("InitiateCheckout");
+      setSent(true);
+      onSent();
       console.log(data);
     });
   };
   useEffect(() => {
+    ReactPixel.trackCustom("InitiateForm");
     if (customFamily.length !== 0) {
       let newFamilyJson = [];
       let newCsv = '"parentesco", "nombres", "apellidos", "edad"\n';
@@ -85,7 +88,7 @@ const FormContact = ({ initialPlan, lead, setLead }) => {
       setFamilyJson([...newFamilyJson]);
     }
   }, [customFamily]);
-  if (!lead) {
+  if (!sent) {
     return (
       <form
         name="prevision"

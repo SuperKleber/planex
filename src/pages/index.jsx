@@ -96,7 +96,9 @@ const useStyles = makeStyles(() => ({
 const Info = () => {
   const classes = useStyles();
   const [openModal, setOpenModal] = useState(false);
-  const [lead, setLead] = useState(false);
+  const [titleModal, setTitleModal] = useState(
+    "📋 Regístrate para adquirir el plan de servicio funerario"
+  );
   const [initialPlan, setInitialPlan] = useState("ruby");
   const listRuby = [
     {
@@ -214,17 +216,16 @@ const Info = () => {
         <Modal
           open={openModal}
           onClose={() => setOpenModal(false)}
-          title={
-            !lead
-              ? "📋 Te llevamos el contrato a la puerta de tu casa sin costo"
-              : "✅ Procesamos tu solicitud, pronto sabrás de nosotros"
-          }
+          title={titleModal}
         >
           {
             <FormPlanex
               initialPlan={initialPlan}
-              lead={lead}
-              setLead={setLead}
+              onSent={() =>
+                setTitleModal(
+                  "✅ Procesamos tu solicitud, pronto sabrás de nosotros"
+                )
+              }
             ></FormPlanex>
           }
         </Modal>
