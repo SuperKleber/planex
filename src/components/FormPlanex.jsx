@@ -8,7 +8,12 @@ import {
   InputLabel,
   Select,
   MenuItem,
-  FormControl
+  Checkbox,
+  FormControl,
+  FormControlLabel,
+  List,
+  ListItem,
+  ListItemText
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ReactPixel from "react-facebook-pixel";
@@ -50,7 +55,8 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
   const [plan, setPlan] = useState(initialPlan ? initialPlan : "ruby");
   const [csv, setCsv] = useState("");
   const [familyJson, setFamilyJson] = useState([]);
-
+  const [checkedA, setCheckedA] = useState(true);
+  const [checkedB, setCheckedB] = useState(true);
   const submit = e => {
     e.preventDefault();
     let data = {
@@ -221,6 +227,36 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
           customFamily={customFamily}
           setCustomFamily={setCustomFamily}
         ></RelativeList>
+
+        <List>
+          <ListItem>
+            <ListItemText>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    required
+                    checked={checkedA}
+                    onChange={() => setCheckedA(!checkedA)}
+                  />
+                }
+                label="He leído el contrato y las normas de Planex"
+              />
+            </ListItemText>
+          </ListItem>
+          <ListItem>
+            <ListItemText>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={checkedB}
+                    onChange={() => setCheckedB(!checkedB)}
+                  />
+                }
+                label="Quiero recibir noticias y ofertas de Planex"
+              />
+            </ListItemText>
+          </ListItem>
+        </List>
         <Button
           className={classes.submit}
           type="submit"
