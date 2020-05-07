@@ -13,33 +13,34 @@ import {
   FormControlLabel,
   List,
   ListItem,
-  ListItemText
+  ListItemText,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ReactPixel from "react-facebook-pixel";
 import RelativeList from "./LandingPrevenir/RelativeList";
 import ConfirmLead from "./ConfirmLead";
-const encode = data => {
+import Alert from "./Alert";
+const encode = (data) => {
   return Object.keys(data)
-    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
     .join("&");
 };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
   },
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
     width: "100%",
-    marginLeft: 0
+    marginLeft: 0,
   },
   submit: {
     marginTop: 16,
-    marginBottom: 16
-  }
+    marginBottom: 16,
+  },
 }));
 const FormContact = ({ initialPlan, onSent = () => null }) => {
   const classes = useStyles();
@@ -57,7 +58,12 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
   const [familyJson, setFamilyJson] = useState([]);
   const [checkedA, setCheckedA] = useState(true);
   const [checkedB, setCheckedB] = useState(true);
-  const submit = e => {
+
+  const [alertValidation, setAlertValidation] = useState({
+    open: false,
+    message: "",
+  });
+  const submit = (e) => {
     e.preventDefault();
     let data = {
       nombres,
@@ -67,18 +73,22 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
       direccion,
       plan,
       csv,
-      familyJson
+      familyJson,
     };
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ "form-name": "prevision", ...data })
-    }).then(res => {
-      ReactPixel.track("InitiateCheckout");
-      setSent(true);
-      onSent();
-      console.log(data);
-    });
+    if (celular.toString().length >= 8) {
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode({ "form-name": "prevision", ...data }),
+      }).then((res) => {
+        ReactPixel.track("InitiateCheckout");
+        setSent(true);
+        onSent();
+        console.log(data);
+      });
+    } else {
+      setAlertValidation({ open: true, message: "Ingrese un celular válido" });
+    }
   };
   useEffect(() => {
     ReactPixel.trackCustom("InitiateForm");
@@ -109,7 +119,7 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
           required
           name="nombres"
           value={nombres}
-          onChange={e => setNombres(e.target.value)}
+          onChange={(e) => setNombres(e.target.value)}
           id="outlined-basic"
           className={classes.textField}
           label="Nombres"
@@ -120,7 +130,7 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
           required
           name="apellidos"
           value={apellidos}
-          onChange={e => setApellidos(e.target.value)}
+          onChange={(e) => setApellidos(e.target.value)}
           id="outlined-basic"
           className={classes.textField}
           label="Apellidos"
@@ -131,7 +141,7 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
           required
           name="celular"
           value={celular}
-          onChange={e => setCelular(e.target.value)}
+          onChange={(e) => setCelular(e.target.value)}
           id="outlined-basic"
           className={classes.textField}
           label="Celular"
@@ -143,7 +153,7 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
           required
           name="email"
           value={email}
-          onChange={e => setEmail(e.target.value)}
+          onChange={(e) => setEmail(e.target.value)}
           type="email"
           id="outlined-basic"
           className={classes.textField}
@@ -155,7 +165,7 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
           required
           name="direccion"
           value={direccion}
-          onChange={e => setDireccion(e.target.value)}
+          onChange={(e) => setDireccion(e.target.value)}
           type="text"
           id="outlined-basic"
           className={classes.textField}
@@ -173,7 +183,7 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
         >
           <InputLabel id="planes">Seleccione su plan</InputLabel>
           <Select
-            onChange={event => setPlan(event.target.value)}
+            onChange={(event) => setPlan(event.target.value)}
             value={plan}
             labelid="planes"
           >
@@ -227,7 +237,6 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
           customFamily={customFamily}
           setCustomFamily={setCustomFamily}
         ></RelativeList>
-
         <List>
           <ListItem>
             <ListItemText>
@@ -266,6 +275,15 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
         >
           Enviar
         </Button>
+        <Alert
+          open={alertValidation.open}
+          message={alertValidation.message}
+          onClose={() =>
+            setAlertValidation({ ...alertValidation, open: false })
+          }
+          color={colors.red}
+        ></Alert>
+        ;
       </form>
     );
   } else {

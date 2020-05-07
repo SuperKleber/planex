@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Button, Typography } from "@material-ui/core";
 import { contract } from "../../config/info.yml";
 const ConfirmLead = ({ nombres, apellidos, plan }) => {
   const message = `Hola soy ${nombres} ${apellidos}, ya he completado el formulario de registro para el plan ${plan}.`;
   const messageWhatsapp = message.replace(/ /gi, "%20");
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.location.replace(
+        `https://api.whatsapp.com/send?phone=59172145667&text=${messageWhatsapp}`
+      );
+      window.location.href = `https://api.whatsapp.com/send?phone=59172145667&text=${messageWhatsapp}`;
+    }
+  });
   return (
     <Box
       display="flex"
