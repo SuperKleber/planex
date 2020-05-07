@@ -20,6 +20,8 @@ import ReactPixel from "react-facebook-pixel";
 import RelativeList from "./LandingPrevenir/RelativeList";
 import ConfirmLead from "./ConfirmLead";
 import Alert from "./Alert";
+import ContratoText from "./ContratoText";
+import Modal from "./Modal";
 const encode = (data) => {
   return Object.keys(data)
     .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
@@ -45,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
 const FormContact = ({ initialPlan, onSent = () => null }) => {
   const classes = useStyles();
 
+  const [openModal, setOpenModal] = useState(false);
   const [sent, setSent] = useState(false);
   const [customFamily, setCustomFamily] = useState([]);
 
@@ -74,6 +77,8 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
       plan,
       csv,
       familyJson,
+      contrato: checkedA,
+      subscribed: checkedB,
     };
     if (celular.toString().length >= 8) {
       fetch("/", {
@@ -197,7 +202,7 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
                   src="/img/ruby.svg"
                   style={{ width: 20, marginRight: 8 }}
                 ></img>
-                RUBY
+                RUBY (100Bs / Mes)
               </Box>
             </MenuItem>
             <MenuItem value="silver">
@@ -210,7 +215,7 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
                   src="/img/lingote-de-plata.svg"
                   style={{ width: 20, marginRight: 8 }}
                 ></img>
-                SILVER
+                SILVER (120Bs / Mes)
               </Box>
             </MenuItem>
             <MenuItem value="gold">
@@ -223,7 +228,7 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
                   src="/img/lingote-de-oro.svg"
                   style={{ width: 20, marginRight: 8 }}
                 ></img>
-                GOLD
+                GOLD (150Bs / Mes)
               </Box>
             </MenuItem>
           </Select>
@@ -240,16 +245,58 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
         <List>
           <ListItem>
             <ListItemText>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    required
-                    checked={checkedA}
-                    onChange={() => setCheckedA(!checkedA)}
-                  />
-                }
-                label="He leído el contrato y las normas de Planex"
-              />
+              <Box display="flex" flexDirection="column">
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      required
+                      checked={checkedA}
+                      onChange={() => setCheckedA(!checkedA)}
+                    />
+                  }
+                  label="He leído el contrato y las normas de Planex"
+                />
+              </Box>
+              <Typography
+                onClick={() => setOpenModal(true)}
+                style={{ cursor: "pointer" }}
+                variant="caption"
+              >
+                Leer contrato
+              </Typography>
+              <Modal
+                title="Contrato de Prever"
+                open={openModal}
+                onClose={() => {
+                  setOpenModal(false);
+                }}
+              >
+                <Box style={{ position: "relative" }}>
+                  <Button
+                    fullWidth
+                    color="primary"
+                    variant="contained"
+                    onClick={() => {
+                      setOpenModal(false);
+                      setCheckedA(true);
+                    }}
+                  >
+                    Leido
+                  </Button>
+                  <ContratoText></ContratoText>
+                  <Button
+                    fullWidth
+                    color="primary"
+                    variant="contained"
+                    onClick={() => {
+                      setOpenModal(false);
+                      setCheckedA(true);
+                    }}
+                  >
+                    Leido
+                  </Button>
+                </Box>
+              </Modal>
             </ListItemText>
           </ListItem>
           <ListItem>

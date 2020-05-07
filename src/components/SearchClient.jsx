@@ -27,6 +27,16 @@ try {
     process.env.ALGOLIA_APP_ID,
     process.env.ALGOLIA_API_KEY
   );
+  if (!process.env.ALGOLIA_APP_ID) {
+    console.warning(
+      `No se pudo cargar datos de Algolia ${process.env.ALGOLIA_APP_ID}`
+    );
+  }
+  if (!process.env.ALGOLIA_API_KEY) {
+    console.warning(
+      `No se pudo cargar datos de Algolia ${process.env.ALGOLIA_API_KEY}`
+    );
+  }
 } catch (error) {
   console.error("error al cargar los datos del buscador algolia");
 }
