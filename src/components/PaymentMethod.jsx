@@ -10,19 +10,19 @@ import {
   ListItem,
   ListItemText,
   Divider,
-  Button
+  Button,
 } from "@material-ui/core";
 import Modal from "./Modal";
+import SearchClient from "./SearchClient";
 import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles(() => ({
   root: {
-    minHeight: "calc(100vh - 90px)",
     display: "flex",
     justifyContent: "space-around",
     alignItems: "center",
     "@media (max-width: 550px)": {
-      flexDirection: "column"
-    }
+      flexDirection: "column",
+    },
   },
   Card: {
     width: "30vw",
@@ -30,13 +30,13 @@ const useStyles = makeStyles(() => ({
     "@media (max-width: 550px)": {
       width: "90vw",
       height: "45vw",
-      margin: "8px 0"
-    }
+      margin: "8px 0",
+    },
   },
   PayMethod: {
     width: "100%",
-    height: "100%"
-  }
+    height: "100%",
+  },
 }));
 const PaymentMethod = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -106,19 +106,26 @@ const PaymentMethod = () => {
                 </ListItemText>
               </ListItem>
             </List>
-            <a
-              target="_blank"
-              href="https://www.algolia.com/realtime-search-demo/consultar-codigo-de-cliente"
+
+            <Typography
+              onClick={() => {
+                setOpenModal(true);
+                setModal({
+                  title: "Consulte su código de cliente",
+                  children: SearchClient,
+                });
+              }}
+              variant="caption"
+              color="primary"
             >
-              <Typography variant="caption" color="primary">
-                ¿Cuál es mi código de contrato?
-              </Typography>
-            </a>
+              ¿Cuál es mi código de contrato?
+            </Typography>
+
             <br />
             <br />
           </Box>
-        )
-      }
+        ),
+      },
     },
     {
       title: "Pago en oficina",
@@ -146,8 +153,8 @@ const PaymentMethod = () => {
             </a>
             <hr />
           </Box>
-        )
-      }
+        ),
+      },
     },
     {
       title: "Pago ventanilla FASSIL",
@@ -176,19 +183,26 @@ const PaymentMethod = () => {
               </ListItem>
             </List>
             <hr />
-            <a
-              target="_blank"
-              href="https://www.algolia.com/realtime-search-demo/consultar-codigo-de-cliente"
+
+            <Typography
+              onClick={() => {
+                setModal({
+                  title: "Consulte su código de cliente",
+                  children: SearchClient,
+                });
+                setOpenModal(true);
+              }}
+              variant="caption"
+              color="primary"
             >
-              <Typography variant="caption" color="primary">
-                ¿Cuál es mi código de contrato?
-              </Typography>
-            </a>
+              ¿Cuál es mi código de contrato?
+            </Typography>
+
             <hr />
           </Box>
-        )
-      }
-    }
+        ),
+      },
+    },
     // {
     //   title: "Escaneo de QR con banca móvil",
     //   img: "/img/qr.svg",
@@ -199,9 +213,10 @@ const PaymentMethod = () => {
   ];
   return (
     <Box className={classes.root}>
-      {paymentMethods.map(pay => {
+      {paymentMethods.map((pay, i) => {
         return (
           <CardPayMethod
+            key={i}
             {...pay}
             setModal={setModal}
             setOpenModal={setOpenModal}
