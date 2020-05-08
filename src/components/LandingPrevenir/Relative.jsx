@@ -101,7 +101,7 @@ const Relative = ({
         ...relative,
         [name]: value,
       });
-      // setCustomFamily([{ ...relative, [name]: value }]);
+      setCustomFamily([{ ...relative, [name]: value }]);
     }
   };
 
