@@ -5,10 +5,10 @@ const {
   siteUrl,
   siteLanguage,
   siteCover,
-  faviconDefault
+  faviconDefault,
 } = require("./config/defaultSeo.json");
 require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`
+  path: `.env.${process.env.NODE_ENV}`,
 });
 const myQuery = `{
   allObituariosYaml(sort: { order: DESC, fields: [fechaFin] }) {
@@ -54,16 +54,16 @@ const queries = [
               ? node.foto
               : `${siteUrl}${node.foto}`,
           nombre: node.nombre,
-          url: `${siteUrl}/obituarios/${node.fields.slug}`
-        }
+          url: `${siteUrl}/obituarios/${node.fields.slug}`,
+        },
       ];
       return obituarios;
     }, // optional
     indexName: "obituarios", // overrides main index name, optional
     settings: {
       // optional, any index settings
-    }
-  }
+    },
+  },
 ];
 module.exports = {
   /* Your site config here */
@@ -73,7 +73,7 @@ module.exports = {
     siteUrl,
     siteLanguage,
     siteCover,
-    faviconDefault
+    faviconDefault,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -82,31 +82,31 @@ module.exports = {
       resolve: `gatsby-plugin-material-ui`,
       options: {
         stylesProvider: {
-          injectFirst: true
-        }
-      }
+          injectFirst: true,
+        },
+      },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: "obituarios",
-        path: `${__dirname}/src/data/dataObituarios`
-      }
+        path: `${__dirname}/src/data/dataObituarios`,
+      },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: "obituarios",
-        path: `${__dirname}/src/data/dataBlog`
-      }
+        path: `${__dirname}/src/data/dataBlog`,
+      },
     },
     {
       resolve: "gatsby-plugin-web-font-loader",
       options: {
         google: {
-          families: ["Raleway", "Lobster", "Alex Brush"]
-        }
-      }
+          families: ["Raleway", "Lobster", "Alex Brush"],
+        },
+      },
     },
     `gatsby-plugin-netlify-cms`,
     "gatsby-plugin-sitemap",
@@ -114,9 +114,20 @@ module.exports = {
     {
       resolve: `gatsby-plugin-disqus`,
       options: {
-        shortname: `planex`
-      }
-    }
+        shortname: `planex`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-env-variables`,
+      options: {
+        whitelist: [
+          "ALGOLIA_APP_ID",
+          "ALGOLIA_API_KEY",
+          "ALGOLIA_API_ADMIN",
+          "ALGOLIA_INDEX_NAME",
+        ],
+      },
+    },
 
     // {
     //   resolve: `gatsby-plugin-algolia`,
@@ -128,5 +139,5 @@ module.exports = {
     //     chunkSize: 10000 // default: 1000
     //   }
     // }
-  ]
+  ],
 };

@@ -11,55 +11,55 @@ import {
   InputLabel,
   TextField,
   Fade,
-  Popover
+  Popover,
 } from "@material-ui/core";
 
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import ErrorIcon from "@material-ui/icons/Error";
 import familyMembers from "../../../config/familyMembers.yml";
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   formRelative: {
     "@media (max-width: 550px)": {
-      flexDirection: "column-reverse"
-    }
+      flexDirection: "column-reverse",
+    },
   },
   avatarRelative: {
     height: 300,
     width: 150,
     margin: "0 40px 0 0",
     "& img": {
-      height: "100%"
+      height: "100%",
     },
     "@media (max-width: 550px)": {
       height: 200,
-      margin: "16px 0"
-    }
+      margin: "16px 0",
+    },
   },
   gender: {
     margin: "16px 0 24px 0",
     "& button:nth-child(1)": {
-      marginRight: 8
+      marginRight: 8,
     },
     "& button:nth-child(2)": {
-      marginLeft: 8
+      marginLeft: 8,
     },
     "& .MuiButton-containedSecondary": {
-      background: colors.green
-    }
+      background: colors.green,
+    },
   },
   buttons: {
     margin: "16px 0",
     display: "grid",
     gridTemplateRows: "1fr",
     gridTemplateColumns: "1fr 1fr 2fr",
-    gridGap: 3
+    gridGap: 3,
   },
   error: {
     padding: 10,
     background: colors.red,
-    color: "white"
-  }
+    color: "white",
+  },
 }));
 const Relative = ({
   template,
@@ -76,7 +76,7 @@ const Relative = ({
   setCustomFamily,
   parentescoFunc,
   buttonText,
-  buttons
+  buttons,
 }) => {
   //Familiar
   const classes = useStyles();
@@ -91,7 +91,7 @@ const Relative = ({
     nombres: nombres ? nombres : "",
     apellidos: apellidos ? apellidos : "",
     img: template ? defaultImg : img ? img : defaultImg,
-    sexo: template ? 0 : sexo ? sexo : 0
+    sexo: template ? 0 : sexo ? sexo : 0,
   });
   const open = Boolean(error);
   const errorId = open ? "simple-popover" : undefined;
@@ -99,13 +99,13 @@ const Relative = ({
     if (name) {
       setRelative({
         ...relative,
-        [name]: value
+        [name]: value,
       });
       // setCustomFamily([{ ...relative, [name]: value }]);
     }
   };
 
-  const saveNext = event => {
+  const saveNext = (event) => {
     if (complete) {
       next(relative);
     } else {
@@ -159,18 +159,18 @@ const Relative = ({
                 let newData = {
                   parentesco: value.parentesco,
                   sexo: value.sexo,
-                  img: value.img
+                  img: value.img,
                 };
                 setRelative({
                   ...relative,
-                  ...newData
+                  ...newData,
                 });
               } else {
                 setRelative({
                   ...relative,
                   parentesco: "",
                   sexo: 0,
-                  img: defaultImg
+                  img: defaultImg,
                 });
               }
               if (parentescoFunc) {
@@ -184,20 +184,27 @@ const Relative = ({
               }
             }}
             name="parentesco"
-            options={familyMembers}
+            options={[
+              { parentesco: relative.parentesco, img: defaultImg },
+              ...familyMembers,
+            ]}
             value={relative}
-            getOptionLabel={relative => relative.parentesco}
-            renderInput={params => (
+            getOptionLabel={(relative) => relative.parentesco}
+            renderInput={(params) => (
               <TextField
+                placeholder="escribe el parentesco"
                 disabled={relative.descartado}
                 {...params}
-                onChangeCapture={e => {
+                onChangeCapture={(e) => {
                   if (e) {
-                    setRelative({ ...relative, parentesco: e.target.value });
+                    setRelative({
+                      ...relative,
+                      parentesco: e.target.value,
+                    });
                   }
                 }}
                 InputLabelProps={{
-                  shrink: true
+                  shrink: true,
                 }}
                 label="Parentesco"
                 variant="outlined"
@@ -214,7 +221,7 @@ const Relative = ({
             margin="normal"
             variant="outlined"
             value={relative.nombres}
-            onChange={e => setInput("nombres", e.target.value)}
+            onChange={(e) => setInput("nombres", e.target.value)}
           />
 
           <TextField
@@ -224,7 +231,7 @@ const Relative = ({
             margin="normal"
             variant="outlined"
             value={relative.apellidos}
-            onChange={e => setInput("apellidos", e.target.value)}
+            onChange={(e) => setInput("apellidos", e.target.value)}
           />
           <TextField
             disabled={relative.descartado}
@@ -233,7 +240,7 @@ const Relative = ({
             margin="normal"
             variant="outlined"
             value={relative.edad}
-            onChange={e => setInput("edad", e.target.value)}
+            onChange={(e) => setInput("edad", e.target.value)}
           />
 
           {buttons ? (
@@ -247,7 +254,7 @@ const Relative = ({
 
               <Button
                 style={{
-                  background: relative.descartado ? colors.red : "white"
+                  background: relative.descartado ? colors.red : "white",
                 }}
                 color="default"
                 variant="outlined"
@@ -282,11 +289,11 @@ const Relative = ({
             onClose={() => setError(null)}
             anchorOrigin={{
               vertical: "bottom",
-              horizontal: "center"
+              horizontal: "center",
             }}
             transformOrigin={{
               vertical: "top",
-              horizontal: "center"
+              horizontal: "center",
             }}
           >
             <Box
