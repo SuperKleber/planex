@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactPixel from "react-facebook-pixel";
 import Layout from "../components/Layout";
 import { makeStyles } from "@material-ui/core/styles";
@@ -18,7 +18,7 @@ import {
   ListItem,
   ListItemText,
   Divider,
-  Chip
+  Chip,
 } from "@material-ui/core";
 import Menu from "../components/Menu";
 import { colors } from "../../config/brand.yml";
@@ -30,49 +30,57 @@ const useStyles = makeStyles({
       display: "flex",
       alignItems: "center",
       flexDirection: "column",
-      justifyContent: "center"
-    }
+      justifyContent: "center",
+    },
   },
   text: {
-    width: 340
+    width: 340,
   },
   cardContainer: {
     "@media (max-width: 1040px)": {
-      width: "100%"
+      width: "100%",
     },
     "@media (max-width: 785px)": {
-      justifyContent: "center"
-    }
+      justifyContent: "center",
+    },
   },
   card: {
     maxWidth: 340,
-    margin: "16px 0"
+    margin: "16px 0",
   },
   cardPrimary: {
     border: `4px solid ${colors.green}`,
     marginRight: 32,
     "@media (max-width: 785px)": {
-      marginRight: 0
-    }
+      marginRight: 0,
+    },
   },
   media: {
     height: 170,
-    width: 340
+    width: 340,
   },
   contact: {
     "@media (max-width: 550px)": {
-      display: "none"
-    }
+      display: "none",
+    },
   },
   contactMobile: {
     display: "none",
     "@media (max-width: 550px)": {
-      display: "flex"
-    }
-  }
+      display: "flex",
+    },
+  },
 });
+
 const Salas = () => {
   const classes = useStyles();
+  useEffect(() => {
+    try {
+      document.getElementById("video").play();
+    } catch (error) {
+      console.error("El video no pudo cargar");
+    }
+  }, []);
   return (
     <Layout>
       <Menu></Menu>
@@ -105,7 +113,7 @@ const Salas = () => {
                   type: "phone",
                   num: "33469191",
                   description: "teléfono de emergencia",
-                  textButton: "Llamar contacto"
+                  textButton: "Llamar contacto",
                 });
               }}
               href="tel:33469191"
@@ -123,7 +131,7 @@ const Salas = () => {
                     color: colors.purple,
                     border: `1px solid ${colors.purple}`,
                     padding: "0 12px",
-                    borderRadius: 16
+                    borderRadius: 16,
                   }}
                 >
                   33469191
@@ -139,7 +147,63 @@ const Salas = () => {
             alignItems="flex-start"
             flexWrap="wrap"
           >
-            <Card className={`${classes.card} ${classes.cardPrimary}`}>
+            <Card className={`${classes.card}  ${classes.cardPrimary}`}>
+              <CardMedia
+                className={classes.media}
+                src="/video/obituarios.mp4"
+                title="funeral en casa"
+                component="video"
+                id="video"
+                autoplay="true"
+                loop="true"
+              ></CardMedia>
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="h2">
+                  Necrológico Virtual
+                </Typography>
+                <Chip label="350Bs" color="primary" variant="outlined"></Chip>
+                <List>
+                  <ListItem>
+                    <ListItemText>
+                      Celebra la vida de tu ser querido fallecido
+                    </ListItemText>
+                  </ListItem>
+                  <Divider />
+                  <ListItem>
+                    <ListItemText>
+                      Puedes hacerlo desde la seguridad de tu hogar
+                    </ListItemText>
+                  </ListItem>
+                  <Divider />
+                  <ListItem>
+                    <ListItemText>
+                      Invita a familiares y amigos a dejar sus condolencias
+                    </ListItemText>
+                  </ListItem>
+                  <Divider />
+                </List>
+              </CardContent>
+              <CardActions>
+                <a
+                  onClick={() => {
+                    ReactPixel.track("Contact", {
+                      type: "whatsapp",
+                      num: "33469191",
+                      description: "Servicio salón velatorio",
+                      textButton: " Consultar Servicio",
+                    });
+                  }}
+                  target="_blank"
+                  href="https://api.whatsapp.com/send?phone=59133469191&text=Quiero%20información%20del%20necrológico%20virtual"
+                >
+                  <Button color="primary" variant="contained">
+                    Consultar Servicio
+                  </Button>
+                </a>
+              </CardActions>
+            </Card>
+
+            <Card className={`${classes.card}`}>
               <CardMedia
                 className={classes.media}
                 image="/img/sala.png"
@@ -172,7 +236,7 @@ const Salas = () => {
                         style={{
                           color: colors.green,
                           border: `1px solid ${colors.green}`,
-                          marginLeft: 8
+                          marginLeft: 8,
                         }}
                       ></Chip>
                     </ListItemText>
@@ -187,7 +251,7 @@ const Salas = () => {
                         style={{
                           color: colors.green,
                           border: `1px solid ${colors.green}`,
-                          marginLeft: 8
+                          marginLeft: 8,
                         }}
                       ></Chip>
                     </ListItemText>
@@ -201,7 +265,7 @@ const Salas = () => {
                       type: "whatsapp",
                       num: "33469191",
                       description: "Servicio salón velatorio",
-                      textButton: " Consultar Servicio"
+                      textButton: " Consultar Servicio",
                     });
                   }}
                   target="_blank"
@@ -213,6 +277,7 @@ const Salas = () => {
                 </a>
               </CardActions>
             </Card>
+
             <Card className={classes.card}>
               <CardMedia
                 className={classes.media}
@@ -241,7 +306,7 @@ const Salas = () => {
                     style={{
                       color: colors.gold,
                       border: `1px solid ${colors.gold}`,
-                      marginRight: 8
+                      marginRight: 8,
                     }}
                   ></Chip>
                   <strong>RECOMENDAMOS NO LE ABRAS TU HOGAR AL VIRUS</strong>
@@ -254,7 +319,7 @@ const Salas = () => {
                       type: "whatsapp",
                       num: "33469191",
                       description: "Servicio velatorio domicilio",
-                      textButton: "Consultar Servicio"
+                      textButton: "Consultar Servicio",
                     });
                   }}
                   target="_blank"
