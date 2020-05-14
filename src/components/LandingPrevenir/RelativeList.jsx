@@ -157,13 +157,16 @@ const RelativeEdit = ({
     }
   };
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      if (window.localStorage) {
-        if (window.localStorage.customFamily) {
-          // setCustomFamily(JSON.parse(window.localStorage.customFamily));
+    try {
+      if (typeof window !== "undefined") {
+        if (window.localStorage) {
+          localStorage.clear();
+          if (window.localStorage.customFamily) {
+            // setCustomFamily(JSON.parse(window.localStorage.customFamily));
+          }
         }
       }
-    }
+    } catch (error) {}
   }, []);
 
   // console.log(customFamily);
