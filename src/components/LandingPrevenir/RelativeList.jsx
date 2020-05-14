@@ -160,7 +160,7 @@ const RelativeEdit = ({
     if (typeof window !== "undefined") {
       if (window.localStorage) {
         if (window.localStorage.customFamily) {
-          setCustomFamily(JSON.parse(window.localStorage.customFamily));
+          // setCustomFamily(JSON.parse(window.localStorage.customFamily));
         }
       }
     }
