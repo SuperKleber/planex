@@ -9,7 +9,7 @@ import {
   Button,
   Container,
   CardHeader,
-  IconButton
+  IconButton,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
@@ -20,10 +20,10 @@ import Relative from "./Relative";
 import SaveIcon from "@material-ui/icons/Save";
 import FormContact from "../FormContact";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   grid: {
     width: "100%",
-    margin: 0
+    margin: 0,
   },
   card: {
     display: "flex",
@@ -31,10 +31,10 @@ const useStyles = makeStyles(theme => ({
     alignItems: "center",
     minHeight: 150,
     padding: 10,
-    width: "100%"
+    width: "100%",
   },
   button: {
-    margin: "0 10px"
+    margin: "0 10px",
   },
   add: {
     width: "100%",
@@ -47,22 +47,22 @@ const useStyles = makeStyles(theme => ({
     "& .addIcon": {
       color: colors.green,
       width: 100,
-      height: 100
-    }
+      height: 100,
+    },
   },
   close: {
     position: "absolute",
     right: 0,
     top: 0,
-    zIndex: 2
+    zIndex: 2,
   },
   imgContainer: {
     // height: 100,
 
     "& img": {
-      height: 100
-    }
-  }
+      height: 100,
+    },
+  },
 }));
 const RelativeList = ({ customFamily, setCustomFamily }) => {
   const classes = useStyles();
@@ -104,7 +104,7 @@ const RelativeEdit = ({
   relative,
   template,
   customFamily,
-  setCustomFamily
+  setCustomFamily,
 }) => {
   const buttonText = (
     <>
@@ -120,30 +120,38 @@ const RelativeEdit = ({
         nombres: "",
         apellidos: "",
         edad: "",
-        img: "/img/silueta.png"
+        img: "/img/silueta.png",
       };
   const localSave = (name, object) => {
-    typeof localStorage !== "undefined" &&
-      localStorage.setItem(name, JSON.stringify(object));
+    // typeof localStorage !== "undefined" &&
+    //   localStorage.setItem(name, JSON.stringify(object));
   };
   // console.log(customFamily);
-  const save = relative => {
+  const save = (relative, index) => {
     if (template) {
       let newCustomFamily = [
         ...customFamily,
         {
-          ...relative
-        }
+          ...relative,
+        },
       ];
       setCustomFamily(newCustomFamily);
       localSave("customFamily", newCustomFamily);
       setOpenForm(false);
     } else {
-      let newCustomFamily = {
-        ...customFamily,
-        [relative.parentesco]: { ...relative }
-      };
-      // setCustomFamily(newCustomFamily);
+      let newCustomFamily = [...customFamily];
+      if (customFamily.length !== 0) {
+        if (!isNaN(index)) {
+          console.log("customFamily:");
+          console.log(customFamily);
+          console.log("BEFORE newCustomFamily:");
+          console.log(newCustomFamily);
+          newCustomFamily.splice(index, 1, relative);
+          console.log("AFTER newCustomFamily: ");
+          console.log(newCustomFamily);
+        }
+      }
+      setCustomFamily(newCustomFamily);
       localSave("customFamily", newCustomFamily);
       setOpenForm(false);
     }
@@ -232,6 +240,7 @@ const RelativeEdit = ({
           edad={edad}
           img={img}
           next={save}
+          index={index}
           buttonText={buttonText}
           customFamily={customFamily}
           setCustomFamily={setCustomFamily}

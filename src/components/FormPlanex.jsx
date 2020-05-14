@@ -14,6 +14,7 @@ import {
   List,
   ListItem,
   ListItemText,
+  Chip,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ReactPixel from "react-facebook-pixel";
@@ -80,6 +81,7 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
       contrato: checkedA,
       subscribed: checkedB,
     };
+    // console.log(familyJson);
     if (celular.toString().length >= 8) {
       fetch("/", {
         method: "POST",
@@ -202,7 +204,14 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
                   src="/img/ruby.svg"
                   style={{ width: 20, marginRight: 8 }}
                 ></img>
-                RUBY (100Bs / Mes)
+                <Box display="flex" flexDirection="column">
+                  RUBY 100Bs x mes
+                  <Chip
+                    label="+ 140Bs Cuota única de afiliación"
+                    // color="primary"
+                    variant="outlined"
+                  ></Chip>
+                </Box>
               </Box>
             </MenuItem>
             <MenuItem value="silver">
@@ -215,7 +224,14 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
                   src="/img/lingote-de-plata.svg"
                   style={{ width: 20, marginRight: 8 }}
                 ></img>
-                SILVER (120Bs / Mes)
+                <Box display="flex" flexDirection="column">
+                  SILVER 120Bs x mes
+                  <Chip
+                    label="+ 140Bs Cuota única de afiliación"
+                    // color="primary"
+                    variant="outlined"
+                  ></Chip>
+                </Box>
               </Box>
             </MenuItem>
             <MenuItem value="gold">
@@ -228,11 +244,19 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
                   src="/img/lingote-de-oro.svg"
                   style={{ width: 20, marginRight: 8 }}
                 ></img>
-                GOLD (150Bs / Mes)
+                <Box display="flex" flexDirection="column">
+                  GOLD 150Bs x mes
+                  <Chip
+                    label="+ 140Bs Cuota única de afiliación"
+                    // color="primary"
+                    variant="outlined"
+                  ></Chip>
+                </Box>
               </Box>
             </MenuItem>
           </Select>
         </FormControl>
+
         <Typography
           style={{ marginLeft: 20, marginTop: 8, color: colors.green }}
         >
@@ -330,7 +354,6 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
           }
           color={colors.red}
         ></Alert>
-        ;
       </form>
     );
   } else {

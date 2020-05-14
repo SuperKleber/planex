@@ -101,13 +101,13 @@ const Relative = ({
         ...relative,
         [name]: value,
       });
-      setCustomFamily([{ ...relative, [name]: value }]);
+      // setCustomFamily([{ ...relative, [name]: value }]);
     }
   };
 
   const saveNext = (event) => {
     if (complete) {
-      next(relative);
+      next(relative, index);
     } else {
       setError(event.currentTarget);
     }
