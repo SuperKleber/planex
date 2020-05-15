@@ -17,25 +17,26 @@ const Pagos = () => {
           flexDirection="column"
           justifyContent="center"
           alignItems="center"
-          style={{ minHeight: "calc(100vh - 90px)" }}
+          style={{ minHeight: "calc(100vh - 150px)" }}
         >
-          <PaymentMethod></PaymentMethod>
-          <br />
           <Button
             onClick={() => setOpenModal(true)}
-            variant="outlined"
+            variant="contained"
             color="primary"
           >
             Consulta tu código de cliente
           </Button>
-          <Modal
-            title="Consulta tu código de cliente"
-            open={openModal}
-            onClose={() => setOpenModal(false)}
-          >
-            <SearchClient></SearchClient>
-          </Modal>
+          <br />
+          <PaymentMethod></PaymentMethod>
         </Box>
+
+        <Modal
+          title="Consulta tu código de cliente"
+          open={openModal}
+          onClose={() => setOpenModal(false)}
+        >
+          <SearchClient></SearchClient>
+        </Modal>
       </Container>
     </Layout>
   );

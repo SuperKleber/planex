@@ -11,31 +11,25 @@ import {
   ListItemText,
   Divider,
   Button,
+  Grid,
 } from "@material-ui/core";
 import Modal from "./Modal";
 import SearchClient from "./SearchClient";
 import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles(() => ({
-  root: {
-    display: "flex",
-    justifyContent: "space-around",
-    alignItems: "center",
-    "@media (max-width: 550px)": {
-      flexDirection: "column",
-    },
-  },
+  root: {},
   Card: {
-    width: "30vw",
-    height: "15vw",
-    "@media (max-width: 550px)": {
-      width: "90vw",
-      height: "45vw",
-      margin: "8px 0",
-    },
+    width: "100%",
+    height: 150,
   },
   PayMethod: {
+    padding: 8,
     width: "100%",
     height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
   },
 }));
 const PaymentMethod = () => {
@@ -43,36 +37,6 @@ const PaymentMethod = () => {
   const [modal, setModal] = useState({ title: "", children: () => <></> });
   const classes = useStyles();
   const paymentMethods = [
-    // {
-    //   title: "Pago online con tarjeta",
-    //   img: "/img/tarjeta.svg",
-    //   modal: {
-    //     children: () => (
-    //       <div
-    //         className="gumroad-product-embed"
-    //         data-gumroad-product-id="uhlth"
-    //       >
-    //         <iframe
-    //           allowFullScreen="allowfullscreen"
-    //           className="gumroad-embed-iframe"
-    //           scrolling="yes"
-    //           id={`gumroad-embed-iframe-uhlth`}
-    //           style={{
-    //             display: "block !important",
-    //             border: "none !important",
-    //             margin: "0 auto !important",
-    //             padding: "0 !important",
-    //             maxWidth: "100% !important",
-    //             width: "100%",
-    //             height: 1300,
-    //             border: "none"
-    //           }}
-    //           src={`https://gumroad.com/l/uhlth?null&&as_embed=true&referrer=https%3A%2F%2Fkleber.digital%2Fproductos%2F&origin=https%3A%2F%2Fkleber.digital&locale=es`}
-    //         />
-    //       </div>
-    //     )
-    //   }
-    // },
     {
       title: "Transferencia Inter-bancaria",
       img: "/img/bankmovil.svg",
@@ -107,7 +71,7 @@ const PaymentMethod = () => {
               </ListItem>
             </List>
 
-            <Typography
+            <Button
               onClick={() => {
                 setOpenModal(true);
                 setModal({
@@ -115,11 +79,11 @@ const PaymentMethod = () => {
                   children: SearchClient,
                 });
               }}
-              variant="caption"
               color="primary"
+              variant="outlined"
             >
               ¿Cuál es mi código de contrato?
-            </Typography>
+            </Button>
 
             <br />
             <br />
@@ -184,45 +148,124 @@ const PaymentMethod = () => {
             </List>
             <hr />
 
-            <Typography
+            <Button
               onClick={() => {
+                setOpenModal(true);
                 setModal({
                   title: "Consulte su código de cliente",
                   children: SearchClient,
                 });
-                setOpenModal(true);
               }}
-              variant="caption"
               color="primary"
+              variant="outlined"
             >
               ¿Cuál es mi código de contrato?
-            </Typography>
+            </Button>
 
             <hr />
           </Box>
         ),
       },
     },
-    // {
-    //   title: "Escaneo de QR con banca móvil",
-    //   img: "/img/qr.svg",
-    //   modal: {
-    //     children: () => <Typography>QR </Typography>
-    //   }
-    // }
+    {
+      title: "Escaneo de QR con banca móvil",
+      img: "/img/qr.svg",
+      modal: {
+        children: () => (
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            flexDirection="column"
+          >
+            <img
+              style={{ width: "100%", maxWidth: 350 }}
+              src="/img/qrpay.png"
+              alt=""
+            />
+            <Button
+              href="/img/qrpay.png"
+              download="QR-PLANEX"
+              color="primary"
+              variant="contained"
+            >
+              Descargar QR
+            </Button>
+            <List>
+              <ListItem>
+                <ListItemText>Abrir aplicación de Banca móvil</ListItemText>
+              </ListItem>
+              <Divider />
+              <ListItem>
+                <ListItemText>
+                  Ve a la sección de "Pagar con Código QR"
+                </ListItemText>
+              </ListItem>
+              <Divider />
+              <ListItem>
+                <ListItemText>
+                  Escanea con la cámara o Descarga el Código QR del sitio web
+                  para subirlo como foto
+                </ListItemText>
+              </ListItem>
+              <Divider />
+              <ListItem>
+                <ListItemText>
+                  Introducir en la Glosa{" "}
+                  <strong
+                    style={{ textDecoration: "underline", cursor: "pointer" }}
+                    onClick={() => {
+                      setOpenModal(true);
+                      setModal({
+                        title: "Consulte su código de cliente",
+                        children: SearchClient,
+                      });
+                    }}
+                  >
+                    Código de contrato
+                  </strong>{" "}
+                  o nombre completo del titular
+                </ListItemText>
+              </ListItem>
+            </List>
+
+            <hr />
+
+            <Button
+              onClick={() => {
+                setOpenModal(true);
+                setModal({
+                  title: "Consulte su código de cliente",
+                  children: SearchClient,
+                });
+              }}
+              color="primary"
+              variant="outlined"
+            >
+              ¿Cuál es mi código de contrato?
+            </Button>
+
+            <hr />
+          </Box>
+        ),
+      },
+    },
   ];
   return (
     <Box className={classes.root}>
-      {paymentMethods.map((pay, i) => {
-        return (
-          <CardPayMethod
-            key={i}
-            {...pay}
-            setModal={setModal}
-            setOpenModal={setOpenModal}
-          ></CardPayMethod>
-        );
-      })}
+      <Grid container spacing={3}>
+        {paymentMethods.map((pay, i) => {
+          return (
+            <Grid key={i} item xs={12} sm={6} md={4} lg={3}>
+              <CardPayMethod
+                {...pay}
+                setModal={setModal}
+                setOpenModal={setOpenModal}
+              ></CardPayMethod>
+            </Grid>
+          );
+        })}
+      </Grid>
       <Modal
         title={modal.title}
         open={openModal}
@@ -251,7 +294,7 @@ const CardPayMethod = ({ title, img, modal, setModal, setOpenModal }) => {
           alignItems="center"
         >
           <img height={75} src={img} alt={title} />
-          <Typography>{title}</Typography>
+          <Typography align="center">{title}</Typography>
         </Box>
       </CardActionArea>
     </Card>
