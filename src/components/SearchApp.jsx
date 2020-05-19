@@ -7,7 +7,7 @@ import {
   InstantSearch,
   Configure,
   connectHits,
-  connectSearchBox
+  connectSearchBox,
 } from "react-instantsearch-dom";
 import {
   Container,
@@ -18,7 +18,7 @@ import {
   ListItemText,
   Avatar,
   Divider,
-  TextField
+  TextField,
 } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 let searchClient = algoliasearch("0000", "0000");
@@ -44,14 +44,14 @@ const SearchBox = ({ refine, isSearchStalled, onFocus, onBlur }) => {
       placeholder="Busque sus obituarios"
       color="primary"
       type="search"
-      onChange={event => refine(event.currentTarget.value)}
+      onChange={(event) => refine(event.currentTarget.value)}
     ></TextField>
   );
 };
 const Hits = ({ hits }) => {
   return (
     <List>
-      {hits.map(hit => {
+      {hits.map((hit) => {
         return (
           <Link key={hit.objectID} to={hit.url.replace(siteUrl, "")}>
             <ListItem>

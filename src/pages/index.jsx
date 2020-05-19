@@ -9,7 +9,7 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-  Divider
+  Divider,
 } from "@material-ui/core";
 import { colors } from "../../config/brand.yml";
 import Layout from "../components/Layout";
@@ -30,26 +30,38 @@ const useStyles = makeStyles(() => ({
       alignItems: "center",
       "& img": {
         height: "50%",
-        width: "auto"
-      }
-    }
+        width: "auto",
+      },
+    },
     // width: "100%"
+  },
+  landingImage: {
+    position: "absolute",
+    zIndex: -1,
+    right: 0,
+    width: "50vw",
+    "@media (max-width: 800px)": {
+      top: 0,
+      width: "600px !important",
+      transform: "scale(1.5)",
+      right: -170,
+    },
   },
   paperInfo: {
     width: "35vw",
     height: "100%",
     "& h1": {
       fontSize: "3em",
-      fontWeight: 700
+      fontWeight: 700,
     },
     "& h6": {
       //   fontSize: "0.9em"
       fontFamily: "Raleway",
-      lineHeight: 1.4
+      lineHeight: 1.4,
     },
     "@media (max-width: 850px)": {
-      width: "100%"
-    }
+      width: "100%",
+    },
   },
   planes: {
     minHeight: "100vh",
@@ -59,18 +71,18 @@ const useStyles = makeStyles(() => ({
     flexWrap: "wrap",
     "@media (max-width: 850px)": {
       flexDirection: "column",
-      alignItems: "center"
-    }
+      alignItems: "center",
+    },
   },
   plan: {
     margin: 16,
     "& nav": {
       width: 300,
-      borderRadius: 4
-    }
+      borderRadius: 4,
+    },
   },
   listItem: {
-    height: 70
+    height: 70,
   },
   listHeader: {
     position: "relative",
@@ -80,7 +92,7 @@ const useStyles = makeStyles(() => ({
     padding: 8,
     color: "white",
     "& h6": {
-      letterSpacing: 4
+      letterSpacing: 4,
     },
     "& img": {
       background: "white",
@@ -89,9 +101,9 @@ const useStyles = makeStyles(() => ({
       position: "absolute",
       top: -14,
       right: -15,
-      border: `4px solid ${colors.purple}`
-    }
-  }
+      border: `4px solid ${colors.purple}`,
+    },
+  },
 }));
 const Info = () => {
   const classes = useStyles();
@@ -103,16 +115,16 @@ const Info = () => {
   const listRuby = [
     {
       icon: "/img/velatorio.svg",
-      text: "Salón Velatorio o Domicilio"
+      text: "Salón Velatorio o Domicilio",
     },
 
     {
       icon: "/img/transporte.svg",
-      text: "Transporte funerario"
+      text: "Transporte funerario",
     },
     {
       icon: "/img/necrologico-virtual.svg",
-      text: "Necrológico virtual"
+      text: "Necrológico virtual",
     },
     // {
     //   icon: "/img/formol.svg",
@@ -120,19 +132,19 @@ const Info = () => {
     // },
     {
       icon: "/img/ataud.svg",
-      text: "Cofre para Inhumación"
-    }
+      text: "Cofre para Inhumación",
+    },
   ];
   const listSilver = [
     ...listRuby,
     {
       icon: "/img/cremacion.svg",
-      text: "Espacio en cementerio o Cremación"
-    }
+      text: "Espacio en cementerio o Cremación",
+    },
   ];
   const listGold = [
     ...listSilver,
-    { icon: "/img/crown.svg", text: "Servicio de Repatriación" }
+    { icon: "/img/crown.svg", text: "Servicio de Repatriación" },
   ];
   return (
     <Layout pixel={"info"}>
@@ -185,7 +197,11 @@ const Info = () => {
               </Box>
             </Box>
           </Box>
-          <img src="/img/consuelo.svg" width={500}></img>
+          {/* <img src="/img/consuelo.svg" width={500}></img> */}
+          <img
+            className={classes.landingImage}
+            src="/img/landing-paloma.svg"
+          ></img>
         </Box>
         <Box className={classes.planes} id="planes">
           <Plan
@@ -241,7 +257,7 @@ const Plan = ({
   list,
   focus,
   onClick,
-  setInitialPlan
+  setInitialPlan,
 }) => {
   const classes = useStyles();
   const Item = ({ icon, text, end }) => (
@@ -283,7 +299,7 @@ const Plan = ({
                   style={{
                     padding: 8,
                     borderRadius: 4,
-                    marginRight: 8
+                    marginRight: 8,
                   }}
                   variant="h4"
                 >

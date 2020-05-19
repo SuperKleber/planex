@@ -16,28 +16,28 @@ const brush = {
   fontWeight: 400,
   src: `url(${fontBrushWoff2}) format(woff2), url(${fontBrushWoff}) format(woff)`,
   unicodeRange:
-    "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF"
+    "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF",
 };
 const theme = createMuiTheme({
   overrides: {
     MuiCssBaseline: {
       "@global": {
-        "@font-face": [brush]
-      }
-    }
+        "@font-face": [brush],
+      },
+    },
   },
   typography: {
     h4: {
       // fontFamily: "Lobster",
       fontFamily: "Brush Script, Lobster",
       // fontFamily: "Brush Script",
-      fontWeight: "Bold"
-    }
+      fontWeight: "Bold",
+    },
   },
   palette: {
     primary: { main: colors.purple, dark: colors.green },
-    secondary: { main: colors.gold }
-  }
+    secondary: { main: colors.gold },
+  },
 });
 console.clear();
 console.log(
@@ -124,7 +124,9 @@ const Layout = ({ children, seo, pixel }) => {
         body {
           margin: 0;
           min-height: 100vh;
-          background: #fdfdfd;
+          // background: #fdfdfd;
+          background: #ffffff;
+
           // background: linear-gradient(#d4feff 15%, #ffffff 85%);
           overflow-x: hidden;
         }
