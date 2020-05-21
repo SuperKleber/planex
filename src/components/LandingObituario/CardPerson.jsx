@@ -9,8 +9,10 @@ import {
   Button,
   Box,
   Menu as Options,
-  MenuItem as OptionItem
+  MenuItem as OptionItem,
+  Chip,
 } from "@material-ui/core";
+import { colors } from "../../../config/brand.yml";
 import CopyIcon from "@material-ui/icons/FileCopy";
 import ShareIcon from "@material-ui/icons/Share";
 import { makeStyles } from "@material-ui/core/styles";
@@ -23,9 +25,15 @@ import Alert from "../Alert";
 import { FacebookProvider, CommentsCount } from "react-facebook";
 import firstUpperCase from "../../../lib/firstUpperCase";
 import CountCommentsFacebook from "../CountCommentsFacebook.jsx";
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    position: "relative"
+    position: "relative",
+  },
+  card: {
+    height: 370,
+    // display: "flex",
+    // flexDirection: "column",
+    position: "relative",
   },
   cardImage: {
     position: "absolute",
@@ -43,44 +51,54 @@ const useStyles = makeStyles(theme => ({
       top: -10,
       borderRadius: "50%",
       boxShadow: "0px 2px 7px 0.5px",
-      zIndex: 3
+      zIndex: 3,
     },
     "& .cloud": {
       width: 250,
       top: "60%",
       transform: "translateY(-50%)",
-      position: "absolute"
-    }
+      position: "absolute",
+    },
   },
   cardActionArea: {
-    height: "calc(100% - 52px)",
+    // height: "calc(100% - 52px)",
+    height: 318,
     display: "flex",
-    justifyContent: "flex-start",
+    justifyContent: "space-between",
     alignItems: "initial",
     flexDirection: "column",
-    width: "100%"
+    width: "100%",
   },
   CardContent: {
-    // display: "flex",
-    // flexDirection: "column",
-    // height: "calc(100% - 100px)",
-    // paddingBottom: 8
+    display: "flex",
+    flexDirection: "column",
+    height: 175,
+    paddingBottom: 8,
   },
   backgroundCard: {
     height: 100,
     width: "100%",
     background: "rgb(212,254,255)",
     background:
-      "linear-gradient(144deg, rgba(212,254,255,1) 0%, rgba(0,129,255,1) 100%)"
+      "linear-gradient(144deg, rgba(212,254,255,1) 0%, rgba(0,129,255,1) 100%)",
   },
-  iconFacebook: {}
+  iconFacebook: {},
+  paf: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    color: "white",
+    background: colors.purple,
+    padding: 8,
+    borderRadius: "0 0 4px 0",
+  },
 }));
 const CardPerson = ({ obituario }) => {
   const [copiedShare, setCopiedShare] = useState(false);
   const [elmentOption, setElementOption] = useState(null);
-  const clickOption = event => setElementOption(event.currentTarget);
-  const closeOption = event => setElementOption(null);
-  const { nombre, foto, fechaInicio, fechaFin, epitafio } = obituario;
+  const clickOption = (event) => setElementOption(event.currentTarget);
+  const closeOption = (event) => setElementOption(null);
+  const { nombre, foto, fechaInicio, fechaFin, epitafio, paf } = obituario;
   const prev = typeof window !== "undefined" && window.location.pathname;
   const link = `/obituarios/${obituario.fields.slug}`;
   const linkAbsolute =
@@ -102,7 +120,7 @@ const CardPerson = ({ obituario }) => {
           .share({
             title: nombre,
             text: epitafio,
-            url: link
+            url: link,
           })
           .then(() => {})
           .catch(() => {});
@@ -121,7 +139,7 @@ const CardPerson = ({ obituario }) => {
         <Link
           to={link}
           state={{
-            prev: prev
+            prev: prev,
           }}
         >
           <Box
@@ -137,16 +155,21 @@ const CardPerson = ({ obituario }) => {
             <img className="cloud" src="/img/nube-sombra.svg"></img>
           </Box>
         </Link>
-        <Card style={{ height: 370 }}>
-          <Link
-            to={link}
-            state={{
-              prev: prev
-            }}
-          >
-            <CardActionArea className={classes.cardActionArea}>
+        <Card className={classes.card}>
+          <CardActionArea className={classes.CardActionArea}>
+            <Link
+              to={link}
+              state={{
+                prev: prev,
+              }}
+            >
               <Box className={classes.backgroundCard}></Box>
               <CardContent className={classes.CardContent}>
+                {paf && (
+                  <Box className={classes.paf}>
+                    <Typography>PAF</Typography>
+                  </Box>
+                )}
                 <Typography variant="h6">{firstUpperCase(nombre)}</Typography>
                 {fechaFin && (
                   <Typography gutterBottom variant="caption" component="h6">
@@ -168,8 +191,8 @@ const CardPerson = ({ obituario }) => {
                   </Typography>
                 )}
               </CardContent>
-            </CardActionArea>
-          </Link>
+            </Link>
+          </CardActionArea>
           <CardActions>
             <Button onClick={clickOption} variant="contained" color="primary">
               <ShareIcon />
@@ -213,7 +236,7 @@ const CardPerson = ({ obituario }) => {
             <Link
               to={link}
               state={{
-                prev: prev
+                prev: prev,
               }}
             >
               <Button>

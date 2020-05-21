@@ -40,6 +40,11 @@ collections:
         name: epitafio
         widget: text
         required: false
+      - label: ¿PAF?
+        name: paf
+        widget: boolean
+        default: false
+
       - label: Evento de Misa
         name: misa
         widget: object

@@ -12,7 +12,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       createNodeField({
         node,
         name: `slug`,
-        value: value
+        value: value,
       });
     }
   }
@@ -30,6 +30,7 @@ exports.createPages = async ({ graphql, actions }) => {
             nombre
             fechaFin(formatString: "dddd DD MMMM YYYY", locale: "es")
             foto
+            paf
             misa {
               fechaMisa(formatString: "dddd DD MMMM YYYY", locale: "es")
               horaMisa
@@ -67,14 +68,14 @@ exports.createPages = async ({ graphql, actions }) => {
     pageTemplate: obituariosTemplate,
     pageLength: 12,
     pathPrefix: "obituarios",
-    context: {}
+    context: {},
   });
   result.data.allObituariosYaml.edges.forEach(({ node }) => {
     try {
       createPage({
         path: `/obituarios/${node.fields.slug}`,
         component: obituarioTemplate,
-        context: node
+        context: node,
       });
     } catch (error) {
       console.log("Hubo un Error al crear las páginas de los obituarios");

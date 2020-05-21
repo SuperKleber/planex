@@ -11,7 +11,7 @@ import {
   Typography,
   Button,
   Fab,
-  Divider
+  Divider,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Back from "@material-ui/icons/ArrowBack";
@@ -22,23 +22,23 @@ import firstUpperCase from "../../lib/firstUpperCase";
 import { FacebookIcon, FacebookShareButton } from "react-share";
 import Modal from "../components/Modal";
 import CountCommentsFacebook from "../components/CountCommentsFacebook";
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   prev: {
-    margin: 16
+    margin: 16,
   },
   funeral: {
     position: "relative",
     // boxShadow: " 10px 10px 25px 1px",
     height: "100%",
     width: "100%",
-    border: `20px solid ${colors.purple}`
+    border: `20px solid ${colors.purple}`,
   },
   foto: {
     // width: "calc(100% - 21%)",
     // height: "calc(100% - 21%)",
     width: "100%",
     height: "100%",
-    backgroundSize: "100% !important"
+    backgroundSize: "100% !important",
     // boxShadow: " 10px 10px 25px 1px",
   },
   shadowFoto: {
@@ -48,19 +48,19 @@ const useStyles = makeStyles(theme => ({
     width: "50%",
     height: "100%",
     border: "20px solid rgba(0,0,0,0.4)",
-    borderLeft: "none"
+    borderLeft: "none",
   },
   decoration: {
     position: "absolute",
     bottom: -22,
     left: "54%",
     transform: "translateX(-50%)",
-    width: "136.8%"
+    width: "136.8%",
   },
   text: {
     width: 280,
     margin: "24px 0",
-    padding: 16
+    padding: 16,
   },
   masse: {
     margin: "8px 0",
@@ -68,8 +68,8 @@ const useStyles = makeStyles(theme => ({
     paddingRight: 18,
     transition: "0.2s",
     "&:hover": {
-      borderRadius: 20
-    }
+      borderRadius: 20,
+    },
   },
   eventMasseItem: {
     // width: "100%",
@@ -83,8 +83,8 @@ const useStyles = makeStyles(theme => ({
     height: 300,
     "& img": {
       // width: 200,
-      height: 200
-    }
+      height: 200,
+    },
   },
   share: {
     background: "#3b5998",
@@ -95,8 +95,8 @@ const useStyles = makeStyles(theme => ({
     "&:hover": {
       color: "white",
       background: "#3b5998",
-      borderRadius: 20
-    }
+      borderRadius: 20,
+    },
   },
   obituarioImg: {
     display: "flex",
@@ -106,8 +106,8 @@ const useStyles = makeStyles(theme => ({
     height: "100vh",
     "@media (max-width: 550px)": {
       width: "100vw",
-      height: "100vw"
-    }
+      height: "100vw",
+    },
   },
   obituarioImgSize: {
     "@media (max-width: 550px)": {
@@ -115,8 +115,8 @@ const useStyles = makeStyles(theme => ({
       height: "100px !important",
       position: "absolute !important",
       top: 0,
-      left: "5%"
-    }
+      left: "5%",
+    },
   },
   logoPrever: {
     zIndex: 2,
@@ -128,8 +128,8 @@ const useStyles = makeStyles(theme => ({
     "@media (max-width: 550px)": {
       width: 80,
       top: 25,
-      left: "calc(88% - 80px)"
-    }
+      left: "calc(88% - 80px)",
+    },
   },
   obituarioImgPaper: {
     // maxWidth: 750,
@@ -138,31 +138,31 @@ const useStyles = makeStyles(theme => ({
     padding: 16,
     margin: "16px 0",
     "@media (max-width: 880px)": {
-      width: 300
+      width: 300,
     },
     "@media (max-width: 550px)": {
       position: "absolute !important",
 
       width: 150,
       "& *": {
-        fontSize: "0.8em !important"
-      }
-    }
+        fontSize: "0.8em !important",
+      },
+    },
   },
   obituarioImgInfo: {
     "@media (max-width: 550px)": {
       top: "40%",
       width: "80vw",
       left: "50%",
-      transform: "translateX(-50%)"
-    }
+      transform: "translateX(-50%)",
+    },
   },
 
   obituarioImgMisa: {
     "@media (max-width: 550px)": {
       top: 0,
-      right: "5%"
-    }
+      right: "5%",
+    },
   },
   obituarioImgCallToAction: {
     background: colors.purple,
@@ -173,19 +173,19 @@ const useStyles = makeStyles(theme => ({
       left: "50%",
       height: "15vw",
       width: "80vw",
-      transform: "translateX(-50%)"
+      transform: "translateX(-50%)",
     },
     "& *": {
       // fontSize: "2em",
-      color: "white"
-    }
+      color: "white",
+    },
   },
   commentCount: {
     width: "100%",
     display: "flex",
     justifyContent: "center",
-    alignItems: "center"
-  }
+    alignItems: "center",
+  },
 }));
 const Obituario = ({ pageContext, location }) => {
   const [openMasse, setOpenMasse] = useState(false);
@@ -193,7 +193,7 @@ const Obituario = ({ pageContext, location }) => {
     opacity: "0",
     transform: "scale(0)",
     position: "absolute",
-    top: "-100vh"
+    top: "-100vh",
   }); //Oculta imagen que se descargará
   const obituarioImg = useRef(null);
   let prev = location.state ? location.state.prev : "/obituarios";
@@ -203,7 +203,7 @@ const Obituario = ({ pageContext, location }) => {
     siteTitle: `${nombre}`,
     siteDescription: `Los familiares invitan a dejar sus condolencias ingresando aquí.`,
     siteCover: pageContext.foto ? pageContext.foto : false,
-    siteUrl: `${siteUrl}/obituarios/${pageContext.fields.slug}`
+    siteUrl: `${siteUrl}/obituarios/${pageContext.fields.slug}`,
   };
 
   // La siguiente definición es simplemente para corregir
@@ -239,10 +239,10 @@ const Obituario = ({ pageContext, location }) => {
     setHiddenImg({});
     const name = nombre.replace(/ /gi, "-").toLowerCase();
     Domtoimage.toJpeg(obituarioImg.current)
-      .then(blob => {
+      .then((blob) => {
         saveAs(blob, `prever-${name}`);
       })
-      .catch(e => {
+      .catch((e) => {
         console.error("Hubo un error al guardar la Image");
         console.error(e);
       });
@@ -355,7 +355,7 @@ const Obituario = ({ pageContext, location }) => {
           </Typography>
           <a href="#condolencias">
             <Button color="primary" variant="contained" fullWidth>
-              Enviar condolencias 😪
+              Enviar condolencias
             </Button>
           </a>
           <FacebookShareButton url={urlAbsolute}>
@@ -378,6 +378,31 @@ const Obituario = ({ pageContext, location }) => {
             </a>
           )} */}
         </Paper>
+        {pageContext.paf && (
+          <Box
+            display="flex"
+            flexDirection="column"
+            justifyContent="center"
+            alignItems="center"
+            style={{ width: 300 }}
+            border={2}
+            borderRadius="borderRadius"
+            color={colors.purple}
+          >
+            <br />
+            <Typography align="center">
+              Esperamos ayudar a mitigar el dolor de la familia de {nombre} que
+              fueron
+            </Typography>
+            <Link to="/">
+              <Button color="primary" variant="outlined">
+                afiliados de Planex
+              </Button>
+            </Link>
+            <br />
+          </Box>
+        )}
+        <br />
         <div id="condolencias">
           <FacebookProvider language="es_LA" appId="2503959843259543">
             <Comments href={urlAbsolute} />
