@@ -16,10 +16,14 @@ import {
   ListItem,
   ListItemAvatar,
   ListItemText,
+  ListItemSecondaryAction,
+  Button,
   Avatar,
   Divider,
   TextField,
 } from "@material-ui/core";
+import Modal from "./Modal";
+import FormAfiliado from "./FormAfiliado";
 import SearchIcon from "@material-ui/icons/Search";
 let searchClient = algoliasearch("0000", "0000");
 try {
@@ -46,7 +50,7 @@ const SearchBox = ({ refine, isSearchStalled, onFocus, onBlur }) => {
       id="test"
       variant="outlined"
       onFocus={onFocus}
-      onBlur={onBlur}
+      // onBlur={onBlur}
       fullWidth
       label={
         <Box display="flex" justifyContent="center" alignItems="flex-start">
@@ -61,6 +65,7 @@ const SearchBox = ({ refine, isSearchStalled, onFocus, onBlur }) => {
   );
 };
 const Hits = ({ hits }) => {
+  const [openModal, setOpenModal] = useState(false);
   return (
     <List style={{ width: "100%" }}>
       {hits.map((hit, i) => {
@@ -69,31 +74,56 @@ const Hits = ({ hits }) => {
             key={i}
             style={{
               margin: "4px 0",
-              padding: "4px 0",
               border: "1px solid black",
               borderRadius: 4,
               display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
+              justifyContent: "flex-start",
+              alignItems: "flex-start",
+              flexDirection: "column",
             }}
           >
-            <ListItemText
+            <Box
               style={{
-                margin: "0 4px",
-                borderTop: "none",
-                borderLeft: "none",
-                borderBottom: "none",
-                width: "25%",
-                height: "100%",
+                padding: "4px 0",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
               }}
             >
-              {hit.codigo}
-            </ListItemText>
+              <ListItemText
+                style={{
+                  margin: "0 4px",
+                  borderTop: "none",
+                  borderLeft: "none",
+                  borderBottom: "none",
+                  width: "25%",
+                  height: "100%",
+                }}
+              >
+                {hit.codigo}
+              </ListItemText>
 
-            <ListItemText
-              style={{ width: "75%" }}
-              primary={<Highlight hit={hit} attribute="clientes" />}
-            ></ListItemText>
+              <ListItemText
+                style={{ width: "75%" }}
+                primary={<Highlight hit={hit} attribute="clientes" />}
+              ></ListItemText>
+            </Box>
+            <Box>
+              <Button
+                onClick={() => setOpenModal(true)}
+                variant="outlined"
+                color="primary"
+              >
+                Completar información
+              </Button>
+              <Modal
+                title={`${hit.clientes} ${hit.codigo}`}
+                open={openModal}
+                onClose={() => setOpenModal(false)}
+              >
+                <FormAfiliado nombre={hit.clientes} codigo={hit.codigo} />
+              </Modal>
+            </Box>
           </ListItem>
         );
       })}

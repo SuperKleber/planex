@@ -83,7 +83,7 @@ const useStyles = makeStyles((theme) => ({
       "linear-gradient(144deg, rgba(212,254,255,1) 0%, rgba(0,129,255,1) 100%)",
   },
   iconFacebook: {},
-  paf: {
+  afiliado: {
     position: "absolute",
     top: 0,
     left: 0,
@@ -98,7 +98,7 @@ const CardPerson = ({ obituario }) => {
   const [elmentOption, setElementOption] = useState(null);
   const clickOption = (event) => setElementOption(event.currentTarget);
   const closeOption = (event) => setElementOption(null);
-  const { nombre, foto, fechaInicio, fechaFin, epitafio, paf } = obituario;
+  const { nombre, foto, fechaInicio, fechaFin, epitafio, afiliado } = obituario;
   const prev = typeof window !== "undefined" && window.location.pathname;
   const link = `/obituarios/${obituario.fields.slug}`;
   const linkAbsolute =
@@ -165,9 +165,9 @@ const CardPerson = ({ obituario }) => {
             >
               <Box className={classes.backgroundCard}></Box>
               <CardContent className={classes.CardContent}>
-                {paf && (
-                  <Box className={classes.paf}>
-                    <Typography>PAF</Typography>
+                {afiliado && (
+                  <Box className={classes.afiliado}>
+                    <Typography>Afiliado</Typography>
                   </Box>
                 )}
                 <Typography variant="h6">{firstUpperCase(nombre)}</Typography>

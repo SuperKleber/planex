@@ -30,7 +30,7 @@ exports.createPages = async ({ graphql, actions }) => {
             nombre
             fechaFin(formatString: "dddd DD MMMM YYYY", locale: "es")
             foto
-            paf
+            afiliado
             misa {
               fechaMisa(formatString: "dddd DD MMMM YYYY", locale: "es")
               horaMisa

@@ -5,6 +5,7 @@ import Domtoimage from "dom-to-image";
 import { saveAs } from "file-saver";
 import Layout from "../components/Layout";
 import Menu from "../components/Menu";
+import ReactPixel from "react-facebook-pixel";
 import {
   Paper,
   Box,
@@ -15,6 +16,7 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Back from "@material-ui/icons/ArrowBack";
+import WhatsAppIcon from "@material-ui/icons/WhatsApp";
 import ImageIcon from "@material-ui/icons/ImageOutlined";
 import { colors } from "../../config/brand.yml";
 import { siteUrl } from "../../config/defaultSeo.json";
@@ -86,7 +88,7 @@ const useStyles = makeStyles((theme) => ({
       height: 200,
     },
   },
-  share: {
+  shareFacebook: {
     background: "#3b5998",
     margin: "8px 0",
     color: "white",
@@ -95,6 +97,18 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       color: "white",
       background: "#3b5998",
+      borderRadius: 20,
+    },
+  },
+  shareWhatsapp: {
+    background: "#25d366",
+    margin: "8px 0",
+    color: "white",
+    paddingRight: 18,
+    transition: "0.2s",
+    "&:hover": {
+      color: "white",
+      background: "#128c7e",
       borderRadius: 20,
     },
   },
@@ -247,7 +261,10 @@ const Obituario = ({ pageContext, location }) => {
         console.error(e);
       });
   };
-
+  const messageShareWhatsapp = `Invitamos a dejar sus condolencias en memoria de ${pageContext.nombre}%0A%0A${urlAbsolute}`.replace(
+    / /g,
+    "%20"
+  );
   return (
     <Layout seo={seo}>
       <Menu></Menu>
@@ -353,17 +370,50 @@ const Obituario = ({ pageContext, location }) => {
           <Typography align="center" style={{ margin: "8px 0" }}>
             <CountCommentsFacebook url={urlAbsolute} />
           </Typography>
-          <a href="#condolencias">
+          <a
+            href="#condolencias"
+            onClick={() =>
+              ReactPixel.trackCustom("button", {
+                type: "view",
+                content: "ver condolencias",
+              })
+            }
+          >
             <Button color="primary" variant="contained" fullWidth>
               Enviar condolencias
             </Button>
           </a>
+          <Button
+            onClick={() =>
+              ReactPixel.trackCustom("button", {
+                type: "share",
+                content: "compartir whatsapp",
+              })
+            }
+            className={classes.shareWhatsapp}
+            fullWidth
+            href={`whatsapp://send?text=${messageShareWhatsapp}`}
+            data-text={`En memoria de ${pageContext.nombre}`}
+            data-action="share/whatsapp/share"
+          >
+            <WhatsAppIcon size={30} /> Compartir
+          </Button>
           <FacebookShareButton url={urlAbsolute}>
-            <Button fullWidth className={classes.share}>
+            <Button
+              onClick={() =>
+                ReactPixel.trackCustom("button", {
+                  type: "share",
+                  content: "compartir facebook",
+                })
+              }
+              fullWidth
+              className={classes.shareFacebook}
+            >
               <FacebookIcon size={30}></FacebookIcon>
               Compartir
             </Button>
           </FacebookShareButton>
+
           {/* {pageContext.misa && (
             <a href="#obituarioImg">
               <Button
@@ -378,25 +428,35 @@ const Obituario = ({ pageContext, location }) => {
             </a>
           )} */}
         </Paper>
-        {pageContext.paf && (
+        {pageContext.afiliado && (
           <Box
             display="flex"
             flexDirection="column"
             justifyContent="center"
             alignItems="center"
-            style={{ width: 300 }}
+            style={{ width: 300, padding: 6 }}
             border={2}
             borderRadius="borderRadius"
             color={colors.purple}
           >
             <br />
             <Typography align="center">
-              Esperamos ayudar a mitigar el dolor de la familia de {nombre} que
-              fueron
+              La celebracion de la vida, incluye la muerte.
+              <br />
+              La previsión mitiga el dolor de la familia.
             </Typography>
-            <Link to="/">
+            <br />
+            <Link
+              to="/#planes"
+              onClick={() =>
+                ReactPixel.trackCustom("Button", {
+                  type: "view",
+                  content: "ver planes afiliados",
+                })
+              }
+            >
               <Button color="primary" variant="outlined">
-                afiliados de Planex
+                Ver planes de previsión
               </Button>
             </Link>
             <br />

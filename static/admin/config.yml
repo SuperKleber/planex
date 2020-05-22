@@ -40,8 +40,8 @@ collections:
         name: epitafio
         widget: text
         required: false
-      - label: ¿PAF?
-        name: paf
+      - label: ¿afiliado?
+        name: afiliado
         widget: boolean
         default: false
 

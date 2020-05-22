@@ -38,6 +38,20 @@ const FormNetlify = () => {
         <input type="text" name="contrato" />
         <input type="text" name="subscribed" />
       </form>
+      <form
+        name="afiliado"
+        method="POST"
+        data-netlify="true"
+        netlify="true"
+        action="/"
+        hidden
+      >
+        <input type="hidden" name="form-name" value="afiliado" hidden />
+        <input type="text" name="nombre" />
+        <input type="text" name="codigo" />
+        <input type="text" name="celular" />
+        <input type="email" name="email" />
+      </form>
     </>
   );
 };
