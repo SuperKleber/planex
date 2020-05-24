@@ -1,0 +1,10 @@
+nombre: ROSA TAVERA ZAMORA
+foto: /uploads/avatar-prever.png
+fechaFin: "2020-05-24T14:30:00.000Z"
+afiliado: true
+misa:
+  urlLugarMisa: https://www.google.com/maps/place/Prever+-+Sal%C3%B3n+Velatorio/@-17.7941441,-63.16884,16z/data=!4m5!3m4!1s0x93f1e85d62ea77cb:0xfd9e12d454893aca!8m2!3d-17.7943484!4d-63.1657501
+  urlLugarCementerio: https://goo.gl/maps/YmFGxBwecWspN5DU9
+  fechaMisa: "2020-05-26T02:00:00.000Z"
+  horaMisa: "10:00"
+  lugarCementerio: '"NORTE"'
