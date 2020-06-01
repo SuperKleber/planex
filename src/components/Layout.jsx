@@ -114,7 +114,7 @@ const Layout = ({ children, seo, pixel }) => {
         <meta property="fb:admins" content="100004839931984" />
       </Helmet>
       {children}
-      <Footer></Footer>
+      {/* <Footer></Footer> */}
       <FormNetlify></FormNetlify>
       <style jsx="true" global="true">{`
         html {

@@ -8,13 +8,15 @@ const Formulario = () => {
   return (
     <Layout>
       <Menu></Menu>
-      <Container>
+      <Container
+        style={{ width: "100%", display: "flex", justifyContent: "center" }}
+      >
         <Box
           display="flex"
           justifyContent="center"
           alignItems="center"
           flexDirection="column"
-          style={{ minHeight: "85vh" }}
+          style={{ minHeight: "85vh", maxWidth: 700 }}
         >
           {!sent ? (
             <Typography align="center" gutterBottom variant="body1">
