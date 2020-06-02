@@ -9,7 +9,12 @@ const Formulario = () => {
     <Layout>
       <Menu></Menu>
       <Container
-        style={{ width: "100%", display: "flex", justifyContent: "center" }}
+        style={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          marginBottom: 72,
+        }}
       >
         <Box
           display="flex"
