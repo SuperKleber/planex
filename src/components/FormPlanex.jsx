@@ -59,6 +59,7 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
   const [direccion, setDireccion] = useState("");
   const [plan, setPlan] = useState(initialPlan ? initialPlan : "ruby");
   const [csv, setCsv] = useState("");
+  const [message, setMessage] = useState("");
   const [familyJson, setFamilyJson] = useState([]);
   const [checkedA, setCheckedA] = useState(true);
   const [checkedB, setCheckedB] = useState(true);
@@ -76,12 +77,13 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
       email,
       direccion,
       plan,
+      message,
       csv,
       familyJson,
       contrato: checkedA,
       subscribed: checkedB,
     };
-    // console.log(familyJson);
+    console.log(data);
     if (celular.toString().length >= 8) {
       fetch("/", {
         method: "POST",
@@ -101,13 +103,14 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
     ReactPixel.trackCustom("InitiateForm");
     if (customFamily.length !== 0) {
       let newFamilyJson = [];
-      let newCsv = '"parentesco", "nombres", "apellidos", "edad"\n';
+      let newMessage = `Hola soy ${nombres} ${apellidos}, mi email es ${email} y mi celular ${celular}, he leído y aceptado las normas del contrato y deseo el plan ${plan} para mi familia que son: \n`;
 
       customFamily.map(({ nombres, apellidos, parentesco, edad }) => {
-        newCsv = `${newCsv} "${parentesco}", "${nombres}", "${apellidos}", "${edad}"\n`;
         newFamilyJson.push({ parentesco, nombres, apellidos, edad });
+        newMessage += `${parentesco}: ${nombres} ${apellidos} de ${edad} años de edad \n`;
       });
-      setCsv(`${newCsv}`);
+
+      setMessage(`${newMessage}`);
       setFamilyJson([...newFamilyJson]);
     }
   }, [customFamily]);
