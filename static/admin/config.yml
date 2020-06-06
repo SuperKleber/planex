@@ -33,9 +33,9 @@ collections:
         required: false
       - label: Fecha de Fallecimiento
         name: fechaFin
-        widget: date
-        timeFormat: true
+        widget: string
         required: false
+        hint: "IMPORTANTE: ingresar fecha con este formato: AÑO-MES-DÍA ejemplo: 2020-01-30"
       - label: Epitafio
         name: epitafio
         widget: text
