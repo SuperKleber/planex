@@ -108,9 +108,7 @@ const useStyles = makeStyles(() => ({
 const Info = () => {
   const classes = useStyles();
   const [openModal, setOpenModal] = useState(false);
-  const [titleModal, setTitleModal] = useState(
-    "📋 Regístrate para adquirir el plan de servicio funerario"
-  );
+  const [titleModal, setTitleModal] = useState("📋 Solicitud de afiliación");
   const [initialPlan, setInitialPlan] = useState("ruby");
   const listRuby = [
     {

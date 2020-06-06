@@ -85,16 +85,23 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
     };
     console.log(data);
     if (celular.toString().length >= 8) {
-      fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: encode({ "form-name": "prevision", ...data }),
-      }).then((res) => {
-        ReactPixel.track("InitiateCheckout");
-        setSent(true);
-        onSent();
-        console.log(data);
-      });
+      if (familyJson.length > 0) {
+        fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: encode({ "form-name": "prevision", ...data }),
+        }).then((res) => {
+          ReactPixel.track("InitiateCheckout");
+          setSent(true);
+          onSent();
+          console.log(data);
+        });
+      } else {
+        setAlertValidation({
+          open: true,
+          message: "Por favor agregue al menos a un familiar",
+        });
+      }
     } else {
       setAlertValidation({ open: true, message: "Ingrese un celular válido" });
     }
@@ -103,7 +110,7 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
     ReactPixel.trackCustom("InitiateForm");
     if (customFamily.length !== 0) {
       let newFamilyJson = [];
-      let newMessage = `Hola soy ${nombres} ${apellidos}, mi email es ${email} y mi celular ${celular}, he leído y aceptado las normas del contrato y deseo el plan ${plan} para mi familia que son: \n`;
+      let newMessage = `Solicitud de afiliación: \n Soy ${nombres} ${apellidos} y me declaro el responsable de la afiliación, mi email es ${email} y mi celular ${celular}, he leído y aceptado el contrato de afiliación y contrato el plan ${plan} para mi familia que son: \n`;
 
       customFamily.map(({ nombres, apellidos, parentesco, edad }) => {
         newFamilyJson.push({ parentesco, nombres, apellidos, edad });
@@ -132,7 +139,7 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
           onChange={(e) => setNombres(e.target.value)}
           id="outlined-basic"
           className={classes.textField}
-          label="Nombres"
+          label="Nombres del responsable"
           margin="normal"
           variant="outlined"
         />
@@ -143,7 +150,7 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
           onChange={(e) => setApellidos(e.target.value)}
           id="outlined-basic"
           className={classes.textField}
-          label="Apellidos"
+          label="Apellidos del responsable"
           margin="normal"
           variant="outlined"
         />
@@ -281,7 +288,7 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
                       onChange={() => setCheckedA(!checkedA)}
                     />
                   }
-                  label="He leído el contrato y las normas de Planex"
+                  label="He leído y acepto el contrato de afiliación"
                 />
               </Box>
               <Typography
