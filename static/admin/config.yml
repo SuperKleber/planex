@@ -33,7 +33,8 @@ collections:
         required: false
       - label: Fecha de Fallecimiento
         name: fechaFin
-        widget: string
+        widget: date
+        timeFormat: true
         required: false
         hint: "IMPORTANTE: ingresar fecha con este formato: AÑO-MES-DÍA ejemplo: 2020-01-30"
       - label: Epitafio
