@@ -28,10 +28,13 @@ const useStyles = makeStyles((theme) => ({
   card: {
     display: "flex",
     justifyContent: "space-around",
+
     alignItems: "center",
     minHeight: 150,
     padding: 10,
     width: "100%",
+    minWidth: 150,
+    position: "relative",
   },
   button: {
     margin: "0 10px",
@@ -46,14 +49,14 @@ const useStyles = makeStyles((theme) => ({
     cursor: "pointer",
     "& .addIcon": {
       color: colors.green,
-      width: 100,
-      height: 100,
+      width: 50,
+      height: 50,
     },
   },
   close: {
     position: "absolute",
-    right: 0,
-    top: 0,
+    right: -5,
+    top: -5,
     zIndex: 2,
   },
   imgContainer: {
@@ -64,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-const RelativeList = ({ customFamily, setCustomFamily }) => {
+const RelativeList = ({ customFamily, setCustomFamily, limitFamily = 2 }) => {
   const classes = useStyles();
 
   const [openWarning, setOpenWarning] = useState(false);
@@ -78,29 +81,30 @@ const RelativeList = ({ customFamily, setCustomFamily }) => {
   };
   return (
     <Box>
-      <Grid className={classes.grid} container spacing={5}>
-        {customFamily.map((relative, i) => {
-          return (
-            <RelativeEdit
-              key={i}
-              index={i}
-              customFamily={customFamily}
-              setCustomFamily={setCustomFamily}
-              relative={relative}
-            ></RelativeEdit>
-          );
-        })}
-        <RelativeEdit
-          customFamily={customFamily}
-          setCustomFamily={setCustomFamily}
-          template
-        ></RelativeEdit>
-      </Grid>
+      <RelativeEdit
+        customFamily={customFamily}
+        setCustomFamily={setCustomFamily}
+        template
+        limitFamily={limitFamily}
+      ></RelativeEdit>
+      {customFamily.map((relative, i) => {
+        return (
+          <RelativeEdit
+            key={i}
+            index={i}
+            customFamily={customFamily}
+            setCustomFamily={setCustomFamily}
+            relative={relative}
+            limitFamily={limitFamily}
+          ></RelativeEdit>
+        );
+      })}
     </Box>
   );
 };
 const RelativeEdit = ({
   index,
+  limitFamily,
   relative,
   template,
   customFamily,
@@ -181,17 +185,14 @@ const RelativeEdit = ({
     setCustomFamily(newData);
     localSave("customFamily", newData);
   };
+  let showAddFamily = true;
+  if (limitFamily) {
+    if (customFamily.length === limitFamily) showAddFamily = false;
+  }
+
   return (
-    <Grid
-      style={{ position: "Relative" }}
-      item
-      xs={12}
-      sm={6}
-      md={6}
-      lg={4}
-      xl={3}
-    >
-      <Card>
+    <Box display="flex" flexWrap="wrap" style={{ margin: "8px 0" }}>
+      <Card style={{ position: "relative", width: "100%" }}>
         {!template && (
           <IconButton
             variant="contained"
@@ -201,12 +202,11 @@ const RelativeEdit = ({
             <HighlightOffIcon style={{ color: colors.red }}></HighlightOffIcon>
           </IconButton>
         )}
-
-        <CardActionArea
-          className={`${classes.card} ${template && classes.add}`}
-          onClick={() => setOpenForm(true)}
-        >
-          {!template ? (
+        {!template ? (
+          <CardActionArea
+            className={`${classes.card}`}
+            onClick={() => setOpenForm(true)}
+          >
             <>
               <Box
                 display="flex"
@@ -229,10 +229,38 @@ const RelativeEdit = ({
                 <Typography>{apellidos}</Typography>
               </Box>
             </>
-          ) : (
-            <AddCircleIcon className="addIcon"></AddCircleIcon>
-          )}
-        </CardActionArea>
+          </CardActionArea>
+        ) : (
+          <>
+            <Box
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
+              style={{ width: "100%" }}
+            >
+              {/* <Typography>AÑADIR FAMILIAR</Typography> */}
+              <Button
+                onClick={() => setOpenForm(true)}
+                color="primary"
+                variant="outlined"
+                disabled={!showAddFamily}
+                fullWidth
+                style={{ width: "100% !important" }}
+                startIcon={
+                  showAddFamily ? (
+                    <AddCircleIcon className=""></AddCircleIcon>
+                  ) : (
+                    ""
+                  )
+                }
+              >
+                {showAddFamily ? "añadir familiar" : "Completo"}
+                {limitFamily && ` (${customFamily.length}/${limitFamily})`}
+              </Button>
+            </Box>
+          </>
+        )}
       </Card>
       <Modal open={openForm} onClose={() => setOpenForm(false)} maxWidth="xl">
         <Relative
@@ -249,7 +277,7 @@ const RelativeEdit = ({
           setCustomFamily={setCustomFamily}
         ></Relative>
       </Modal>
-    </Grid>
+    </Box>
   );
 };
 

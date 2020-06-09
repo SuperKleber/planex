@@ -25,7 +25,7 @@ const Formulario = () => {
         >
           {!sent ? (
             <Typography align="center" gutterBottom variant="body1">
-              Regístrate al plan de previsión funeraria
+              Solicitud de afiliación
             </Typography>
           ) : (
             <Typography align="center" gutterBottom variant="body1">
