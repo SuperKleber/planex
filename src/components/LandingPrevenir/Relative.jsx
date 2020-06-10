@@ -152,8 +152,8 @@ const Relative = ({
       <form>
         <Box display="flex" flexDirection="column">
           <Autocomplete
-            freeSolo={template}
-            disableOpenOnFocus={template}
+            // freeSolo={template}
+            // disableOpenOnFocus={template}
             onChange={(e, value) => {
               if (value) {
                 let newData = {
@@ -184,11 +184,8 @@ const Relative = ({
               }
             }}
             name="parentesco"
-            options={[
-              { parentesco: relative.parentesco, img: defaultImg },
-              ...familyMembers,
-            ]}
-            value={relative}
+            options={familyMembers}
+            // value={relative}
             getOptionLabel={(relative) => relative.parentesco}
             renderInput={(params) => (
               <TextField

@@ -1,35 +1,28 @@
-- index: 0
-  parentesco: Madre
-  sexo: 2
+- parentesco: Madre
   img: /img/mujer2.png
-  oppositeIndex: 1
-- index: 1
-  parentesco: Padre
-  sexo: 1
+- parentesco: Padre
   img: /img/hombre2.png
-  oppositeIndex: 0
-- index: 2
-  parentesco: Abuela
-  sexo: 2
+- parentesco: Abuela
   img: /img/abuela.png
-  oppositeIndex: 3
-- index: 3
-  parentesco: Abuelo
-  sexo: 1
+- parentesco: Abuelo
   img: /img/abuelo.png
-  oppositeIndex: 2
-- index: 4
-  parentesco: Conyuge
-  sexo: 0
+- parentesco: Conyuge
   img: /img/pareja.png
-  oppositeIndex: 5
-- index: 5
-  parentesco: Hijo
-  sexo: 0
+- parentesco: Hijo
   img: /img/chico1.png
-  oppositeIndex: 7
-- index: 6
-  parentesco: Hija
-  sexo: 0
+- parentesco: Hija
   img: /img/chica1.png
-  oppositeIndex: 6
+- parentesco: Tía | Tío
+  img: /img/silueta.png
+- parentesco: Sobrina | Sobrino
+  img: /img/silueta.png
+- parentesco: Hermana | Hermano
+  img: /img/silueta.png
+- parentesco: Nieta | Nieto
+  img: /img/silueta.png
+- parentesco: Suegra | Suegro
+  img: /img/silueta.png
+- parentesco: Primo | Prima
+  img: /img/silueta.png
+- parentesco: Otro
+  img: /img/silueta.png

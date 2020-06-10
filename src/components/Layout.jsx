@@ -1,6 +1,10 @@
 import React, { useEffect } from "react";
-import { createMuiTheme, makeStyles } from "@material-ui/core/styles";
-import { ThemeProvider } from "@material-ui/styles";
+import {
+  createMuiTheme,
+  makeStyles,
+  ThemeProvider,
+} from "@material-ui/core/styles";
+// import { ThemeProvider } from "@material-ui/styles";
 import Helmet from "react-helmet";
 import { colors } from "../../config/brand.yml";
 import fontBrushWoff from "../../config/font/BrushScriptRegularSWFTE.woff";
@@ -19,35 +23,27 @@ const brush = {
     "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF",
 };
 const theme = createMuiTheme({
-  overrides: {
-    MuiCssBaseline: {
-      "@global": {
-        "@font-face": [brush],
-      },
-    },
-  },
-  typography: {
-    h4: {
-      // fontFamily: "Lobster",
-      fontFamily: "Brush Script, Lobster",
-      // fontFamily: "Brush Script",
-      fontWeight: "Bold",
-    },
-  },
   palette: {
     primary: { main: colors.purple, dark: colors.green },
-    secondary: { main: colors.gold },
+    type: "light",
+    // secondary: { main: colors.gold },
   },
+  // overrides: {
+  //   MuiCssBaseline: {
+  //     "@global": {
+  //       "@font-face": [brush],
+  //     },
+  //   },
+  // },
+  // typography: {
+  //   h4: {
+  //     // fontFamily: "Lobster",
+  //     fontFamily: "Brush Script, Lobster",
+  //     // fontFamily: "Brush Script",
+  //     fontWeight: "Bold",
+  //   },
+  // },
 });
-console.clear();
-console.log(
-  "%cSitio web hecho por kleber.digital " +
-    "%cWhatsapp: +591 70657034 " +
-    "%cWeb: www.kleber.digital",
-  "font-family: Arial; background:#2a2f36; color: #00ffec; font-size: 30px; border:2px solid #00ffec; padding: 8px; border-radius: 5px; margin: 10px 0",
-  "font-family: Arial; background:#075e54; color: #ece5dd; font-size: 15px; padding: 8px; border-radius: 5px; margin: 10px 10px 10px 0;",
-  "font-family: Arial; font-weight: bold; background: #00ffec; color: #2a2f36; font-size: 15px; padding: 8px; border-radius: 5px;"
-);
 
 const Layout = ({ children, seo, pixel }) => {
   useEffect(() => {
@@ -56,6 +52,16 @@ const Layout = ({ children, seo, pixel }) => {
     {
       pixel && ReactPixel.track("ViewContent", { title: pixel });
     }
+    console.clear();
+    console.log(
+      "%cSitio web hecho por kleber.digital " +
+        "%cWhatsapp: +591 70657034 " +
+        "%cWeb: www.kleber.digital",
+      "font-family: Arial; background:#2a2f36; color: #00ffec; font-size: 30px; border:2px solid #00ffec; padding: 8px; border-radius: 5px; margin: 10px 0",
+      "font-family: Arial; background:#075e54; color: #ece5dd; font-size: 15px; padding: 8px; border-radius: 5px; margin: 10px 10px 10px 0;",
+      "font-family: Arial; font-weight: bold; background: #00ffec; color: #2a2f36; font-size: 15px; padding: 8px; border-radius: 5px;"
+    );
+    console.log(theme);
   }, []);
   return (
     <ThemeProvider theme={theme}>
@@ -80,42 +86,44 @@ const Layout = ({ children, seo, pixel }) => {
         />
 
         {/* <link
-          href="https://fonts.googleapis.com/css?family=Raleway&display=swap"
-          rel="stylesheet"
-        ></link>
-        <link
-          href="https://fonts.googleapis.com/css?family=Lobster&display=swap"
-          rel="stylesheet"
-        ></link>
-        <link
+            href="https://fonts.googleapis.com/css?family=Raleway&display=swap"
+            rel="stylesheet"
+            ></link>
+            <link
+            href="https://fonts.googleapis.com/css?family=Lobster&display=swap"
+            rel="stylesheet"
+          ></link>
+          <link
           href="https://fonts.googleapis.com/css?family=Alex+Brush&display=swap"
           rel="stylesheet"
         ></link> */}
         {/* <link
-          rel="preload"
-          as="style"
-          href="https://fonts.googleapis.com/css?family=Raleway&display=swap"
-          rel="stylesheet"
-        ></link>
-        <link
-          rel="preload"
-          as="style"
-          href="https://fonts.googleapis.com/css?family=Lobster&display=swap"
-          rel="stylesheet"
-        ></link>
-        <link
-          rel="preload"
-          as="style"
-          href="https://fonts.googleapis.com/css?family=Alex+Brush&display=swap"
-          rel="stylesheet"
-        ></link> */}
+            rel="preload"
+            as="style"
+            href="https://fonts.googleapis.com/css?family=Raleway&display=swap"
+            rel="stylesheet"
+            ></link>
+            <link
+            rel="preload"
+            as="style"
+            href="https://fonts.googleapis.com/css?family=Lobster&display=swap"
+            rel="stylesheet"
+            ></link>
+            <link
+            rel="preload"
+            as="style"
+            href="https://fonts.googleapis.com/css?family=Alex+Brush&display=swap"
+            rel="stylesheet"
+          ></link> */}
         <meta property="fb:app_id" content="2503959843259543" />
         <meta property="fb:admins" content="100001924570972" />
         <meta property="fb:admins" content="100004839931984" />
       </Helmet>
+
       {children}
       {/* <Footer></Footer> */}
       <FormNetlify></FormNetlify>
+
       <style jsx="true" global="true">{`
         html {
           scroll-behavior: smooth;

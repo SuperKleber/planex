@@ -71,9 +71,10 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
   const [checkedA, setCheckedA] = useState(true);
   const [checkedB, setCheckedB] = useState(true);
 
-  const [alertValidation, setAlertValidation] = useState({
+  const [alert, setAlert] = useState({
     open: false,
     message: "",
+    severity: "error",
   });
 
   const submit = (e) => {
@@ -104,20 +105,26 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
           console.log(data);
         });
       } else {
-        setAlertValidation({
+        setAlert({
           open: true,
           message: "Por favor agregue al menos a un familiar",
+          severity: "error",
         });
       }
     } else {
-      setAlertValidation({ open: true, message: "Ingrese un celular válido" });
+      setAlert({
+        open: true,
+        message: "Ingrese un celular válido",
+        severity: "error",
+      });
     }
   };
+  const limitFamily = 7; //Límite de familiares que puede agregar el usuario
   useEffect(() => {
     ReactPixel.trackCustom("InitiateForm");
     if (customFamily.length !== 0) {
       let newFamilyJson = [];
-      let newMessage = `Solicitud de afiliación: \n Soy ${nombres} ${apellidos} y me declaro el responsable de la afiliación, mi email es ${email} y mi celular ${celular}, he leído y aceptado el contrato de afiliación y contrato el plan ${plan} para mi familia que son: \n`;
+      let newMessage = `Solicitud de afiliación: \n Soy ${nombres} ${apellidos} en mi calidad de responsable del plan, con email ${email} y mi celular ${celular}, he leído y acepto los términos del plan ${plan} para las personas que detallo como familiares míos a continuación: \n`;
 
       customFamily.map(({ nombres, apellidos, parentesco, edad }) => {
         newFamilyJson.push({ parentesco, nombres, apellidos, edad });
@@ -126,6 +133,14 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
 
       setMessage(`${newMessage}`);
       setFamilyJson([...newFamilyJson]);
+
+      if (customFamily.length === limitFamily) {
+        setAlert({
+          open: true,
+          message: "Lista de familiares completa",
+          severity: "success",
+        });
+      }
     }
   }, [customFamily]);
 
@@ -395,7 +410,7 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
           <RelativeList
             customFamily={customFamily}
             setCustomFamily={setCustomFamily}
-            limitFamily={7}
+            limitFamily={limitFamily}
           ></RelativeList>
           <br />
           {customFamily.length > 0 && (
@@ -453,12 +468,10 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
             Enviar
           </Button> */}
           <Alert
-            open={alertValidation.open}
-            message={alertValidation.message}
-            onClose={() =>
-              setAlertValidation({ ...alertValidation, open: false })
-            }
-            color={colors.red}
+            open={alert.open}
+            message={alert.message}
+            onClose={() => setAlert({ ...alert, open: false })}
+            severity={alert.severity}
           ></Alert>
         </Box>
       </form>

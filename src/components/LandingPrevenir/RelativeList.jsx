@@ -112,7 +112,7 @@ const RelativeEdit = ({
 }) => {
   const buttonText = (
     <>
-      <SaveIcon></SaveIcon> Guardar
+      <SaveIcon></SaveIcon> Continuar
     </>
   );
   const classes = useStyles();

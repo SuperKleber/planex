@@ -1,13 +1,15 @@
 import React from "react";
 import { Snackbar, SnackbarContent, IconButton } from "@material-ui/core";
+import { Alert as AlertMessage } from "@material-ui/lab/";
+
 import CloseIcon from "@material-ui/icons/Close";
 import { colors } from "../../config/brand.yml";
 const Alert = ({
   open,
   message,
   onClose = () => null,
-  time = 4000,
-  color = colors.green,
+  time = 6000,
+  severity = "success",
 }) => {
   return (
     <Snackbar
@@ -16,23 +18,12 @@ const Alert = ({
         horizontal: "left",
       }}
       open={open}
-      autoHideDuration={time ? time : 4000}
+      autoHideDuration={time}
       onClose={onClose}
     >
-      <SnackbarContent
-        style={{ background: color }}
-        message={<span id="message-id">{message}</span>}
-        action={[
-          <IconButton
-            key="close"
-            aria-label="close"
-            color="inherit"
-            onClick={onClose}
-          >
-            <CloseIcon />
-          </IconButton>,
-        ]}
-      ></SnackbarContent>
+      <AlertMessage onClose={onClose} severity={severity}>
+        {message}
+      </AlertMessage>
     </Snackbar>
   );
 };
