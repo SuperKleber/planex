@@ -189,7 +189,7 @@ const Relative = ({
             getOptionLabel={(relative) => relative.parentesco}
             renderInput={(params) => (
               <TextField
-                placeholder="escribe el parentesco"
+                placeholder="ej: madre, abuelo"
                 disabled={relative.descartado}
                 {...params}
                 onChangeCapture={(e) => {
