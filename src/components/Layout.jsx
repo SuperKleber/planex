@@ -10,6 +10,7 @@ import { colors } from "../../config/brand.yml";
 import fontBrushWoff from "../../config/font/BrushScriptRegularSWFTE.woff";
 import fontBrushWoff2 from "../../config/font/BrushScriptRegularSWFTE.woff2";
 import Seo from "./Seo.jsx";
+import Script from "react-load-script";
 import Footer from "./Footer";
 import ReactPixel from "react-facebook-pixel";
 import FormNetlify from "./FormNetlify";
@@ -61,7 +62,6 @@ const Layout = ({ children, seo, pixel }) => {
       "font-family: Arial; background:#075e54; color: #ece5dd; font-size: 15px; padding: 8px; border-radius: 5px; margin: 10px 10px 10px 0;",
       "font-family: Arial; font-weight: bold; background: #00ffec; color: #2a2f36; font-size: 15px; padding: 8px; border-radius: 5px;"
     );
-    console.log(theme);
   }, []);
   return (
     <ThemeProvider theme={theme}>
@@ -118,6 +118,8 @@ const Layout = ({ children, seo, pixel }) => {
         <meta property="fb:app_id" content="2503959843259543" />
         <meta property="fb:admins" content="100001924570972" />
         <meta property="fb:admins" content="100004839931984" />
+        <script src="//code.jivosite.com/widget/P9QE9DhazY" async></script>
+        {/* <Script src="//code.jivosite.com/widget/P9QE9DhazY" async></Script> */}
       </Helmet>
 
       {children}
