@@ -235,6 +235,7 @@ const Info = () => {
           {
             <FormPlanex
               initialPlan={initialPlan}
+              formName="prevision"
               onSent={() =>
                 setTitleModal(
                   "✅ Procesamos tu solicitud, pronto sabrás de nosotros"

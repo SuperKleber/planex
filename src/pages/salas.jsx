@@ -185,7 +185,7 @@ const Salas = () => {
                     Servicio Covid-19
                   </Typography>
                   <Chip
-                    label="4800Bs"
+                    label="2990bs"
                     color="primary"
                     variant="outlined"
                   ></Chip>
@@ -207,7 +207,7 @@ const Salas = () => {
                     </ListItem>
                     <Divider />
                     <ListItem>
-                      <ListItemText>Cremación</ListItemText>
+                      <ListItemText>Trámites legales</ListItemText>
                     </ListItem>
                     <Divider />
                   </List>
@@ -286,68 +286,6 @@ const Salas = () => {
                     }}
                     target="_blank"
                     href="https://api.whatsapp.com/send?phone=59133469191&text=Quiero%20información%20del%20necrológico%20virtual"
-                  >
-                    <Button color="primary" variant="contained">
-                      Consultar Servicio
-                    </Button>
-                  </a>
-                </CardActions>
-              </Card>
-            </Grid>
-            <Grid {...gridItem}>
-              <Card className={`${classes.card}`}>
-                <CardMedia
-                  className={classes.media}
-                  image="/img/urna-banner.png"
-                  title="funeral en casa"
-                ></CardMedia>
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    Servicio de Cremación
-                  </Typography>
-                  <Chip
-                    label="3500Bs"
-                    color="primary"
-                    variant="outlined"
-                  ></Chip>
-                  <List>
-                    <ListItem>
-                      <ListItemText>Horno crematorio</ListItemText>
-                    </ListItem>
-                    <Divider />
-                    <ListItem>
-                      <ListItemText>Urna</ListItemText>
-                    </ListItem>
-                    <Divider />
-                    <ListItem>
-                      <ListItemText>
-                        Salón velatorio y cafetería
-                        <Chip
-                          variant="outlined"
-                          label="promoción"
-                          style={{
-                            color: colors.green,
-                            border: `1px solid ${colors.green}`,
-                            marginLeft: 8,
-                          }}
-                        ></Chip>
-                      </ListItemText>
-                    </ListItem>
-                  </List>
-                </CardContent>
-
-                <CardActions>
-                  <a
-                    onClick={() => {
-                      ReactPixel.track("Contact", {
-                        type: "whatsapp",
-                        num: "33469191",
-                        description: "Servicio salón velatorio",
-                        textButton: " Consultar Servicio",
-                      });
-                    }}
-                    target="_blank"
-                    href="https://api.whatsapp.com/send?phone=59133469191&text=Quiero%20información%20del%20serivicio%20funerario%20en%20salas"
                   >
                     <Button color="primary" variant="contained">
                       Consultar Servicio

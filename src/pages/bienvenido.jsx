@@ -34,7 +34,7 @@ const Formulario = () => {
           )}
           <hr />
           <FormPlanex
-            formName="prevision"
+            formName="remarketing"
             onSent={() => {
               setSent(true);
               typeof window !== "undefined" && window.scrollTo(0, 0);

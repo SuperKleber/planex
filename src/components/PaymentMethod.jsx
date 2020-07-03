@@ -32,7 +32,7 @@ const useStyles = makeStyles(() => ({
     alignItems: "center",
   },
 }));
-const PaymentMethod = () => {
+const PaymentMethod = ({ clientCode = true }) => {
   const [openModal, setOpenModal] = useState(false);
   const [modal, setModal] = useState({ title: "", children: () => <></> });
   const classes = useStyles();
@@ -82,42 +82,47 @@ const PaymentMethod = () => {
                 </ListItemText>
               </ListItem>
               <Divider />
-              <ListItem>
-                <ListItemText>
-                  Introducir en la Glosa{" "}
-                  <strong
-                    style={{ textDecoration: "underline", cursor: "pointer" }}
-                    onClick={() => {
-                      setOpenModal(true);
-                      setModal({
-                        title: "Consulte su código de cliente",
-                        children: SearchClient,
-                      });
-                    }}
-                  >
-                    Código de contrato
-                  </strong>
-                </ListItemText>
-              </ListItem>
+              {clientCode && (
+                <ListItem>
+                  <ListItemText>
+                    Introducir en la Glosa{" "}
+                    <strong
+                      style={{ textDecoration: "underline", cursor: "pointer" }}
+                      onClick={() => {
+                        setOpenModal(true);
+                        setModal({
+                          title: "Consulte su código de cliente",
+                          children: SearchClient,
+                        });
+                      }}
+                    >
+                      Código de contrato
+                    </strong>
+                  </ListItemText>
+                </ListItem>
+              )}
             </List>
+            {clientCode && (
+              <>
+                <hr />
 
-            <hr />
+                <Button
+                  onClick={() => {
+                    setOpenModal(true);
+                    setModal({
+                      title: "Consulte su código de cliente",
+                      children: SearchClient,
+                    });
+                  }}
+                  color="primary"
+                  variant="outlined"
+                >
+                  ¿Cuál es mi código de contrato?
+                </Button>
 
-            <Button
-              onClick={() => {
-                setOpenModal(true);
-                setModal({
-                  title: "Consulte su código de cliente",
-                  children: SearchClient,
-                });
-              }}
-              color="primary"
-              variant="outlined"
-            >
-              ¿Cuál es mi código de contrato?
-            </Button>
-
-            <hr />
+                <hr />
+              </>
+            )}
           </Box>
         ),
       },
@@ -149,26 +154,30 @@ const PaymentMethod = () => {
                 <ListItemText>Cuenta Corriente BOB</ListItemText>
               </ListItem>
               <Divider />
-              <ListItem>
-                <ListItemText>
-                  Glosa: Introducir su código de contrato
-                </ListItemText>
-              </ListItem>
+              {clientCode && (
+                <ListItem>
+                  <ListItemText>
+                    Glosa: Introducir su código de contrato
+                  </ListItemText>
+                </ListItem>
+              )}
             </List>
 
-            <Button
-              onClick={() => {
-                setOpenModal(true);
-                setModal({
-                  title: "Consulte su código de cliente",
-                  children: SearchClient,
-                });
-              }}
-              color="primary"
-              variant="outlined"
-            >
-              ¿Cuál es mi código de contrato?
-            </Button>
+            {clientCode && (
+              <Button
+                onClick={() => {
+                  setOpenModal(true);
+                  setModal({
+                    title: "Consulte su código de cliente",
+                    children: SearchClient,
+                  });
+                }}
+                color="primary"
+                variant="outlined"
+              >
+                ¿Cuál es mi código de contrato?
+              </Button>
+            )}
 
             <br />
             <br />
@@ -197,29 +206,35 @@ const PaymentMethod = () => {
                 <ListItemText>Nombre: INSTITUCIÓN PREVER</ListItemText>
               </ListItem>
               <Divider />
-              <ListItem>
-                <ListItemText>
-                  Glosa: Introducir su código de contrato
-                </ListItemText>
-              </ListItem>
+              {clientCode && (
+                <ListItem>
+                  <ListItemText>
+                    Glosa: Introducir su código de contrato
+                  </ListItemText>
+                </ListItem>
+              )}
             </List>
-            <hr />
+            {clientCode && (
+              <>
+                <hr />
 
-            <Button
-              onClick={() => {
-                setOpenModal(true);
-                setModal({
-                  title: "Consulte su código de cliente",
-                  children: SearchClient,
-                });
-              }}
-              color="primary"
-              variant="outlined"
-            >
-              ¿Cuál es mi código de contrato?
-            </Button>
+                <Button
+                  onClick={() => {
+                    setOpenModal(true);
+                    setModal({
+                      title: "Consulte su código de cliente",
+                      children: SearchClient,
+                    });
+                  }}
+                  color="primary"
+                  variant="outlined"
+                >
+                  ¿Cuál es mi código de contrato?
+                </Button>
 
-            <hr />
+                <hr />
+              </>
+            )}
           </Box>
         ),
       },

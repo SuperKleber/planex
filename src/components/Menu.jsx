@@ -17,7 +17,7 @@ import {
   Menu as MenuResponsive,
   Divider,
   SvgIcon,
-  Container
+  Container,
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import { CopyToClipboard } from "react-copy-to-clipboard";
@@ -28,39 +28,39 @@ import { colors } from "../../config/brand.yml";
 import { Link } from "gatsby";
 import Alert from "./Alert";
 import ReactPixel from "react-facebook-pixel";
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   appBar: {
     background: "transparent",
-    boxShadow: "none"
+    boxShadow: "none",
   },
   flexCenter: {
     display: "flex",
-    alignItems: "center"
+    alignItems: "center",
   },
   buttonMenu: {
-    justifyContent: "flex-end"
+    justifyContent: "flex-end",
   },
   title: {},
   phoneEmergency: {
     fontSize: "1.2em",
-    marginBottom: 16
+    marginBottom: 16,
   },
   whatsapp: {
     color: "#075e54",
     borderColor: "#075e54",
     fontSize: "1.2em",
-    marginBottom: 16
+    marginBottom: 16,
   },
   menuFloat: {
     // background: "linear-gradient(transparent, rgba(255,255,255,1))",
     background: " rgba(255,255,255,1)",
     position: "fixed",
     bottom: "0",
-    zIndex: 1
-  }
+    zIndex: 1,
+  },
 }));
 const Menu = ({ menuFloat = true }) => {
   const [emergency, setEmergency] = useState(false);
@@ -71,7 +71,7 @@ const Menu = ({ menuFloat = true }) => {
   const messageWhatsapp = message.replace(/ /gi, "%20");
   const messageEmergency = "¡Tengo una emergencia!";
   const messageEmergencyWhatsapp = messageEmergency.replace(/ /gi, "%20");
-  const handleClick = event => {
+  const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
@@ -125,7 +125,7 @@ const Menu = ({ menuFloat = true }) => {
                 justifyContent="space-between"
                 alignItems="center"
               >
-                <Link to="/pagos">
+                {/* <Link to="/pagos">
                   <Button
                     variant="outlined"
                     style={{ marginRight: 8 }}
@@ -133,17 +133,17 @@ const Menu = ({ menuFloat = true }) => {
                   >
                     ¿Cómo pagar?
                   </Button>
-                </Link>
+                </Link> */}
 
-                {/* <Link to="/#planes">
+                <Link to="/#planes">
                   <Button
                     variant="outlined"
                     style={{ marginRight: 8 }}
                     color="primary"
                   >
-                    Planes🕊️
+                    Vive en Paz🕊️
                   </Button>
-                </Link> */}
+                </Link>
                 <Button
                   onClick={() => {
                     setEmergency(!emergency);
@@ -166,7 +166,7 @@ const Menu = ({ menuFloat = true }) => {
                     type: "copy",
                     num: "33469191",
                     description: "Copiar teléfono de emergencia",
-                    textButton: "Atención 24 horas (+591)33469191"
+                    textButton: "Atención 24 horas (+591)33469191",
                   });
                 }}
               >
@@ -189,7 +189,7 @@ const Menu = ({ menuFloat = true }) => {
                     type: "whatsapp",
                     num: "33469191",
                     description: "whatsapp de emergencia",
-                    textButton: "+591-33469191"
+                    textButton: "+591-33469191",
                   });
                 }}
                 href={`https://api.whatsapp.com/send?phone=59133469191&text=${messageEmergencyWhatsapp}`}
@@ -210,7 +210,7 @@ const Menu = ({ menuFloat = true }) => {
                     type: "phone",
                     num: "33469191",
                     description: "teléfono de emergencia",
-                    textButton: "Llamar contacto"
+                    textButton: "Llamar contacto",
                   });
                 }}
                 href="tel:33469191"
@@ -242,7 +242,7 @@ const Menu = ({ menuFloat = true }) => {
                     type: "whatsapp",
                     num: "72145667",
                     description: "planes de previsión",
-                    textButton: "logo de whatsapp"
+                    textButton: "logo de whatsapp",
                   })
                 }
                 target="_black"

@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const FormContact = ({ initialPlan, onSent = () => null }) => {
+const FormContact = ({ initialPlan, onSent = () => null, formName }) => {
   const classes = useStyles();
 
   const [openModal, setOpenModal] = useState(false);
@@ -97,7 +97,7 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
         fetch("/", {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: encode({ "form-name": "prevision", ...data }),
+          body: encode({ "form-name": { formName }, ...data }),
         }).then((res) => {
           ReactPixel.track("InitiateCheckout");
           setSent(true);
@@ -186,6 +186,7 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
           <TextField
             name="email"
             value={email}
+            required
             onChange={(e) => setEmail(e.target.value)}
             type="email"
             id="outlined-basic"
@@ -220,6 +221,16 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
                 ? true
                 : celular.length < 8
                 ? true
+                : !email
+                ? true
+                : email.indexOf("@") === -1
+                ? true
+                : email.split("@")[1].indexOf(".") === -1
+                ? true
+                : email.split("@")[1].length -
+                    email.split("@")[1].indexOf(".") <
+                  4
+                ? true
                 : false
             }
             fullWidth
@@ -232,6 +243,15 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
               ? "Llene los campos con asterisco (*)"
               : celular.length < 8
               ? "Introducir un celular correcto"
+              : !email
+              ? "Introduce un Email"
+              : email.indexOf("@") === -1
+              ? "Introduce un Email válido"
+              : email.split("@")[1].indexOf(".") === -1
+              ? "Introduce un Email válido"
+              : email.split("@")[1].length - email.split("@")[1].indexOf(".") <
+                4
+              ? "Introduce un Email válido"
               : "Siguiente"}
           </Button>
         </>
@@ -430,7 +450,7 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
   if (!sent) {
     return (
       <form
-        name="prevision"
+        name={formName}
         method="POST"
         data-netlify="true"
         netlify="true"
@@ -442,7 +462,7 @@ const FormContact = ({ initialPlan, onSent = () => null }) => {
           alignItems="center"
           flexDirection="column"
         >
-          <input type="hidden" name="form-name" value="prevision" />
+          <input type="hidden" name="form-name" value={formName} />
           <Stepper activeStep={step} orientation="vertical">
             {steps.map(({ title, content }, i) => {
               return (

@@ -19,15 +19,9 @@ const Pagos = () => {
           alignItems="center"
           style={{ minHeight: "calc(100vh - 150px)" }}
         >
-          <Button
-            onClick={() => setOpenModal(true)}
-            variant="contained"
-            color="primary"
-          >
-            consulta tu código de cliente
-          </Button>
+          <Typography>Métodos de pago</Typography>
           <br />
-          <PaymentMethod></PaymentMethod>
+          <PaymentMethod clientCode={false}></PaymentMethod>
         </Box>
 
         <Modal
