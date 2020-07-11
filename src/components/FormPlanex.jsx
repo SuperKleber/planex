@@ -97,7 +97,7 @@ const FormContact = ({ initialPlan, onSent = () => null, formName }) => {
         fetch("/", {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: encode({ "form-name": { formName }, ...data }),
+          body: encode({ "form-name": formName, ...data }),
         }).then((res) => {
           ReactPixel.track("InitiateCheckout");
           setSent(true);
@@ -121,6 +121,7 @@ const FormContact = ({ initialPlan, onSent = () => null, formName }) => {
   };
   const limitFamily = 7; //Límite de familiares que puede agregar el usuario
   useEffect(() => {
+    console.log(formName);
     ReactPixel.trackCustom("InitiateForm");
     if (customFamily.length !== 0) {
       let newFamilyJson = [];
