@@ -121,7 +121,6 @@ const FormContact = ({ initialPlan, onSent = () => null, formName }) => {
   };
   const limitFamily = 7; //Límite de familiares que puede agregar el usuario
   useEffect(() => {
-    console.log(formName);
     ReactPixel.trackCustom("InitiateForm");
     if (customFamily.length !== 0) {
       let newFamilyJson = [];

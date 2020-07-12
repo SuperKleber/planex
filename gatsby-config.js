@@ -130,16 +130,16 @@ module.exports = {
       },
     },
 
-    {
-      resolve: `gatsby-plugin-algolia`,
-      options: {
-        appId: process.env.ALGOLIA_APP_ID,
-        apiKey: process.env.ALGOLIA_API_ADMIN,
-        indexName: "obituarios", // for all queries
-        queries,
-        enablePartialUpdates: false, // default: false
-        matchFields: ["objectID", "nombre"],
-      },
-    },
+    // {
+    //   resolve: `gatsby-plugin-algolia`,
+    //   options: {
+    //     appId: process.env.ALGOLIA_APP_ID,
+    //     apiKey: process.env.ALGOLIA_API_ADMIN,
+    //     indexName: "obituarios", // for all queries
+    //     queries,
+    //     enablePartialUpdates: false, // default: false
+    //     matchFields: ["objectID", "nombre"],
+    //   },
+    // },
   ],
 };
