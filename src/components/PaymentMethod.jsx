@@ -32,11 +32,11 @@ const useStyles = makeStyles(() => ({
     alignItems: "center",
   },
 }));
-const PaymentMethod = ({ clientCode = true }) => {
+const PaymentMethod = ({ clientCode = true, defaultPaymentMethods }) => {
   const [openModal, setOpenModal] = useState(false);
   const [modal, setModal] = useState({ title: "", children: () => <></> });
   const classes = useStyles();
-  const paymentMethods = [
+  const paymentMethods = defaultPaymentMethods || [
     {
       title: "Escaneo de QR con banca móvil",
       img: "/img/qr.svg",
