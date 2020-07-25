@@ -1,10 +1,10 @@
 nombre: VICTOR HUGO PAZ PEDRAZA
 foto: /uploads/avatar-prever.png
-fechaFin: 2020-07-19
+fechaFin: 2020-07-19T00:00:00.000Z
 afiliado: false
 misa:
   urlLugarMisa: https://www.google.com/maps/place/Prever+-+Sal%C3%B3n+Velatorio/@-17.7941441,-63.16884,16z/data=!4m5!3m4!1s0x93f1e85d62ea77cb:0xfd9e12d454893aca!8m2!3d-17.7943484!4d-63.1657501
   urlLugarCementerio: https://www.google.com/maps/place/Cementerio+el+Pajonal,+Santa+Cruz+de+la+Sierra/@-17.8105507,-63.1702173,18z/data=!3m1!4b1!4m5!3m4!1s0x93f1e84e0dacd305:0x8ed05d3f62e164ce!8m2!3d-17.8105586!4d-63.1691555
   fechaMisa: 2020-07-20T14:00:00.000Z
-  horaMisa: 10:00
+  horaMisa: ""
   lugarCementerio: EL PAJONAL
