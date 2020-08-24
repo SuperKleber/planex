@@ -116,9 +116,9 @@ const Menu = ({ menuFloat = true }) => {
                 <Link to="/pagos">
                   <MenuItem>Métodos de pago</MenuItem>
                 </Link>
-                <Link to="/salas">
+                <a href="https://monteolivo.planex.com.bo">
                   <MenuItem>Salón Velatorio 🕯️</MenuItem>
-                </Link>
+                </a>
               </MenuResponsive>
               <Box
                 display="flex"

@@ -521,9 +521,13 @@ const Obituario = ({ pageContext, location }) => {
                   <Typography variant="h6">
                     {pageContext.misa.fechaMisa}
                   </Typography>
-                  <Typography variant="h6">
-                    {pageContext.misa.horaMisa}
-                  </Typography>
+                  {pageContext.misa.horaMisa && (
+                    <Typography variant="h6">
+                      {pageContext.misa.horaMisa.length > 1
+                        ? pageContext.misa.horaMisa.replace("-", ":")
+                        : ""}
+                    </Typography>
+                  )}
                 </Paper>
               )}
               <Paper
