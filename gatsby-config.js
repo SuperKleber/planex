@@ -136,6 +136,7 @@ module.exports = {
         name: `Planex Planes de previsión funeraria | 🕊️ Para vivir en Paz`,
         short_name: `Planex`,
         start_url: `/`,
+        icon: `static/favicon/apple-icon.png`,
         background_color: `#ffffff`,
         theme_color: `#663387`,
         display: `standalone`,
