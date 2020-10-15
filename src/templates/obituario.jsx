@@ -286,7 +286,7 @@ const Obituario = ({ pageContext, location }) => {
           <Typography gutterBottom>{pageContext.fechaFin}</Typography>
           <Typography>{pageContext.epitafio}</Typography>
 
-          {/* {pageContext.misa && (
+          {pageContext.misa && (
             <>
               <Button
                 variant="contained"
@@ -364,7 +364,7 @@ const Obituario = ({ pageContext, location }) => {
                 </Box>
               </Modal>
             </>
-          )} */}
+          )}
 
           <Divider></Divider>
           <Typography align="center" style={{ margin: "8px 0" }}>

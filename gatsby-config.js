@@ -129,7 +129,18 @@ module.exports = {
         ],
       },
     },
-
+    "gatsby-plugin-offline",
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Planex Planes de previsión funeraria | 🕊️ Para vivir en Paz`,
+        short_name: `Planex`,
+        start_url: `/`,
+        background_color: `#ffffff`,
+        theme_color: `#663387`,
+        display: `standalone`,
+      },
+    },
     // {
     //   resolve: `gatsby-plugin-algolia`,
     //   options: {
