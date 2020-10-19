@@ -1,2 +1,7 @@
-nombre: "ISAAC ACASIGÜE PEREDO"
-fechaFin: "2019-10-12T00:00:00.000Z"
+nombre: ISAAC ACASIGÜE PEREDO
+foto: /uploads/obituario-.jpg
+fechaFin: 2019-10-12T00:00:00.000Z
+epitafio: Yo soy la resurrección y la vida; el que en mí cree, aunque haya muerto vivirá.
+afiliado: false
+misa:
+  fechaMisa: 2020-10-19T12:08:15.764Z
