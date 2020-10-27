@@ -4,6 +4,25 @@ const { createFilePath } = require(`gatsby-source-filesystem`);
 const path = require(`path`);
 const slug = require("./lib/slug");
 
+// exports.sourceNodes = ({ actions }) => {
+//   const { createTypes } = actions;
+//   const typeDefs = `
+//     # One must say that the type is a Node
+//     type Misa  {
+
+//       fechaMisa: Date
+//       horaMisa: String
+//       urlLugarMisa: String
+//       lugarCementerio: String
+//       urlLugarCementerio: String
+
+//     }
+//     type allObituariosYaml implements Node {
+//       misa: Misa
+//     }
+//     `;
+//   createTypes(typeDefs);
+// };
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions;
   if (node.internal.type) {
