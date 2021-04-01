@@ -100,7 +100,7 @@ const CardPerson = ({ obituario }) => {
   const closeOption = (event) => setElementOption(null);
   const { nombre, foto, fechaInicio, fechaFin, epitafio, afiliado } = obituario;
   const prev = typeof window !== "undefined" && window.location.pathname;
-  const link = `/obituarios/${obituario.fields.slug}`;
+  const link = `/obituarios/${obituario.slug}`;
   const linkAbsolute =
     typeof window !== "undefined" && window.location.origin + link;
   const epitafioLimitCharacter = 100;
@@ -109,9 +109,9 @@ const CardPerson = ({ obituario }) => {
   // el error de URL de facebook sobre "ninita-luciana-nava-duran"
   // es una solución provisinal, el cual espero encontrar algo mejor
   const urlAbsolute = `${siteUrl}/obituarios/${
-    obituario.fields.slug == "ninita-luciana-nava-duran"
+    obituario.slug == "ninita-luciana-nava-duran"
       ? "ninita:-luciana-nava-duran"
-      : obituario.fields.slug
+      : obituario.slug
   }`;
   const shareMore = () => {
     try {
@@ -170,7 +170,9 @@ const CardPerson = ({ obituario }) => {
                     <Typography>Afiliado</Typography>
                   </Box>
                 )}
-                <Typography variant="h6">{firstUpperCase(nombre)}</Typography>
+                <Typography variant="h6">
+                  {firstUpperCase(nombre || "")}
+                </Typography>
                 {fechaFin && (
                   <Typography gutterBottom variant="caption" component="h6">
                     {fechaFin}

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { FacebookProvider, Comments, CommentsCount } from "react-facebook";
 import { Link } from "gatsby";
 import Domtoimage from "dom-to-image";
@@ -24,6 +24,7 @@ import firstUpperCase from "../../lib/firstUpperCase";
 import { FacebookIcon, FacebookShareButton } from "react-share";
 import Modal from "../components/Modal";
 import CountCommentsFacebook from "../components/CountCommentsFacebook";
+import sheetdb from "sheetdb-node";
 const useStyles = makeStyles((theme) => ({
   prev: {
     margin: 16,
@@ -212,21 +213,21 @@ const Obituario = ({ pageContext, location }) => {
   const obituarioImg = useRef(null);
   let prev = location.state ? location.state.prev : "/obituarios";
   const classes = useStyles();
-  const nombre = firstUpperCase(pageContext.nombre);
+  const nombre = firstUpperCase(pageContext.nombre || "");
   const seo = {
     siteTitle: `${nombre}`,
     siteDescription: `Los familiares invitan a dejar sus condolencias ingresando aquí.`,
     siteCover: pageContext.foto ? pageContext.foto : false,
-    siteUrl: `${siteUrl}/obituarios/${pageContext.fields.slug}`,
+    siteUrl: `${siteUrl}/obituarios/${pageContext.slug}`,
   };
 
   // La siguiente definición es simplemente para corregir
   // el error de URL de facebook sobre "ninita-luciana-nava-duran"
   // es una solución provisinal, el cual espero encontrar algo mejor
   const urlAbsolute = `${siteUrl}/obituarios/${
-    pageContext.fields.slug == "ninita-luciana-nava-duran"
+    pageContext.slug == "ninita-luciana-nava-duran"
       ? "ninita:-luciana-nava-duran"
-      : pageContext.fields.slug
+      : pageContext.slug
   }`;
 
   let fechaMisa, horaMisa, horaTraslado;
@@ -265,6 +266,15 @@ const Obituario = ({ pageContext, location }) => {
     / /g,
     "%20"
   );
+  useEffect(() => {
+    let config = {
+      address: "rhe5m5nrm1lfr",
+    };
+    let client = sheetdb(config);
+    client.read().then((data) => {
+      console.log(data);
+    });
+  }, []);
   return (
     <Layout seo={seo}>
       <Menu></Menu>
