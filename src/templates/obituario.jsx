@@ -203,6 +203,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const Obituario = ({ pageContext, location }) => {
+  console.log(pageContext);
   const [openMasse, setOpenMasse] = useState(false);
   const [hiddenImg, setHiddenImg] = useState({
     opacity: "0",

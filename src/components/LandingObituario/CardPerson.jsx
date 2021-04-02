@@ -28,12 +28,14 @@ import CountCommentsFacebook from "../CountCommentsFacebook.jsx";
 const useStyles = makeStyles((theme) => ({
   root: {
     position: "relative",
+    marginTop: 70,
   },
   card: {
-    height: 370,
+    // height: 370,
     // display: "flex",
     // flexDirection: "column",
     position: "relative",
+    boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.2)",
   },
   cardImage: {
     position: "absolute",
@@ -41,16 +43,17 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     left: "50%",
+    top: "-20%",
     transform: "translateX(-50%)",
     zIndex: 2,
     "& .foto": {
       backgroundPosition: "top !important",
       backgroundSize: "105% !important",
-      width: 90,
-      height: 90,
+      width: 150,
+      height: 150,
       top: -10,
       borderRadius: "50%",
-      boxShadow: "0px 2px 7px 0.5px",
+      boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.2)",
       zIndex: 3,
     },
     "& .cloud": {
@@ -72,25 +75,31 @@ const useStyles = makeStyles((theme) => ({
   CardContent: {
     display: "flex",
     flexDirection: "column",
-    height: 175,
+    height: 100,
     paddingBottom: 8,
   },
   backgroundCard: {
-    height: 100,
+    height: 85,
     width: "100%",
-    background: "rgb(212,254,255)",
-    background:
-      "linear-gradient(144deg, rgba(212,254,255,1) 0%, rgba(0,129,255,1) 100%)",
+    position: "relative",
+    // background: "rgb(212,254,255)",
+    // background:
+    //   "linear-gradient(144deg, rgba(212,254,255,1) 0%, rgba(0,129,255,1) 100%)",
   },
   iconFacebook: {},
   afiliado: {
     position: "absolute",
     top: 0,
     left: 0,
-    color: "white",
-    background: colors.purple,
+    // color: "white",
+    // background: colors.purple,
     padding: 8,
     borderRadius: "0 0 4px 0",
+    // color: colors.purple,
+    background: "rgba(100,100,100,0.1)",
+    // border: `2px solid ${colors.purple}`,
+    // borderTop: 0,
+    // borderLeft: 0,
   },
 }));
 const CardPerson = ({ obituario }) => {
@@ -103,7 +112,7 @@ const CardPerson = ({ obituario }) => {
   const link = `/obituarios/${obituario.slug}`;
   const linkAbsolute =
     typeof window !== "undefined" && window.location.origin + link;
-  const epitafioLimitCharacter = 100;
+  const epitafioLimitCharacter = 200;
   const classes = useStyles();
   // La siguiente definición es simplemente para corregir
   // el error de URL de facebook sobre "ninita-luciana-nava-duran"
@@ -152,7 +161,7 @@ const CardPerson = ({ obituario }) => {
               className="foto"
               style={{ background: `url(${foto})` }}
             ></span>
-            <img className="cloud" src="/img/nube-sombra.svg"></img>
+            {/* <img className="cloud" src="/img/nube-sombra.svg"></img> */}
           </Box>
         </Link>
         <Card className={classes.card}>
@@ -163,32 +172,58 @@ const CardPerson = ({ obituario }) => {
                 prev: prev,
               }}
             >
-              <Box className={classes.backgroundCard}></Box>
+              <Box className={classes.backgroundCard}>
+                {fechaFin && (
+                  <Typography
+                    gutterBottom
+                    variant="caption"
+                    component="h5"
+                    style={{
+                      position: "absolute",
+                      right: 8,
+                      top: 8,
+                      zIndex: 2,
+                      margin: "4px solid red",
+                    }}
+                  >
+                    {fechaFin}
+                  </Typography>
+                )}
+              </Box>
+
               <CardContent className={classes.CardContent}>
                 {afiliado && (
                   <Box className={classes.afiliado}>
                     <Typography>Afiliado</Typography>
                   </Box>
                 )}
-                <Typography variant="h6">
+                <Typography variant="h6" style={{ textAlign: "center" }}>
                   {firstUpperCase(nombre || "")}
                 </Typography>
-                {fechaFin && (
+                {/* {fechaFin && (
                   <Typography gutterBottom variant="caption" component="h6">
                     {fechaFin}
                   </Typography>
-                )}
-                {epitafio && (
-                  <Typography variant="body2">
+                )} */}
+                {epitafio && epitafio !== "null" && (
+                  <Typography
+                    variant="caption"
+                    style={{ textAlign: "center", fontStyle: "italic" }}
+                  >
                     {epitafio.length > epitafioLimitCharacter ? (
                       <>
                         {`${epitafio.substr(0, epitafioLimitCharacter)}`}
-                        <Typography component="span" color="primary">
+                        <Typography
+                          component="span"
+                          variant="caption"
+                          color="primary"
+                          style={{ textAlign: "center", fontStyle: "italic" }}
+                        >
                           ...ver más
                         </Typography>
                       </>
                     ) : (
-                      epitafio
+                      epitafio || ""
                     )}
                   </Typography>
                 )}
@@ -196,8 +231,15 @@ const CardPerson = ({ obituario }) => {
             </Link>
           </CardActionArea>
           <CardActions>
-            <Button onClick={clickOption} variant="contained" color="primary">
-              <ShareIcon />
+            <Button
+              onClick={clickOption}
+              variant="contained"
+              color="primary"
+              style={{
+                boxShadow: "0px 0px 5px 0px rgba(0,0,0,0.2)",
+              }}
+            >
+              {/* <ShareIcon /> */}
               Compartir
             </Button>
             <Options
@@ -241,7 +283,13 @@ const CardPerson = ({ obituario }) => {
                 prev: prev,
               }}
             >
-              <Button>
+              <Button
+                variant="outlined"
+                // style={{
+                //   background: "white",
+                //   boxShadow: "0px 0px 5px 0px rgba(0,0,0,0.2)",
+                // }}
+              >
                 <Box display="flex" className={classes.CommentsCount}>
                   <Typography style={{ marginLeft: 4 }}>
                     <CountCommentsFacebook url={urlAbsolute} />

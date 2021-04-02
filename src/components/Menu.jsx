@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
     background: " rgba(255,255,255,1)",
     position: "fixed",
     bottom: "0",
-    zIndex: 1,
+    zIndex: 10,
   },
 }));
 const Menu = ({ menuFloat = true }) => {

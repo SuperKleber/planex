@@ -116,6 +116,7 @@ exports.createPages = async ({ graphql, actions }) => {
         edges {
           node {
             name
+            nombre
             fechaFin
             misa {
               fechaMisa
