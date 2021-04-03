@@ -56,6 +56,16 @@ const useStyles = makeStyles((theme) => ({
       boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.2)",
       zIndex: 3,
     },
+    "& .aro": {
+      position: "absolute",
+      width: 155,
+      height: 155,
+      zIndex: 4,
+      top: "50%",
+      transform: "translateY(-50%)",
+      boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.2)",
+      borderRadius: "50%",
+    },
     "& .cloud": {
       width: 250,
       top: "60%",
@@ -101,13 +111,57 @@ const useStyles = makeStyles((theme) => ({
     // borderTop: 0,
     // borderLeft: 0,
   },
+  goldenButton: {
+    display: "inline-block",
+    outline: "none",
+    fontFamily: "inherit",
+    fontSize: "1em",
+    boxSizing: "border-box",
+    border: "none",
+    borderRadius: ".3em",
+    // height: "2.75em",
+    height: "36px",
+    lineHeight: "2.5em",
+    textTransform: "uppercase",
+    padding: "0 1em",
+    boxShadow:
+      "0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(110,80,20,.4),inset 0 -2px 5px 1px rgba(139,66,8,1), inset 0 -1px 1px 3px rgba(250,227,133,1)",
+    backgroundImage:
+      "linear-gradient(160deg, #a54e07, #b47e11, #fef1a2, #bc881b, #a54e07)",
+    border: "1px solid #a55d07",
+    color: "rgb(120,50,5)",
+    textShadow: "0 2px 2px rgba(250, 227, 133, 1)",
+    cursor: "pointer",
+    transition: "all .2s ease-in-out",
+    backgroundSize: "100% 100%",
+    backgroundPosition: "center",
+    "&:hover": {
+      backgroundSize: "150% 150%",
+      boxShadow:
+        "0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23), inset 0 -2px 5px 1px #b17d10,inset 0 -1px 1px 3px rgba(250,227,133,1)",
+      border: "1px solid rgba(165,93,7,.6)",
+      color: "rgba(120,50,5,.8)",
+    },
+    "&:active": {
+      boxShadow:
+        "0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(110,80,20,.4), inset 0 -2px 5px 1px #b17d10, inset 0 -1px 1px 3px rgba(250,227,133,1)",
+    },
+  },
 }));
 const CardPerson = ({ obituario }) => {
   const [copiedShare, setCopiedShare] = useState(false);
   const [elmentOption, setElementOption] = useState(null);
   const clickOption = (event) => setElementOption(event.currentTarget);
   const closeOption = (event) => setElementOption(null);
-  const { nombre, foto, fechaInicio, fechaFin, epitafio, afiliado } = obituario;
+  const {
+    nombre,
+    foto,
+    fechaInicio,
+    fechaFin,
+    epitafio,
+    afiliado,
+    fechaPremium,
+  } = obituario;
   const prev = typeof window !== "undefined" && window.location.pathname;
   const link = `/obituarios/${obituario.slug}`;
   const linkAbsolute =
@@ -122,6 +176,18 @@ const CardPerson = ({ obituario }) => {
       ? "ninita:-luciana-nava-duran"
       : obituario.slug
   }`;
+  let premium = false;
+  if (fechaPremium) {
+    const now = new Date();
+    const datePremium = new Date(
+      `${fechaPremium.split("/")[2]}-${fechaPremium.split("/")[1]}-${
+        fechaPremium.split("/")[0]
+      }`
+    );
+    if (datePremium >= now) {
+      premium = true;
+    }
+  }
   const shareMore = () => {
     try {
       if ("share" in navigator) {
@@ -145,25 +211,28 @@ const CardPerson = ({ obituario }) => {
   return (
     <FacebookProvider language="es_LA" appId="2503959843259543">
       <Box className={classes.root}>
-        <Link
-          to={link}
-          state={{
-            prev: prev,
-          }}
-        >
-          <Box
-            className={classes.cardImage}
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
+        {foto && foto != "" && (
+          <Link
+            to={link}
+            state={{
+              prev: prev,
+            }}
           >
-            <span
-              className="foto"
-              style={{ background: `url(${foto})` }}
-            ></span>
-            {/* <img className="cloud" src="/img/nube-sombra.svg"></img> */}
-          </Box>
-        </Link>
+            <Box
+              className={classes.cardImage}
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+            >
+              {premium && <img className="aro" src="/img/aro-oro.png" alt="" />}
+              <span
+                className="foto"
+                style={{ background: `url(${foto})` }}
+              ></span>
+              {/* <img className="cloud" src="/img/nube-sombra.svg"></img> */}
+            </Box>
+          </Link>
+        )}
         <Card className={classes.card}>
           <CardActionArea className={classes.CardActionArea}>
             <Link
@@ -231,17 +300,23 @@ const CardPerson = ({ obituario }) => {
             </Link>
           </CardActionArea>
           <CardActions>
-            <Button
-              onClick={clickOption}
-              variant="contained"
-              color="primary"
-              style={{
-                boxShadow: "0px 0px 5px 0px rgba(0,0,0,0.2)",
-              }}
-            >
-              {/* <ShareIcon /> */}
-              Compartir
-            </Button>
+            {premium ? (
+              <button onClick={clickOption} className={classes.goldenButton}>
+                <Typography>Compartir</Typography>
+              </button>
+            ) : (
+              <Button
+                onClick={clickOption}
+                variant="contained"
+                color="primary"
+                style={{
+                  boxShadow: "0px 0px 5px 0px rgba(0,0,0,0.2)",
+                }}
+              >
+                {/* <ShareIcon />  */}
+                Compartir
+              </Button>
+            )}
             <Options
               anchorEl={elmentOption}
               keepMounted

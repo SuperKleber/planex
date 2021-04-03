@@ -130,6 +130,9 @@ exports.createPages = async ({ graphql, actions }) => {
             epitafio
             afiliado
             foto
+            fechaPremium
+            urlYoutubePremium
+            dedicatoriaPremium
           }
         }
       }
