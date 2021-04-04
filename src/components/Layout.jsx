@@ -25,9 +25,12 @@ const brush = {
 };
 const theme = createMuiTheme({
   palette: {
-    primary: { main: colors.purple, dark: colors.green },
+    primary: { main: colors.purple, dark: colors.purpleDark },
     type: "light",
     // secondary: { main: colors.gold },
+    text: {
+      primary: "#525252",
+    },
   },
   // overrides: {
   //   MuiCssBaseline: {
@@ -36,14 +39,32 @@ const theme = createMuiTheme({
   //     },
   //   },
   // },
-  // typography: {
-  //   h4: {
-  //     // fontFamily: "Lobster",
-  //     fontFamily: "Brush Script, Lobster",
-  //     // fontFamily: "Brush Script",
-  //     fontWeight: "Bold",
-  //   },
-  // },
+  typography: {
+    h1: {
+      color: "#525252",
+    },
+    h2: {
+      color: "#525252",
+    },
+    h3: {
+      color: "#525252",
+    },
+    h4: {
+      // fontFamily: "Lobster",
+      fontFamily: "Brush Script, Lobster",
+      // fontFamily: "Brush Script",
+      fontWeight: "Bold",
+    },
+    h5: {
+      color: "#525252",
+    },
+    h6: {
+      color: "#525252",
+    },
+    body1: {
+      color: "#525252",
+    },
+  },
 });
 
 const Layout = ({ children, seo, pixel }) => {
@@ -133,7 +154,7 @@ const Layout = ({ children, seo, pixel }) => {
           margin: 0;
           min-height: 100vh;
           // background: #fdfdfd;
-          background: #ffffff;
+          background: #fcfcfc;
 
           // background: linear-gradient(#d4feff 15%, #ffffff 85%);
           overflow-x: hidden;

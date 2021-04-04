@@ -34,7 +34,8 @@ const useStyles = makeStyles((theme) => ({
     // boxShadow: " 10px 10px 25px 1px",
     height: "100%",
     width: "100%",
-    border: `20px solid ${colors.purple}`,
+    // border: `20px solid ${colors.purple}`,
+    borderRadius: "50%",
   },
   foto: {
     // width: "calc(100% - 21%)",
@@ -43,6 +44,8 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     backgroundSize: "100% !important",
     // boxShadow: " 10px 10px 25px 1px",
+
+    borderRadius: "50%",
   },
   shadowFoto: {
     position: "absolute",
@@ -50,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
     right: -20,
     width: "50%",
     height: "100%",
-    border: "20px solid rgba(0,0,0,0.4)",
+    // border: "20px solid rgba(0,0,0,0.4)",
     borderLeft: "none",
   },
   decoration: {
@@ -60,10 +63,18 @@ const useStyles = makeStyles((theme) => ({
     transform: "translateX(-50%)",
     width: "136.8%",
   },
+  obituarioImgText: {
+    display: "flex",
+    justifyContent: "center",
+    "@media (max-width: 550px)": {
+      alignItems: "center",
+      flexDirection: "column",
+    },
+  },
   text: {
     width: 280,
-    margin: "24px 0",
-    padding: 16,
+    // margin: "24px 0",
+    padding: "0 16px",
   },
   masse: {
     margin: "8px 0",
@@ -91,27 +102,26 @@ const useStyles = makeStyles((theme) => ({
   },
   shareFacebook: {
     background: "#3b5998",
-    margin: "8px 0",
+    margin: "0 8px",
     color: "white",
-    paddingRight: 18,
-    transition: "0.2s",
-    "&:hover": {
-      color: "white",
-      background: "#3b5998",
-      borderRadius: 20,
-    },
+    cursor: "pointer",
+    width: 30,
+    height: 30,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: "50%",
   },
   shareWhatsapp: {
     background: "#25d366",
     margin: "8px 0",
     color: "white",
-    paddingRight: 18,
-    transition: "0.2s",
-    "&:hover": {
-      color: "white",
-      background: "#128c7e",
-      borderRadius: 20,
-    },
+    width: 30,
+    height: 30,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: "50%",
   },
   obituarioImg: {
     display: "flex",
@@ -291,141 +301,148 @@ const Obituario = ({ pageContext, location }) => {
         justifyContent="center"
         alignItems="center"
       >
-        <ObituarioImg foto={pageContext.foto} size={200}></ObituarioImg>
-        <Paper className={classes.text}>
-          <Typography variant="h4">{nombre}</Typography>
-          <Typography gutterBottom>{pageContext.fechaFin}</Typography>
-          <Typography>{pageContext.epitafio}</Typography>
+        <div className={classes.obituarioImgText}>
+          <ObituarioImg foto={pageContext.foto} size={200}></ObituarioImg>
+          <div className={classes.text}>
+            <Typography variant="h5" style={{ fontWeight: "bold" }}>
+              {nombre}
+            </Typography>
+            <Typography gutterBottom style={{ fontSize: "0.7em" }}>
+              {pageContext.fechaFin}
+            </Typography>
+            <Typography style={{ fontStyle: "italic", fontSize: "1em" }}>
+              {pageContext.epitafio}
+            </Typography>
 
-          {pageContext.misa && (
-            <>
-              <Button
-                variant="contained"
-                color="secondary"
-                fullWidth
-                onClick={() => setOpenMasse(true)}
-                className={classes.masse}
-              >
-                Evento y horarios
-              </Button>
-              <Modal
-                title={`Evento de Misa  ${fechaMisa}`}
-                maxWidth
-                fullWidth
-                open={openMasse}
-                onClose={() => setOpenMasse(false)}
-              >
-                <Box
-                  display="flex"
-                  justifyContent="space-around"
-                  alignItems="center"
-                  flexWrap="wrap"
+            {pageContext.misa && (
+              <>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  fullWidth
+                  onClick={() => setOpenMasse(true)}
+                  className={classes.masse}
+                >
+                  Evento y horarios
+                </Button>
+                <Modal
+                  title={`Evento de Misa  ${fechaMisa}`}
+                  maxWidth
+                  fullWidth
+                  open={openMasse}
+                  onClose={() => setOpenMasse(false)}
                 >
                   <Box
                     display="flex"
-                    flexDirection="column"
                     justifyContent="space-around"
                     alignItems="center"
-                    className={classes.eventMasseItem}
+                    flexWrap="wrap"
                   >
-                    <Typography variant="h5">Misa {horaMisa}</Typography>
-                    <img src="/img/iglesia.svg"></img>
-                    <a
-                      style={{ width: "100%" }}
-                      href={pageContext.misa.urlLugarMisa}
+                    <Box
+                      display="flex"
+                      flexDirection="column"
+                      justifyContent="space-around"
+                      alignItems="center"
+                      className={classes.eventMasseItem}
                     >
-                      <Button color="secondary" fullWidth variant="contained">
-                        Ver en mapa
-                      </Button>
-                    </a>
-                  </Box>
-                  <Box
-                    display="flex"
-                    flexDirection="column"
-                    justifyContent="space-around"
-                    alignItems="center"
-                    className={classes.eventMasseItem}
-                  >
-                    <Typography variant="h5">
-                      Traslado {horaTraslado}
-                    </Typography>
-                    <img src="/img/traslado.svg"></img>
-                    <div style={{ height: 36 }}></div>
-                  </Box>
-                  <Box
-                    display="flex"
-                    flexDirection="column"
-                    justifyContent="space-around"
-                    alignItems="center"
-                    className={classes.eventMasseItem}
-                  >
-                    <Typography variant="h5">
-                      Cementerio: {pageContext.misa.lugarCementerio}
-                    </Typography>
-                    <img src="/img/cementerio.svg"></img>
-                    <a
-                      style={{ width: "100%" }}
-                      href={pageContext.misa.urlLugarCementerio}
+                      <Typography variant="h5">Misa {horaMisa}</Typography>
+                      <img src="/img/iglesia.svg"></img>
+                      <a
+                        style={{ width: "100%" }}
+                        href={pageContext.misa.urlLugarMisa}
+                      >
+                        <Button color="secondary" fullWidth variant="contained">
+                          Ver en mapa
+                        </Button>
+                      </a>
+                    </Box>
+                    <Box
+                      display="flex"
+                      flexDirection="column"
+                      justifyContent="space-around"
+                      alignItems="center"
+                      className={classes.eventMasseItem}
                     >
-                      <Button color="secondary" fullWidth variant="contained">
-                        Ver en mapa
-                      </Button>
-                    </a>
+                      <Typography variant="h5">
+                        Traslado {horaTraslado}
+                      </Typography>
+                      <img src="/img/traslado.svg"></img>
+                      <div style={{ height: 36 }}></div>
+                    </Box>
+                    <Box
+                      display="flex"
+                      flexDirection="column"
+                      justifyContent="space-around"
+                      alignItems="center"
+                      className={classes.eventMasseItem}
+                    >
+                      <Typography variant="h5">
+                        Cementerio: {pageContext.misa.lugarCementerio}
+                      </Typography>
+                      <img src="/img/cementerio.svg"></img>
+                      <a
+                        style={{ width: "100%" }}
+                        href={pageContext.misa.urlLugarCementerio}
+                      >
+                        <Button color="secondary" fullWidth variant="contained">
+                          Ver en mapa
+                        </Button>
+                      </a>
+                    </Box>
                   </Box>
-                </Box>
-              </Modal>
-            </>
-          )}
+                </Modal>
+              </>
+            )}
 
-          <Divider></Divider>
-          <Typography align="center" style={{ margin: "8px 0" }}>
-            <CountCommentsFacebook url={urlAbsolute} />
-          </Typography>
-          <a
-            href="#condolencias"
-            onClick={() =>
-              ReactPixel.trackCustom("button", {
-                type: "view",
-                content: "ver condolencias",
-              })
-            }
-          >
-            <Button color="primary" variant="contained" fullWidth>
-              Enviar condolencias
-            </Button>
-          </a>
-          <Button
-            onClick={() =>
-              ReactPixel.trackCustom("button", {
-                type: "share",
-                content: "compartir whatsapp",
-              })
-            }
-            className={classes.shareWhatsapp}
-            fullWidth
-            href={`whatsapp://send?text=${messageShareWhatsapp}`}
-            data-text={`En memoria de ${pageContext.nombre}`}
-            data-action="share/whatsapp/share"
-          >
-            <WhatsAppIcon size={30} /> Compartir
-          </Button>
-          <FacebookShareButton url={urlAbsolute}>
+            {/* <Divider></Divider>
+            <Typography align="center" style={{ margin: "8px 0" }}>
+              <CountCommentsFacebook url={urlAbsolute} />
+            </Typography>
+            <a
+              href="#condolencias"
+              onClick={() =>
+                ReactPixel.trackCustom("button", {
+                  type: "view",
+                  content: "ver condolencias",
+                })
+              }
+            >
+              <Button color="primary" variant="contained" fullWidth>
+                Enviar condolencias
+              </Button>
+            </a>
             <Button
               onClick={() =>
                 ReactPixel.trackCustom("button", {
                   type: "share",
-                  content: "compartir facebook",
+                  content: "compartir whatsapp",
                 })
               }
+              className={classes.shareWhatsapp}
               fullWidth
-              className={classes.shareFacebook}
+              href={`whatsapp://send?text=${messageShareWhatsapp}`}
+              data-text={`En memoria de ${pageContext.nombre}`}
+              data-action="share/whatsapp/share"
             >
-              <FacebookIcon size={30}></FacebookIcon>
-              Compartir
+              <WhatsAppIcon size={30} /> Compartir
             </Button>
-          </FacebookShareButton>
+            <FacebookShareButton url={urlAbsolute}>
+              <Button
+                onClick={() =>
+                  ReactPixel.trackCustom("button", {
+                    type: "share",
+                    content: "compartir facebook",
+                  })
+                }
+                fullWidth
+                className={classes.shareFacebook}
+              >
+                <FacebookIcon size={30}></FacebookIcon>
+                Compartir
+              </Button>
+            </FacebookShareButton> */}
 
-          {/* {pageContext.misa && (
+            {/* {pageContext.misa && (
             <a href="#obituarioImg">
               <Button
                 variant="outlined"
@@ -438,8 +455,9 @@ const Obituario = ({ pageContext, location }) => {
               </Button>
             </a>
           )} */}
-        </Paper>
-        {pageContext.afiliado && (
+          </div>
+        </div>
+        {/* {pageContext.afiliado && (
           <Box
             display="flex"
             flexDirection="column"
@@ -472,13 +490,74 @@ const Obituario = ({ pageContext, location }) => {
             </Link>
             <br />
           </Box>
-        )}
+        )} */}
         <br />
-        <div id="condolencias">
+        <Divider style={{ minWidth: 300, maxWidth: 550, width: "100%" }} />
+        <br />
+        <Box
+          style={{
+            width: "84%",
+            maxWidth: 550,
+            minWidth: 300,
+            marginBottom: 8,
+          }}
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
+        >
+          <Typography>Condolencias</Typography>
+          <Paper
+            style={{
+              padding: 8,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Typography>Compartir</Typography>
+            <FacebookShareButton
+              url={urlAbsolute}
+              style={{
+                width: 30,
+                height: 30,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                marginRight: 16,
+              }}
+            >
+              <FacebookIcon
+                onClick={() =>
+                  ReactPixel.trackCustom("button", {
+                    type: "share",
+                    content: "compartir facebook",
+                  })
+                }
+                className={classes.shareFacebook}
+                size={30}
+              ></FacebookIcon>
+            </FacebookShareButton>
+            <a
+              href={`whatsapp://send?text=${messageShareWhatsapp}`}
+              data-text={`En memoria de ${pageContext.nombre}`}
+              data-action="share/whatsapp/share"
+              onClick={() =>
+                ReactPixel.trackCustom("button", {
+                  type: "share",
+                  content: "compartir whatsapp",
+                })
+              }
+              className={classes.shareWhatsapp}
+            >
+              <WhatsAppIcon size={30} />
+            </a>
+          </Paper>
+        </Box>
+        <Paper id="condolencias">
           <FacebookProvider language="es_LA" appId="2503959843259543">
             <Comments href={urlAbsolute} />
           </FacebookProvider>
-        </div>
+        </Paper>
       </Box>
       <div style={hiddenImg}>
         <div
@@ -570,14 +649,14 @@ const ObituarioImg = ({ foto, size, styleCustom }) => {
   return (
     <Paper
       className={`${classes.funeral} ${styleCustom}`}
-      style={{ width: size, height: size }}
+      style={{ width: size, height: size, marginBottom: 16 }}
     >
       <div
         className={classes.foto}
         style={{ background: `url(${foto})` }}
       ></div>
-      <span className={classes.shadowFoto}></span>
-      <img className={classes.decoration} src="/img/funeral.svg"></img>
+      {/* <span className={classes.shadowFoto}></span> */}
+      {/* <img className={classes.decoration} src="/img/funeral.svg"></img> */}
     </Paper>
   );
 };
