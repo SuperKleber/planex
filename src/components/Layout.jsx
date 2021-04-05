@@ -158,6 +158,7 @@ const Layout = ({ children, seo, pixel }) => {
 
           // background: linear-gradient(#d4feff 15%, #ffffff 85%);
           overflow-x: hidden;
+          margin-bottom: 85px !important;
         }
 
         a {

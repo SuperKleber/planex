@@ -35,11 +35,6 @@ const LandingObituario = ({ obituarios }) => {
           );
         })}
       </Grid>
-      <style jsx="true" global="true">{`
-        body {
-          margin-bottom: 85px !important;
-        }
-      `}</style>
     </Container>
   );
 };

@@ -36,6 +36,15 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     // border: `20px solid ${colors.purple}`,
     borderRadius: "50%",
+    "& .aro": {
+      position: "absolute",
+      width: "100%",
+      height: "100%",
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+    },
   },
   foto: {
     // width: "calc(100% - 21%)",
@@ -156,6 +165,16 @@ const useStyles = makeStyles((theme) => ({
       left: "calc(88% - 80px)",
     },
   },
+  nombrePremium: {
+    "-webkit-background-clip": "text",
+    "-webkit-text-fill-color": "transparent",
+    fontWeight: "bold",
+    "-webkit-margin-before": "0.3em",
+    "-webkit-margin-after": "0.2em",
+    backgroundImage: "-webkit-linear-gradient(#d4cc4a 45%, #9A8000 75%)",
+    textShadow:
+      "1px 1px 0 rgba(0, 0, 0, 0.09),-1px -1px 0 rgba(255, 220, 0, 0.670)",
+  },
   obituarioImgPaper: {
     // maxWidth: 750,
 
@@ -211,10 +230,47 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
   },
+  goldenButton: {
+    width: "100%",
+    display: "inline-block",
+    outline: "none",
+    fontFamily: "inherit",
+    fontSize: "1em",
+    boxSizing: "border-box",
+    border: "none",
+    borderRadius: ".3em",
+    // height: "2.75em",
+    height: "36px",
+    lineHeight: "2.5em",
+    textTransform: "uppercase",
+    padding: "0 1em",
+    boxShadow:
+      "0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(110,80,20,.4),inset 0 -2px 5px 1px rgba(139,66,8,1), inset 0 -1px 1px 3px rgba(250,227,133,1)",
+    backgroundImage:
+      "linear-gradient(160deg, #a54e07, #b47e11, #fef1a2, #bc881b, #a54e07)",
+    border: "1px solid #a55d07",
+    color: "rgb(120,50,5)",
+    textShadow: "0 2px 2px rgba(250, 227, 133, 1)",
+    cursor: "pointer",
+    transition: "all .2s ease-in-out",
+    backgroundSize: "100% 100%",
+    backgroundPosition: "center",
+    "&:hover": {
+      backgroundSize: "150% 150%",
+      boxShadow:
+        "0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23), inset 0 -2px 5px 1px #b17d10,inset 0 -1px 1px 3px rgba(250,227,133,1)",
+      border: "1px solid rgba(165,93,7,.6)",
+      color: "rgba(120,50,5,.8)",
+    },
+    "&:active": {
+      boxShadow:
+        "0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(110,80,20,.4), inset 0 -2px 5px 1px #b17d10, inset 0 -1px 1px 3px rgba(250,227,133,1)",
+    },
+  },
 }));
 const Obituario = ({ pageContext, location }) => {
-  console.log(pageContext);
   const [openMasse, setOpenMasse] = useState(false);
+  const [openPremium, setOpenPremium] = useState(false);
   const [hiddenImg, setHiddenImg] = useState({
     opacity: "0",
     transform: "scale(0)",
@@ -250,16 +306,29 @@ const Obituario = ({ pageContext, location }) => {
       let minuto = parseInt(horaMisa.split(":")[1]);
       let minuto30 =
         (minuto + 30) % 60 < 10 ? `0${(minuto + 30) % 60}` : (minuto + 30) % 60;
-      horaTraslado =
-        parseInt(horaMisa.split(":")[1]) + 30 > 59
+      horaTraslado = horaMisa
+        ? parseInt(horaMisa.split(":")[1]) + 30 > 59
           ? `${hora + 1}:${minuto30}`
-          : `${hora}:${minuto30}`;
+          : `${hora}:${minuto30}`
+        : false;
     }
   } catch (e) {
     fechaMisa = "";
     horaMisa = "";
     horaTraslado = "";
     console.log("Hubo un error al definir fechas y horas de evento de Misa");
+  }
+  let premium = false;
+  if (pageContext.fechaPremium) {
+    const now = new Date();
+    const datePremium = new Date(
+      `${pageContext.fechaPremium.split("/")[2]}-${
+        pageContext.fechaPremium.split("/")[1]
+      }-${pageContext.fechaPremium.split("/")[0]}`
+    );
+    if (datePremium >= now) {
+      premium = true;
+    }
   }
   const saveImage = () => {
     setHiddenImg({});
@@ -277,18 +346,90 @@ const Obituario = ({ pageContext, location }) => {
     / /g,
     "%20"
   );
+  let youtube = false;
+  try {
+    youtube =
+      pageContext.urlYoutubePremium &&
+      pageContext.urlYoutubePremium.indexOf("youtu.be") != -1
+        ? pageContext.urlYoutubePremium.split("youtu.be/")[1]
+        : pageContext.urlYoutubePremium.indexOf("watch?v=") != -1
+        ? pageContext.urlYoutubePremium.split("watch?v=")[1]
+        : pageContext.urlYoutubePremium.indexOf("embed/") != -1
+        ? pageContext.urlYoutubePremium.split("embed/")[1]
+        : false;
+  } catch (error) {
+    console.log(`pageContext.urlYoutubePremium:`);
+    console.log(pageContext.urlYoutubePremium);
+    console.log(`Youtube: ${youtube}`);
+    // console.error(error)
+  }
   useEffect(() => {
     let config = {
       address: "rhe5m5nrm1lfr",
     };
     let client = sheetdb(config);
     client.read().then((data) => {
-      console.log(data);
+      // console.log(data);
     });
   }, []);
   return (
     <Layout seo={seo}>
       <Menu></Menu>
+      {premium && (
+        <div className={classes.decorationPremium}>
+          <img
+            style={{
+              position: "absolute",
+              top: 0,
+              right: 0,
+              width: "30vw",
+              maxWidth: "40vh",
+              zIndex: -1,
+            }}
+            src="/img/flores.png"
+            alt=""
+          />
+          <img
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "30vw",
+              maxWidth: "40vh",
+              transform: "rotate(270deg)",
+              zIndex: -1,
+            }}
+            src="/img/flores.png"
+            alt=""
+          />
+          <img
+            style={{
+              position: "absolute",
+              bottom: 0,
+              left: 0,
+              width: "30vw",
+              maxWidth: "40vh",
+              transform: "rotate(180deg)",
+              zIndex: -1,
+            }}
+            src="/img/flores.png"
+            alt=""
+          />
+          <img
+            style={{
+              position: "absolute",
+              bottom: 0,
+              right: 0,
+              width: "30vw",
+              maxWidth: "40vh",
+              transform: "rotate(90deg)",
+              zIndex: -1,
+            }}
+            src="/img/flores.png"
+            alt=""
+          />
+        </div>
+      )}
       <Link to={prev}>
         <Fab color="primary" className={classes.prev}>
           <Back></Back>
@@ -302,9 +443,18 @@ const Obituario = ({ pageContext, location }) => {
         alignItems="center"
       >
         <div className={classes.obituarioImgText}>
-          <ObituarioImg foto={pageContext.foto} size={200}></ObituarioImg>
+          <ObituarioImg
+            foto={pageContext.foto}
+            size={200}
+            premium={premium}
+          ></ObituarioImg>
           <div className={classes.text}>
-            <Typography variant="h5" style={{ fontWeight: "bold" }}>
+            <Typography
+              className={premium ? classes.nombrePremium : ""}
+              data-heading={nombre}
+              variant="h5"
+              style={{ fontWeight: "bold" }}
+            >
               {nombre}
             </Typography>
             <Typography gutterBottom style={{ fontSize: "0.7em" }}>
@@ -313,11 +463,79 @@ const Obituario = ({ pageContext, location }) => {
             <Typography style={{ fontStyle: "italic", fontSize: "1em" }}>
               {pageContext.epitafio}
             </Typography>
+            {premium && (
+              <>
+                <br />
+                <button
+                  onClick={() => setOpenPremium(true)}
+                  className={classes.goldenButton}
+                >
+                  <Typography>Ver dedicatoria premium</Typography>
+                </button>
+                <Modal
+                  maxWidth
+                  fullWidth
+                  open={openPremium}
+                  onClose={() => setOpenPremium(false)}
+                  title="Dedicatoria Premium"
+                  style={{ backgroundImage: "url('/img/sky.png')" }}
+                >
+                  {pageContext.urlYoutubePremium && youtube && (
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        position: "relative",
 
-            {pageContext.misa && (
+                        width: "100%",
+                        // minHeight: heightScale,
+                      }}
+                    >
+                      <div
+                        style={{
+                          position: "relative",
+                          width: "100%",
+                          paddingBottom: "56.25%",
+                        }}
+                      >
+                        <iframe
+                          style={{
+                            position: "absolute",
+                            top: 0,
+                            bottom: 0,
+                            left: 0,
+                            right: 0,
+                            boxShadow: "flat",
+                            width: "100%",
+                            height: "100%",
+                            border: 0,
+                            borderRadius: 16,
+                            boxShadow: "0 0 4px black",
+                          }}
+                          frameBorder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          src={`https://www.youtube.com/embed/${youtube}`}
+                          allowFullScreen
+                        ></iframe>
+                      </div>
+                    </div>
+                  )}
+                  <br />
+                  {pageContext.dedicatoriaPremium && (
+                    <Typography style={{ fontStyle: "italic" }}>
+                      {pageContext.dedicatoriaPremium}
+                    </Typography>
+                  )}
+                  <br />
+                </Modal>
+              </>
+            )}
+            {pageContext.misa && pageContext.misa.fechaMisa && (
               <>
                 <Button
-                  variant="contained"
+                  variant={premium ? "outlined" : "contained"}
                   color="primary"
                   fullWidth
                   onClick={() => setOpenMasse(true)}
@@ -345,7 +563,9 @@ const Obituario = ({ pageContext, location }) => {
                       alignItems="center"
                       className={classes.eventMasseItem}
                     >
-                      <Typography variant="h5">Misa {horaMisa}</Typography>
+                      <Typography variant="h5">
+                        Misa {horaMisa || ""}
+                      </Typography>
                       <img src="/img/iglesia.svg"></img>
                       <a
                         style={{ width: "100%" }}
@@ -356,19 +576,21 @@ const Obituario = ({ pageContext, location }) => {
                         </Button>
                       </a>
                     </Box>
-                    <Box
-                      display="flex"
-                      flexDirection="column"
-                      justifyContent="space-around"
-                      alignItems="center"
-                      className={classes.eventMasseItem}
-                    >
-                      <Typography variant="h5">
-                        Traslado {horaTraslado}
-                      </Typography>
-                      <img src="/img/traslado.svg"></img>
-                      <div style={{ height: 36 }}></div>
-                    </Box>
+                    {horaTraslado && (
+                      <Box
+                        display="flex"
+                        flexDirection="column"
+                        justifyContent="space-around"
+                        alignItems="center"
+                        className={classes.eventMasseItem}
+                      >
+                        <Typography variant="h5">
+                          Traslado {horaTraslado}
+                        </Typography>
+                        <img src="/img/traslado.svg"></img>
+                        <div style={{ height: 36 }}></div>
+                      </Box>
+                    )}
                     <Box
                       display="flex"
                       flexDirection="column"
@@ -644,7 +866,7 @@ const Obituario = ({ pageContext, location }) => {
   );
 };
 
-const ObituarioImg = ({ foto, size, styleCustom }) => {
+const ObituarioImg = ({ foto, size, styleCustom, premium }) => {
   const classes = useStyles();
   return (
     <Paper
@@ -655,6 +877,7 @@ const ObituarioImg = ({ foto, size, styleCustom }) => {
         className={classes.foto}
         style={{ background: `url(${foto})` }}
       ></div>
+      {premium && <img className="aro" src="/img/aro-oro.png" alt="" />}
       {/* <span className={classes.shadowFoto}></span> */}
       {/* <img className={classes.decoration} src="/img/funeral.svg"></img> */}
     </Paper>
