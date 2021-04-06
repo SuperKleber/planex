@@ -444,7 +444,7 @@ const Obituario = ({ pageContext, location }) => {
       >
         <div className={classes.obituarioImgText}>
           <ObituarioImg
-            foto={pageContext.foto}
+            foto={pageContext.foto || "/uploads/avatar-prever.png"}
             size={200}
             premium={premium}
           ></ObituarioImg>

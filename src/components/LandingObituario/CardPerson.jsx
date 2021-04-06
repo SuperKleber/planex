@@ -211,28 +211,29 @@ const CardPerson = ({ obituario }) => {
   return (
     <FacebookProvider language="es_LA" appId="2503959843259543">
       <Box className={classes.root}>
-        {foto && foto != "" && (
-          <Link
-            to={link}
-            state={{
-              prev: prev,
-            }}
+        <Link
+          to={link}
+          state={{
+            prev: prev,
+          }}
+        >
+          <Box
+            className={classes.cardImage}
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
           >
-            <Box
-              className={classes.cardImage}
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-            >
-              {premium && <img className="aro" src="/img/aro-oro.png" alt="" />}
-              <span
-                className="foto"
-                style={{ background: `url(${foto})` }}
-              ></span>
-              {/* <img className="cloud" src="/img/nube-sombra.svg"></img> */}
-            </Box>
-          </Link>
-        )}
+            {premium && <img className="aro" src="/img/aro-oro.png" alt="" />}
+            <span
+              className="foto"
+              style={{
+                background: `url(${foto || "/uploads/avatar-prever.png"})`,
+              }}
+            ></span>
+            {/* <img className="cloud" src="/img/nube-sombra.svg"></img> */}
+          </Box>
+        </Link>
+
         <Card className={classes.card}>
           <CardActionArea className={classes.CardActionArea}>
             <Link

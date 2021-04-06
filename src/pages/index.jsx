@@ -245,6 +245,11 @@ const Info = () => {
           }
         </Modal>
       </Container>
+      <style jsx="true" global="true">{`
+        body {
+          background: white !important;
+        }
+      `}</style>
     </Layout>
   );
 };
