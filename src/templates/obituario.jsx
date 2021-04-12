@@ -381,7 +381,7 @@ const Obituario = ({ pageContext, location }) => {
             style={{
               position: "absolute",
               top: 0,
-              right: 0,
+              left: 0,
               width: "30vw",
               maxWidth: "40vh",
               zIndex: -1,
@@ -393,23 +393,10 @@ const Obituario = ({ pageContext, location }) => {
             style={{
               position: "absolute",
               top: 0,
-              left: 0,
+              right: 0,
               width: "30vw",
               maxWidth: "40vh",
-              transform: "rotate(270deg)",
-              zIndex: -1,
-            }}
-            src="/img/flores.png"
-            alt=""
-          />
-          <img
-            style={{
-              position: "absolute",
-              bottom: 0,
-              left: 0,
-              width: "30vw",
-              maxWidth: "40vh",
-              transform: "rotate(180deg)",
+              transform: "rotate(90deg)",
               zIndex: -1,
             }}
             src="/img/flores.png"
@@ -422,10 +409,23 @@ const Obituario = ({ pageContext, location }) => {
               right: 0,
               width: "30vw",
               maxWidth: "40vh",
+              // transform: "rotate(180deg)",
+              zIndex: -1,
+            }}
+            src="/img/flores2.png"
+            alt=""
+          />
+          <img
+            style={{
+              position: "absolute",
+              bottom: -25,
+              left: 30,
+              width: "30vw",
+              maxWidth: "40vh",
               transform: "rotate(90deg)",
               zIndex: -1,
             }}
-            src="/img/flores.png"
+            src="/img/flores2.png"
             alt=""
           />
         </div>

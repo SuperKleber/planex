@@ -262,11 +262,15 @@ const CardPerson = ({ obituario }) => {
               </Box>
 
               <CardContent className={classes.CardContent}>
-                {afiliado && (
-                  <Box className={classes.afiliado}>
-                    <Typography>Afiliado</Typography>
-                  </Box>
-                )}
+                {afiliado &&
+                  typeof afiliado == "string" &&
+                  afiliado.toLowerCase() != "falso" &&
+                  afiliado.toLowerCase() != "false" &&
+                  afiliado.toLowerCase() != "0" && (
+                    <Box className={classes.afiliado}>
+                      <Typography>Afiliado</Typography>
+                    </Box>
+                  )}
                 <Typography variant="h6" style={{ textAlign: "center" }}>
                   {firstUpperCase(nombre || "")}
                 </Typography>
