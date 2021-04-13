@@ -34,7 +34,7 @@ const SearchBox = ({ refine, isSearchStalled, onFocus, onBlur }) => {
       id="test"
       variant="outlined"
       onFocus={onFocus}
-      onBlur={onBlur}
+      // onBlur={onBlur}
       fullWidth
       label={
         <Box display="flex" justifyContent="center" alignItems="flex-start">

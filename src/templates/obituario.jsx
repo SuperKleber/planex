@@ -13,7 +13,13 @@ import {
   Button,
   Fab,
   Divider,
+  Menu as Options,
+  MenuItem as OptionItem,
 } from "@material-ui/core";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import CopyIcon from "@material-ui/icons/FileCopy";
+import ShareIcon from "@material-ui/icons/Share";
+import Alert from "../components/Alert.jsx";
 import { makeStyles } from "@material-ui/core/styles";
 import Back from "@material-ui/icons/ArrowBack";
 import WhatsAppIcon from "@material-ui/icons/WhatsApp";
@@ -111,7 +117,6 @@ const useStyles = makeStyles((theme) => ({
   },
   shareFacebook: {
     background: "#3b5998",
-    margin: "0 8px",
     color: "white",
     cursor: "pointer",
     width: 30,
@@ -123,7 +128,7 @@ const useStyles = makeStyles((theme) => ({
   },
   shareWhatsapp: {
     background: "#25d366",
-    margin: "8px 0",
+    // margin: "8px 0",
     color: "white",
     width: 30,
     height: 30,
@@ -131,6 +136,11 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: "50%",
+  },
+  noPhone: {
+    "@media (max-width: 550px)": {
+      display: "none !important",
+    },
   },
   obituarioImg: {
     display: "flex",
@@ -277,6 +287,11 @@ const Obituario = ({ pageContext, location }) => {
     position: "absolute",
     top: "-100vh",
   }); //Oculta imagen que se descargará
+  const [copiedShare, setCopiedShare] = useState(false);
+  const [elmentOption, setElementOption] = useState(null);
+  const clickOption = (event) => setElementOption(event.currentTarget);
+  const closeOption = (event) => setElementOption(null);
+
   const obituarioImg = useRef(null);
   let prev = location.state ? location.state.prev : "/obituarios";
   const classes = useStyles();
@@ -296,7 +311,28 @@ const Obituario = ({ pageContext, location }) => {
       ? "ninita:-luciana-nava-duran"
       : pageContext.slug
   }`;
-
+  const link = `/obituarios/${pageContext.slug}`;
+  const linkAbsolute =
+    typeof window !== "undefined" && window.location.origin + link;
+  const shareMore = () => {
+    try {
+      if ("share" in navigator) {
+        navigator
+          .share({
+            title: pageContext.nombre,
+            text: pageContext.epitafio,
+            url: link,
+          })
+          .then(() => {})
+          .catch(() => {});
+      } else {
+        console.warn("Este Navegador no soporta la opción de compartir");
+      }
+    } catch (error) {
+      console.warn("Este Navegador no soporta la opción de compartir");
+      console.warn(error);
+    }
+  };
   let fechaMisa, horaMisa, horaTraslado;
   try {
     if (pageContext.misa) {
@@ -470,7 +506,7 @@ const Obituario = ({ pageContext, location }) => {
                   onClick={() => setOpenPremium(true)}
                   className={classes.goldenButton}
                 >
-                  <Typography>Ver dedicatoria premium</Typography>
+                  <Typography>Ver dedicatoria y video</Typography>
                 </button>
                 <Modal
                   maxWidth
@@ -549,6 +585,7 @@ const Obituario = ({ pageContext, location }) => {
                   fullWidth
                   open={openMasse}
                   onClose={() => setOpenMasse(false)}
+                  closeButton
                 >
                   <Box
                     display="flex"
@@ -679,40 +716,7 @@ const Obituario = ({ pageContext, location }) => {
           )} */}
           </div>
         </div>
-        {/* {pageContext.afiliado && (
-          <Box
-            display="flex"
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="center"
-            style={{ width: 300, padding: 6 }}
-            border={2}
-            borderRadius="borderRadius"
-            color={colors.purple}
-          >
-            <br />
-            <Typography align="center">
-              La celebracion de la vida, incluye la muerte.
-              <br />
-              La previsión mitiga el dolor de la familia.
-            </Typography>
-            <br />
-            <Link
-              to="/#planes"
-              onClick={() =>
-                ReactPixel.trackCustom("Button", {
-                  type: "view",
-                  content: "ver planes afiliados",
-                })
-              }
-            >
-              <Button color="primary" variant="outlined">
-                Ver planes de previsión
-              </Button>
-            </Link>
-            <br />
-          </Box>
-        )} */}
+
         <br />
         <Divider style={{ minWidth: 300, maxWidth: 550, width: "100%" }} />
         <br />
@@ -728,16 +732,18 @@ const Obituario = ({ pageContext, location }) => {
           alignItems="center"
         >
           <Typography>Condolencias</Typography>
-          <Paper
+          <Button
+            onClick={clickOption}
             style={{
               padding: 8,
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
+              boxShadow: "0 0 3px 1px rgba(0,0,0,0.2)",
             }}
           >
-            <Typography>Compartir</Typography>
-            <FacebookShareButton
+            Compartir
+            {/* <FacebookShareButton
               url={urlAbsolute}
               style={{
                 width: 30,
@@ -772,14 +778,127 @@ const Obituario = ({ pageContext, location }) => {
               className={classes.shareWhatsapp}
             >
               <WhatsAppIcon size={30} />
+            </a> */}
+          </Button>
+          <Options
+            anchorEl={elmentOption}
+            keepMounted
+            open={Boolean(elmentOption)}
+            onClose={closeOption}
+          >
+            <FacebookShareButton url={linkAbsolute}>
+              <OptionItem
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <FacebookIcon
+                  className={classes.shareFacebook}
+                  size={25}
+                  round
+                ></FacebookIcon>
+                <Typography>Facebook</Typography>
+              </OptionItem>
+            </FacebookShareButton>
+            <CopyToClipboard
+              text={linkAbsolute}
+              onCopy={() => setCopiedShare(true)}
+            >
+              <OptionItem
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <CopyIcon></CopyIcon>
+                <Typography>Copiar URL</Typography>
+              </OptionItem>
+            </CopyToClipboard>
+            <a
+              className={classes.noPhone}
+              href={`whatsapp://send?text=${messageShareWhatsapp}`}
+              data-text={`En memoria de ${nombre}`}
+              data-action="share/whatsapp/share"
+            >
+              <OptionItem
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <span className={classes.shareWhatsapp}>
+                  <WhatsAppIcon size={30} />
+                </span>
+                Whatsapp
+              </OptionItem>
             </a>
-          </Paper>
+            <OptionItem
+              className={classes.noPhone}
+              onClick={shareMore}
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <ShareIcon></ShareIcon>
+              ...otros
+            </OptionItem>
+          </Options>
+
+          <Alert
+            open={copiedShare}
+            message="URL copiada"
+            onClose={() => setCopiedShare(false)}
+          ></Alert>
         </Box>
         <Paper id="condolencias">
           <FacebookProvider language="es_LA" appId="2503959843259543">
             <Comments href={urlAbsolute} />
           </FacebookProvider>
         </Paper>
+        <br />
+        <Divider style={{ minWidth: 300, maxWidth: 550, width: "100%" }} />
+        <br />
+        {pageContext.afiliado && (
+          <Paper
+            style={{
+              width: 300,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              width: "84%",
+              maxWidth: 550,
+              minWidth: 300,
+            }}
+          >
+            <br />
+            <Typography variant="caption" align="center" style={{ padding: 6 }}>
+              La celebracion de la vida, incluye la muerte.
+              <br />
+              La previsión mitiga el dolor de la familia.
+            </Typography>
+            <Link
+              to="/#planes"
+              onClick={() =>
+                ReactPixel.trackCustom("Button", {
+                  type: "view",
+                  content: "ver planes afiliados",
+                })
+              }
+            >
+              <Button color="primary" variant="outlined">
+                Ver planes de previsión
+              </Button>
+            </Link>
+            <br />
+          </Paper>
+        )}
       </Box>
       <div style={hiddenImg}>
         <div

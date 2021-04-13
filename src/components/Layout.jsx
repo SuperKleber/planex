@@ -28,9 +28,6 @@ const theme = createMuiTheme({
     primary: { main: colors.purple, dark: colors.purpleDark },
     type: "light",
     // secondary: { main: colors.gold },
-    text: {
-      primary: "#525252",
-    },
   },
   // overrides: {
   //   MuiCssBaseline: {

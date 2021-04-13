@@ -282,13 +282,15 @@ const Plan = ({
       justifyContent="space-between"
     >
       <Box
-        style={{ width: "100%" }}
+        style={{ width: "100%", color: "white" }}
         display="flex"
         justifyContent="center"
         alignItems="center"
         flexDirection="column"
       >
-        <Typography variant="h6">{title}</Typography>
+        <Typography variant="h6" style={{ color: "white" }}>
+          {title}
+        </Typography>
         <Box
           display="flex"
           justifyContent="center"
@@ -298,12 +300,13 @@ const Plan = ({
           <Box display="flex" justifyContent="center" alignItems="center">
             {pricing ? (
               <>
-                <Typography>Bs</Typography>
+                <Typography style={{ color: "white" }}>Bs</Typography>
                 <Typography
                   style={{
                     padding: 8,
                     borderRadius: 4,
                     marginRight: 8,
+                    color: "white",
                   }}
                   variant="h4"
                 >
@@ -311,11 +314,15 @@ const Plan = ({
                 </Typography>
               </>
             ) : (
-              <Typography variant="h4">Contáctanos</Typography>
+              <Typography variant="h4" style={{ color: "white" }}>
+                Contáctanos
+              </Typography>
             )}
           </Box>
           <Box>
-            <Typography gutterBottom>x 7 personas x mes</Typography>
+            <Typography gutterBottom style={{ color: "white" }}>
+              x 7 personas x mes
+            </Typography>
           </Box>
         </Box>
       </Box>

@@ -12,15 +12,13 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 const myQuery = `{
-  allObituariosYaml(sort: { order: DESC, fields: [fechaFin] }) {
+  allObituario{
     edges {
       node {
         id
         nombre
         foto
-        fields {
-          slug
-        }
+        slug
       }
     }
   }
@@ -29,7 +27,7 @@ const queries = [
   {
     query: myQuery,
     transformer: ({ data }) =>
-      data.allObituariosYaml.edges.map(({ node }) => {
+      data.allObituario.edges.map(({ node }) => {
         const obituario = {
           objectID: node.id,
           foto:
@@ -39,7 +37,7 @@ const queries = [
               ? node.foto
               : `${siteUrl}${node.foto}`,
           nombre: node.nombre,
-          url: `${siteUrl}/obituarios/${node.fields.slug}`,
+          url: `${siteUrl}/obituarios/${node.slug}`,
         };
         return obituario;
       }), // optional

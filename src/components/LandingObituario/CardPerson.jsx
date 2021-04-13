@@ -15,6 +15,7 @@ import {
 import { colors } from "../../../config/brand.yml";
 import CopyIcon from "@material-ui/icons/FileCopy";
 import ShareIcon from "@material-ui/icons/Share";
+import WhatsAppIcon from "@material-ui/icons/WhatsApp";
 import { makeStyles } from "@material-ui/core/styles";
 import { borderRadius } from "@material-ui/system";
 import { siteUrl } from "../../../config/defaultSeo.json";
@@ -25,6 +26,7 @@ import Alert from "../Alert";
 import { FacebookProvider, CommentsCount } from "react-facebook";
 import firstUpperCase from "../../../lib/firstUpperCase";
 import CountCommentsFacebook from "../CountCommentsFacebook.jsx";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     position: "relative",
@@ -82,6 +84,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     width: "100%",
   },
+
   CardContent: {
     display: "flex",
     flexDirection: "column",
@@ -97,16 +100,31 @@ const useStyles = makeStyles((theme) => ({
     //   "linear-gradient(144deg, rgba(212,254,255,1) 0%, rgba(0,129,255,1) 100%)",
   },
   iconFacebook: {},
+  shareWhatsapp: {
+    background: "#25d366",
+    color: "white",
+    width: 30,
+    height: 30,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: "50%",
+  },
+  noPhone: {
+    "@media (max-width: 550px)": {
+      display: "none !important",
+    },
+  },
   afiliado: {
     position: "absolute",
     top: 0,
     left: 0,
-    // color: "white",
     // background: colors.purple,
     padding: 8,
     borderRadius: "0 0 4px 0",
     // color: colors.purple,
-    background: "rgba(100,100,100,0.1)",
+    // background: "rgba(100,100,100,0.1)",
+    background: "rgba(102,51,135,0.2)",
     // border: `2px solid ${colors.purple}`,
     // borderTop: 0,
     // borderLeft: 0,
@@ -207,7 +225,10 @@ const CardPerson = ({ obituario }) => {
       console.warn(error);
     }
   };
-
+  const messageShareWhatsapp = `Invitamos a dejar sus condolencias en memoria de ${nombre}%0A%0A${urlAbsolute}`.replace(
+    / /g,
+    "%20"
+  );
   return (
     <FacebookProvider language="es_LA" appId="2503959843259543">
       <Box className={classes.root}>
@@ -268,7 +289,7 @@ const CardPerson = ({ obituario }) => {
                   afiliado.toLowerCase() != "false" &&
                   afiliado.toLowerCase() != "0" && (
                     <Box className={classes.afiliado}>
-                      <Typography>Afiliado</Typography>
+                      <Typography>🕊️ Afiliado</Typography>
                     </Box>
                   )}
                 <Typography variant="h6" style={{ textAlign: "center" }}>
@@ -347,11 +368,29 @@ const CardPerson = ({ obituario }) => {
                   <Typography>Copiar URL</Typography>
                 </OptionItem>
               </CopyToClipboard>
-              <OptionItem onClick={shareMore}>
+              <OptionItem className={classes.noPhone}>
+                <a
+                  href={`whatsapp://send?text=${messageShareWhatsapp}`}
+                  data-text={`En memoria de ${nombre}`}
+                  data-action="share/whatsapp/share"
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <span className={classes.shareWhatsapp}>
+                    <WhatsAppIcon size={30} />
+                  </span>
+                  Whatsapp
+                </a>
+              </OptionItem>
+              <OptionItem onClick={shareMore} className={classes.noPhone}>
                 <ShareIcon></ShareIcon>
                 ...otros
               </OptionItem>
             </Options>
+
             <Alert
               open={copiedShare}
               message="URL copiada"
