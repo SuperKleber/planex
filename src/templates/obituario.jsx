@@ -314,13 +314,18 @@ const Obituario = ({ pageContext, location }) => {
   const link = `/obituarios/${pageContext.slug}`;
   const linkAbsolute =
     typeof window !== "undefined" && window.location.origin + link;
+
+  const messageShareWhatsapp = `Invitamos a dejar sus condolencias en memoria de *${pageContext.nombre}*%0A%0A_${pageContext.epitafio}_%0A%0A${urlAbsolute}`.replace(
+    / /g,
+    "%20"
+  );
   const shareMore = () => {
     try {
       if ("share" in navigator) {
         navigator
           .share({
             title: pageContext.nombre,
-            text: pageContext.epitafio,
+            text: messageShareWhatsapp,
             url: link,
           })
           .then(() => {})
@@ -378,10 +383,7 @@ const Obituario = ({ pageContext, location }) => {
         console.error(e);
       });
   };
-  const messageShareWhatsapp = `Invitamos a dejar sus condolencias en memoria de ${pageContext.nombre}%0A%0A${urlAbsolute}`.replace(
-    / /g,
-    "%20"
-  );
+
   let youtube = false;
   try {
     youtube =
@@ -513,7 +515,7 @@ const Obituario = ({ pageContext, location }) => {
                   fullWidth
                   open={openPremium}
                   onClose={() => setOpenPremium(false)}
-                  title="Dedicatoria Premium"
+                  title="Dedicatoria"
                   style={{ backgroundImage: "url('/img/sky.png')" }}
                 >
                   {pageContext.urlYoutubePremium && youtube && (
@@ -856,49 +858,49 @@ const Obituario = ({ pageContext, location }) => {
             onClose={() => setCopiedShare(false)}
           ></Alert>
         </Box>
+
+        <Paper
+          style={{
+            width: 300,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "84%",
+            maxWidth: 550,
+            minWidth: 300,
+          }}
+        >
+          <br />
+          <Typography variant="caption" align="center" style={{ padding: 4 }}>
+            {/* La celebracion de la vida, incluye la muerte.
+              <br /> */}
+            La previsión mitiga el dolor a la familia.
+          </Typography>
+          <Link
+            to="/#planes"
+            onClick={() =>
+              ReactPixel.trackCustom("Button", {
+                type: "view",
+                content: "ver planes afiliados",
+              })
+            }
+          >
+            <Button color="primary" variant="outlined">
+              Ver planes de previsión
+            </Button>
+          </Link>
+          <br />
+        </Paper>
+
+        <br />
+        <Divider style={{ minWidth: 300, maxWidth: 550, width: "100%" }} />
+        <br />
         <Paper id="condolencias">
           <FacebookProvider language="es_LA" appId="2503959843259543">
             <Comments href={urlAbsolute} />
           </FacebookProvider>
         </Paper>
-        <br />
-        <Divider style={{ minWidth: 300, maxWidth: 550, width: "100%" }} />
-        <br />
-        {pageContext.afiliado && (
-          <Paper
-            style={{
-              width: 300,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-              width: "84%",
-              maxWidth: 550,
-              minWidth: 300,
-            }}
-          >
-            <br />
-            <Typography variant="caption" align="center" style={{ padding: 6 }}>
-              La celebracion de la vida, incluye la muerte.
-              <br />
-              La previsión mitiga el dolor de la familia.
-            </Typography>
-            <Link
-              to="/#planes"
-              onClick={() =>
-                ReactPixel.trackCustom("Button", {
-                  type: "view",
-                  content: "ver planes afiliados",
-                })
-              }
-            >
-              <Button color="primary" variant="outlined">
-                Ver planes de previsión
-              </Button>
-            </Link>
-            <br />
-          </Paper>
-        )}
       </Box>
       <div style={hiddenImg}>
         <div

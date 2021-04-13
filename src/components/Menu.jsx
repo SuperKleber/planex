@@ -252,7 +252,7 @@ const Menu = ({ menuFloat = true }) => {
                   <WhatsappIcon green size={35}></WhatsappIcon>
                 </IconButton>
               </a>
-              <a href="https://www.facebook.com/preverboliviaasistenciaexequial">
+              <a href="https://www.facebook.com/planexasistenciaexequial">
                 <IconButton>
                   <FacebookIcon size={35}></FacebookIcon>
                 </IconButton>

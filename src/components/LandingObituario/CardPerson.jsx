@@ -206,13 +206,17 @@ const CardPerson = ({ obituario }) => {
       premium = true;
     }
   }
+  const messageShareWhatsapp = `Invitamos a dejar sus condolencias en memoria de *${nombre}*%0A%0A_${epitafio}_%0A%0A${urlAbsolute}`.replace(
+    / /g,
+    "%20"
+  );
   const shareMore = () => {
     try {
       if ("share" in navigator) {
         navigator
           .share({
             title: nombre,
-            text: epitafio,
+            text: messageShareWhatsapp,
             url: link,
           })
           .then(() => {})
@@ -225,10 +229,7 @@ const CardPerson = ({ obituario }) => {
       console.warn(error);
     }
   };
-  const messageShareWhatsapp = `Invitamos a dejar sus condolencias en memoria de ${nombre}%0A%0A${urlAbsolute}`.replace(
-    / /g,
-    "%20"
-  );
+
   return (
     <FacebookProvider language="es_LA" appId="2503959843259543">
       <Box className={classes.root}>
