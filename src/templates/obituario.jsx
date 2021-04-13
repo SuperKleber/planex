@@ -138,7 +138,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "50%",
   },
   noPhone: {
-    "@media (max-width: 550px)": {
+    "@media (min-width: 550px)": {
       display: "none !important",
     },
   },
