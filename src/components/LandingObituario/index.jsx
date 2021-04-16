@@ -35,6 +35,12 @@ const LandingObituario = ({ obituarios }) => {
           );
         })}
       </Grid>
+      <style jsx="true" global="true">{`
+        body {
+          background: url("/img/cielo.jpg") !important;
+          background-attachment: fixed !important;
+        }
+      `}</style>
     </Container>
   );
 };

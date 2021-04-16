@@ -159,11 +159,13 @@ exports.createPages = async ({ graphql, actions }) => {
   });
   result.data.allObituario.edges.forEach(({ node }) => {
     try {
-      createPage({
-        path: `/obituarios/${node.slug}`,
-        component: obituarioTemplate,
-        context: node,
-      });
+      if (node.slug) {
+        createPage({
+          path: `/obituarios/${node.slug}`,
+          component: obituarioTemplate,
+          context: node,
+        });
+      }
     } catch (error) {
       console.log("Hubo un Error al crear las páginas de los obituarios");
       console.log(node);
