@@ -983,6 +983,12 @@ const Obituario = ({ pageContext, location }) => {
           </Box>
         </div>
       </div>
+      <style jsx="true" global="true">{`
+        body {
+          background: url("/img/cielo.jpg") !important;
+          background-attachment: fixed !important;
+        }
+      `}</style>
     </Layout>
   );
 };
