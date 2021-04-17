@@ -724,6 +724,44 @@ const Obituario = ({ pageContext, location }) => {
         <br />
         <Divider style={{ minWidth: 300, maxWidth: 550, width: "100%" }} />
         <br />
+
+        <Paper
+          style={{
+            width: 300,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "84%",
+            maxWidth: 550,
+            minWidth: 300,
+          }}
+        >
+          <br />
+          <Typography variant="caption" align="center" style={{ padding: 4 }}>
+            {/* La celebracion de la vida, incluye la muerte.
+              <br /> */}
+            La previsión mitiga el dolor a la familia.
+          </Typography>
+          <Link
+            to="/#planes"
+            onClick={() =>
+              ReactPixel.trackCustom("Button", {
+                type: "view",
+                content: "ver planes afiliados",
+              })
+            }
+          >
+            <Button color="primary" variant="outlined">
+              Ver planes de previsión
+            </Button>
+          </Link>
+          <br />
+        </Paper>
+
+        <br />
+        <Divider style={{ minWidth: 300, maxWidth: 550, width: "100%" }} />
+        <br />
         <Box
           style={{
             width: "84%",
@@ -861,43 +899,6 @@ const Obituario = ({ pageContext, location }) => {
           ></Alert>
         </Box>
 
-        <Paper
-          style={{
-            width: 300,
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            width: "84%",
-            maxWidth: 550,
-            minWidth: 300,
-          }}
-        >
-          <br />
-          <Typography variant="caption" align="center" style={{ padding: 4 }}>
-            {/* La celebracion de la vida, incluye la muerte.
-              <br /> */}
-            La previsión mitiga el dolor a la familia.
-          </Typography>
-          <Link
-            to="/#planes"
-            onClick={() =>
-              ReactPixel.trackCustom("Button", {
-                type: "view",
-                content: "ver planes afiliados",
-              })
-            }
-          >
-            <Button color="primary" variant="outlined">
-              Ver planes de previsión
-            </Button>
-          </Link>
-          <br />
-        </Paper>
-
-        <br />
-        <Divider style={{ minWidth: 300, maxWidth: 550, width: "100%" }} />
-        <br />
         <Paper id="condolencias">
           <FacebookProvider language="es_LA" appId="2503959843259543">
             <Comments href={urlAbsolute} />
