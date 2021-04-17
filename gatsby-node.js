@@ -44,7 +44,7 @@ exports.sourceNodes = async ({
 }) => {
   const { createNode } = actions;
   let config = {
-    address: "rhe5m5nrm1lfr",
+    address: "lih6wpzt8cwsw",
   };
   let client = sheetdb(config);
   const data = await client.read();

@@ -290,7 +290,7 @@ const CardPerson = ({ obituario }) => {
                   afiliado.toLowerCase() != "false" &&
                   afiliado.toLowerCase() != "0" && (
                     <Box className={classes.afiliado}>
-                      <Typography style={{ fontWeight: "bold !important" }}>
+                      <Typography style={{ fontWeight: "bold" }}>
                         🕊️ Afiliado
                       </Typography>
                     </Box>

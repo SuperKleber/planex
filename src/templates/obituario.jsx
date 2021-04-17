@@ -293,13 +293,15 @@ const Obituario = ({ pageContext, location }) => {
   const closeOption = (event) => setElementOption(null);
 
   const obituarioImg = useRef(null);
-  let prev = location.state ? location.state.prev : "/obituarios";
+  let prev = (location.state && location.state.prev) || "/obituarios";
   const classes = useStyles();
   const nombre = firstUpperCase(pageContext.nombre || "");
   const seo = {
     siteTitle: `${nombre}`,
     siteDescription: `Los familiares invitan a dejar sus condolencias ingresando aquí.`,
-    siteCover: pageContext.foto ? pageContext.foto : false,
+    siteCover: pageContext.foto
+      ? pageContext.foto
+      : "/uploads/avatar-prever.png",
     siteUrl: `${siteUrl}/obituarios/${pageContext.slug}`,
   };
 
