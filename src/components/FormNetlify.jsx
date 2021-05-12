@@ -38,6 +38,7 @@ const FormNetlify = () => {
         <input type="text" name="familyJson" />
         <input type="text" name="contrato" />
         <input type="text" name="subscribed" />
+        <input type="text" name="asignado a" />
       </form>
       <form
         name="prevision"
@@ -59,6 +60,7 @@ const FormNetlify = () => {
         <input type="text" name="familyJson" />
         <input type="text" name="contrato" />
         <input type="text" name="subscribed" />
+        <input type="text" name="asignado a" />
       </form>
       <form
         name="afiliado"

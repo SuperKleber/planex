@@ -70,6 +70,7 @@ const FormContact = ({ initialPlan, onSent = () => null, formName }) => {
   const [familyJson, setFamilyJson] = useState([]);
   const [checkedA, setCheckedA] = useState(true);
   const [checkedB, setCheckedB] = useState(true);
+  const [asignado, setAsignado] = useState("");
 
   const [alert, setAlert] = useState({
     open: false,
@@ -91,6 +92,7 @@ const FormContact = ({ initialPlan, onSent = () => null, formName }) => {
       familyJson,
       contrato: checkedA,
       subscribed: checkedB,
+      "asignado a": asignado,
     };
     if (celular.toString().length >= 8) {
       if (familyJson.length > 0) {
@@ -143,7 +145,16 @@ const FormContact = ({ initialPlan, onSent = () => null, formName }) => {
       }
     }
   }, [customFamily]);
-
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const url = new URL(window.location.href);
+      const getAsignado = url.searchParams.get("asignado");
+      if (getAsignado) {
+        setAsignado(getAsignado);
+      }
+    }
+  }, []);
+  console.log(asignado);
   const steps = [
     {
       title: "Información del responsable",
