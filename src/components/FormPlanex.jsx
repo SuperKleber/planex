@@ -99,7 +99,12 @@ const FormContact = ({ initialPlan, onSent = () => null, formName }) => {
         fetch("/", {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: encode({ "form-name": formName, ...data }),
+          body: encode({
+            "form-name": formName,
+            ...data,
+            familyJson: JSON.stringify(data.familyJson),
+            dataJson: JSON.stringify(data),
+          }),
         }).then((res) => {
           ReactPixel.track("InitiateCheckout");
           setSent(true);

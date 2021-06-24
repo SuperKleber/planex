@@ -26,8 +26,11 @@ const myQuery = `{
 const queries = [
   {
     query: myQuery,
-    transformer: ({ data }) =>
-      data.allObituario.edges.map(({ node }) => {
+    transformer: ({ data }) => {
+      let allObituarios = [];
+      data.allObituario.edges.forEach(({ node }, i) => {
+        const umbral = data.allObituario.length - 10;
+
         const obituario = {
           objectID: node.id,
           foto:
@@ -39,8 +42,13 @@ const queries = [
           nombre: node.nombre,
           url: `${siteUrl}/obituarios/${node.slug}`,
         };
-        return obituario;
-      }), // optional
+        if (i >= umbral) {
+          allObituarios.push(obituario);
+        }
+      });
+      return allObituarios;
+    },
+    // optional
     // transformer: ({ data }) => {
     //   let { node } = data.allObituariosYaml.edges[0];
     //   const obituarios = [
@@ -140,16 +148,16 @@ module.exports = {
         display: `standalone`,
       },
     },
-    // {
-    //   resolve: `gatsby-plugin-algolia`,
-    //   options: {
-    //     appId: process.env.ALGOLIA_APP_ID,
-    //     apiKey: process.env.ALGOLIA_API_ADMIN,
-    //     indexName: "obituarios", // for all queries
-    //     queries,
-    //     enablePartialUpdates: false, // default: false
-    //     matchFields: ["objectID", "nombre"],
-    //   },
-    // },
+    {
+      resolve: `gatsby-plugin-algolia`,
+      options: {
+        appId: process.env.ALGOLIA_APP_ID,
+        apiKey: process.env.ALGOLIA_API_ADMIN,
+        indexName: "obituarios", // for all queries
+        queries,
+        enablePartialUpdates: false, // default: false
+        matchFields: ["objectID", "nombre"],
+      },
+    },
   ],
 };
